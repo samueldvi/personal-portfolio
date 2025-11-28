@@ -9,7 +9,7 @@ Design dark elegante, completamente **bilingue (IT/EN)** e responsive.
 - **HTML5**, **CSS3**, **JavaScript**
 - Layout responsive (senza framework)
 - Switch lingua IT/EN con `localStorage`
-- Hosting compatibile: GitHub Pages, Netlify, Vercel, AWS S3/CloudFront
+- Hosting compatibile: GitHub Pages, apache2, Netlify, Vercel, AWS S3/CloudFront
 
 ---
 
