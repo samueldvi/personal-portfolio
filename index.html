@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samuel Okotako – Data Management & ML Portfolio</title>
+  <meta name="description" content="Portfolio di Samuel Okotako: data management, machine learning e soluzioni cloud su AWS." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#hero" class="logo">
+        <span class="logo__dot"></span>
+        <span class="logo__text">Samuel <strong>Okotako</strong></span>
+      </a>
+
+      <nav class="nav" id="navMenu">
+        <a href="#hero" class="nav__link" data-i18n="nav.home">Home</a>
+        <a href="#skills" class="nav__link" data-i18n="nav.skills">Skill</a>
+        <a href="#projects" class="nav__link" data-i18n="nav.projects">Progetti</a>
+        <a href="#about" class="nav__link" data-i18n="nav.about">Chi sono</a>
+        <a href="#contact" class="nav__link" data-i18n="nav.contact">Contatti</a>
+      </nav>
+
+      <div class="header-right">
+        <select id="langSelect" class="lang-select" aria-label="Seleziona lingua">
+          <option value="it">IT</option>
+          <option value="en">EN</option>
+        </select>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Apri menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="section hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow" data-i18n="hero.eyebrow">
+            Data Management · Machine Learning · AWS
+          </p>
+          <h1 class="hero-title" data-i18n="hero.title">
+            Trasformo i dati in <span>decisioni misurabili</span>.
+          </h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
+            Mi occupo di pipeline ETL, analisi, modelli di machine learning e integrazione con servizi cloud.
+            L’obiettivo è semplice: usare i dati per prendere decisioni concrete, non intuitive.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn--primary" data-i18n="hero.btnProjects">Guarda i progetti</a>
+            <a href="#contact" class="btn btn--ghost" data-i18n="hero.btnContact">Parliamone</a>
+          </div>
+          <div class="hero-meta">
+            <span data-i18n="hero.meta1">📍 Catania</span>
+            <span data-i18n="hero.meta2">🎯 Data · ML · Cloud</span>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-avatar">SO</div>
+          <h2 data-i18n="hero.cardTitle">Data Management & Machine Learning</h2>
+          <p data-i18n="hero.cardText">
+            In questo portfolio trovi progetti reali: pulizia dati, modelli di ML, pipeline ETL e integrazione
+            con servizi cloud come AWS.
+          </p>
+          <ul class="hero-tags">
+            <li data-i18n="hero.tag1">Python · Pandas · SQL</li>
+            <li data-i18n="hero.tag2">ETL · KPI · Dashboard</li>
+            <li data-i18n="hero.tag3">AWS (S3, Lambda, ecc.)</li>
+          </ul>
+          <div class="hero-links">
+            <a href="https://github.com/samueldvi" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/okotako-samuel-44492620b" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section section--alt">
+      <div class="container">
+        <header class="section-head">
+          <h2 data-i18n="skills.title">Skill principali</h2>
+          <p data-i18n="skills.subtitle">
+            Competenze orientate al ciclo di vita completo del dato: dall’ingest, alla pulizia, fino ai modelli e al reporting.
+          </p>
+        </header>
+
+        <div class="skills-grid">
+          <article class="card">
+            <h3 data-i18n="skills.card1.title">Data & Feature Engineering</h3>
+            <p data-i18n="skills.card1.text">
+              Pulizia dati, gestione valori mancanti, encoding, scaling, analisi esplorativa e preparazione dei dati per i modelli.
+            </p>
+            <ul class="pill-list">
+              <li data-i18n="skills.card1.pill1">Python</li>
+              <li data-i18n="skills.card1.pill2">Pandas / NumPy</li>
+              <li data-i18n="skills.card1.pill3">EDA · Feature Engineering</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3 data-i18n="skills.card2.title">Machine Learning</h3>
+            <p data-i18n="skills.card2.text">
+              Modelli di classificazione e regressione con scikit-learn, valutati con metriche solide e cross-validation.
+            </p>
+            <ul class="pill-list">
+              <li data-i18n="skills.card2.pill1">Scikit-learn</li>
+              <li data-i18n="skills.card2.pill2">Classification / Regression</li>
+              <li data-i18n="skills.card2.pill3">Accuracy · F1 · AUC</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3 data-i18n="skills.card3.title">Cloud & DevOps base</h3>
+            <p data-i18n="skills.card3.text">
+              Utilizzo di servizi AWS per storage, funzioni serverless e distribuzione di soluzioni basate sui dati.
+            </p>
+            <ul class="pill-list">
+              <li data-i18n="skills.card3.pill1">AWS S3</li>
+              <li data-i18n="skills.card3.pill2">AWS Lambda</li>
+              <li data-i18n="skills.card3.pill3">Cloud concetti base</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container">
+        <header class="section-head">
+          <h2 data-i18n="projects.title">Progetti</h2>
+          <p data-i18n="projects.subtitle">
+            Alcuni lavori che rappresentano il mio modo di lavorare con i dati: processi chiari, documentati e ripetibili.
+          </p>
+        </header>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="card card--project">
+            <h3 data-i18n="projects.card1.title">Pipeline ETL & Cleaning – Adult Dataset</h3>
+            <p data-i18n="projects.card1.text">
+              Progetto completo sul dataset Adult (UCI): pulizia, encoding, scaling, analisi esplorativa
+              e preparazione per modelli di classificazione sul reddito.
+            </p>
+            <ul class="pill-list">
+              <li data-i18n="projects.card1.pill1">ETL</li>
+              <li data-i18n="projects.card1.pill2">EDA</li>
+              <li data-i18n="projects.card1.pill3">Adult Dataset</li>
+            </ul>
+            <a href="#" target="_blank" class="card-link" data-i18n="projects.card1.link">Vedi repository →</a>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card card--project">
+            <h3 data-i18n="projects.card2.title">Modelli di regressione – Temperature oceani</h3>
+            <p data-i18n="projects.card2.text">
+              Modelli di regressione lineare e avanzati per stimare variazioni di temperatura:
+              feature engineering, selezione feature e analisi dei residui.
+            </p>
+            <ul class="pill-list">
+              <li data-i18n="projects.card2.pill1">Regressione</li>
+              <li data-i18n="projects.card2.pill2">R² · MSE</li>
+              <li data-i18n="projects.card2.pill3">Analisi residui</li>
+            </ul>
+            <a href="#" target="_blank" class="card-link" data-i18n="projects.card2.link">Vedi repository →</a>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card card--project">
+            <h3 data-i18n="projects.card3.title">RAG su CSV – Prodotti</h3>
+            <p data-i18n="projects.card3.text">
+              Pipeline RAG che interroga un CSV di prodotti e risponde in linguaggio naturale
+              e in formato JSON strutturato.
+            </p>
+            <ul class="pill-list">
+              <li data-i18n="projects.card3.pill1">RAG</li>
+              <li data-i18n="projects.card3.pill2">Embedding + Vector Store</li>
+              <li data-i18n="projects.card3.pill3">JSON Output</li>
+            </ul>
+            <a href="#" target="_blank" class="card-link" data-i18n="projects.card3.link">Vedi repository →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section section--alt">
+      <div class="container about-grid">
+        <div>
+          <h2 data-i18n="about.title">Chi sono</h2>
+          <p data-i18n="about.p1">
+            Sono Samuel Okotako, specializzato in data management, machine learning e soluzioni data-driven.
+            Lavoro su pipeline ETL, analisi dati, modelli predittivi e integrazione con servizi cloud.
+          </p>
+          <p data-i18n="about.p2">
+            Il mio focus è progettare processi chiari, tracciabili e scalabili che trasformano i dati grezzi
+            in insight affidabili e utilizzabili.
+          </p>
+        </div>
+        <div class="about-aside">
+          <div class="about-item">
+            <span class="about-label" data-i18n="about.box1.label">Formazione</span>
+            <p data-i18n="about.box1.text">
+              Informatica & Data Management, con attenzione a ML, cloud e AI generativa.
+            </p>
+          </div>
+          <div class="about-item">
+            <span class="about-label" data-i18n="about.box2.label">Stile</span>
+            <p data-i18n="about.box2.text">
+              Pipeline modulari, documentate, con notebook chiari e repository ordinati.
+            </p>
+          </div>
+          <div class="about-item">
+            <span class="about-label" data-i18n="about.box3.label">Obiettivo</span>
+            <p data-i18n="about.box3.text">
+              Crescere come Data Engineer / ML Engineer e lavorare su progetti in produzione su cloud.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container contact-grid">
+        <div>
+          <h2 data-i18n="contact.title">Contatti</h2>
+          <p data-i18n="contact.subtitle">
+            Per collaborazioni in ambito data management, ML, RAG o progetti cloud.
+          </p>
+          <ul class="contact-list">
+            <li>
+              📧
+              <a href="mailto:samuel.okotako.work@gmail.com">
+                samuel.okotako.work@gmail.com
+              </a>
+            </li>
+            <li>
+              🔗
+              <a href="https://github.com/samueldvi" target="_blank" rel="noopener">
+                github.com/samueldvi
+              </a>
+            </li>
+            <li>
+              🔗
+              <a href="https://www.linkedin.com/in/okotako-samuel-44492620b" target="_blank" rel="noopener">
+                LinkedIn
+              </a>
+            </li>
+          </ul>
+          <p class="contact-note" data-i18n="contact.note">
+            Nei messaggi preferisco chiarezza: contesto, obiettivo, tempi e, se possibile, budget.
+          </p>
+        </div>
+
+        <form class="contact-form" method="post" action="#">
+          <div class="form-group">
+            <label for="name" data-i18n="contact.form.nameLabel">Nome*</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              data-i18n-placeholder="contact.form.namePlaceholder"
+              placeholder="Il tuo nome"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email" data-i18n="contact.form.emailLabel">Email*</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              data-i18n-placeholder="contact.form.emailPlaceholder"
+              placeholder="nome@azienda.com"
+            />
+          </div>
+          <div class="form-group">
+            <label for="subject" data-i18n="contact.form.subjectLabel">Oggetto*</label>
+            <input
+              id="subject"
+              name="subject"
+              type="text"
+              required
+              data-i18n-placeholder="contact.form.subjectPlaceholder"
+              placeholder="Proposta di collaborazione"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="contact.form.messageLabel">Messaggio*</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              data-i18n-placeholder="contact.form.messagePlaceholder"
+              placeholder="Scrivimi qualche dettaglio sul progetto..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" data-i18n="contact.form.button">
+            Invia
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Samuel Okotako</span>
+      <span data-i18n="footer.tagline">Data Management · ML · Cloud</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
