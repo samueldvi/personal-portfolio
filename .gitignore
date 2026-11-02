@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+
+# Original personal photographs remain local until explicitly reviewed.
+/IMG_4835.PNG
+/IMG_5358.HEIC
+/IMG_5750.JPG

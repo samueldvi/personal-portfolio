@@ -1,0 +1,307 @@
+{
+  "content": {
+    "title": "Samuel Okotako | Data Engineering e Data Governance",
+    "description": "Portfolio di Samuel Okotako: sistemi per i dati, Data Governance, progetti tecnici e percorso formativo.",
+    "skip": "Vai al contenuto",
+    "nav_label": "Navigazione principale",
+    "nav": [
+      "Home",
+      "Chi sono",
+      "Progetti",
+      "Esperienza e formazione",
+      "Contatti"
+    ],
+    "menu_open": "Apri il menu",
+    "menu_close": "Chiudi il menu",
+    "theme_label": "Tema",
+    "theme_options": [
+      "Auto",
+      "Chiaro",
+      "Scuro"
+    ],
+    "language_label": "Lingua",
+    "hero_kicker": "Data Engineering · Data Governance · Software",
+    "hero_title": "Progetto sistemi che trasformano dati complessi in soluzioni concrete.",
+    "hero_intro": "Sono Samuel Okotako. Lavoro all’intersezione tra gestione del dato, sviluppo software e sperimentazione in AI: dal problema iniziale a processi comprensibili e verificabili.",
+    "hero_cta": "Esplora i progetti",
+    "hero_contact": "Contatti",
+    "focus_label": "Ambiti di lavoro",
+    "focus": [
+      [
+        "01",
+        "Data Engineering",
+        "Pipeline, trasformazioni e modelli dati."
+      ],
+      [
+        "02",
+        "Data Governance",
+        "Qualità, tracciabilità e protezione del dato."
+      ],
+      [
+        "03",
+        "AI e software",
+        "Studio, prototipi e sviluppo di soluzioni."
+      ]
+    ],
+    "selected_label": "Una selezione",
+    "selected_title": "Progetti in evidenza",
+    "selected_intro": "Quattro contesti diversi, un approccio: chiarire il problema e distinguere i risultati documentati da quelli ancora da verificare.",
+    "selected_action": "Vai al progetto",
+    "experience_label": "Esperienza",
+    "experience_title": "Lavorare con il dato, nel suo contesto.",
+    "experience_intro": "Il tirocinio in Spindox ha riguardato Data Governance, Data Masking e pseudonimizzazione. Le attività specifiche pubblicabili richiedono ancora verifica.",
+    "experience_period": "Giugno – ottobre 2026",
+    "experience_role": "Tirocinio · Data Governance e Data Masking",
+    "experience_actual_title": "Ambiti del tirocinio",
+    "experience_actual": "Data Governance, Data Masking e pseudonimizzazione. Non sono pubblicati processi, dati o documenti interni all’azienda.",
+    "experience_separate_title": "Progetti e studio",
+    "experience_separate": "Pipeline con dbt e DuckDB, lavoro NoSQL su Databricks e formazione in AI sono presentati separatamente: non vengono attribuiti a Spindox.",
+    "projects_label": "Portfolio tecnico",
+    "projects_title": "Progetti, con il contesto in primo piano.",
+    "projects_intro": "Le schede mostrano subito l’essenziale. I dettagli tecnici sono consultabili quando servono; risultati e metriche assenti non vengono inventati.",
+    "filters_label": "Filtra i progetti",
+    "filters": [
+      [
+        "all",
+        "Tutti"
+      ],
+      [
+        "governance",
+        "Governance"
+      ],
+      [
+        "engineering",
+        "Data Engineering"
+      ],
+      [
+        "electronics",
+        "Elettronica"
+      ]
+    ],
+    "filter_count": "progetti visibili",
+    "filter_count_one": "progetto visibile",
+    "details": "Contesto e dettagli",
+    "field_context": "Contesto",
+    "field_problem": "Problema",
+    "field_approach": "Approccio tecnico",
+    "field_outcome": "Risultato verificabile",
+    "field_tech": "Tecnologie",
+    "no_repo": "Collegamento al codice da verificare",
+    "education_link": "Vedi la formazione",
+    "education_label": "Formazione",
+    "education_title": "Una base tecnica trasversale.",
+    "education_intro": "Elettronica, data management e informatica: un percorso che unisce sistemi fisici e sistemi informativi.",
+    "its_degree": "Diploma di Tecnico Superiore Data Manager",
+    "its_date": "Conseguito il 28 ottobre 2026",
+    "final_grade": "Voto finale",
+    "module_average": "Media moduli",
+    "modules_summary": "Consulta i 28 moduli e i voti ufficiali",
+    "unict_name": "Università di Catania",
+    "unict_degree": "Laurea triennale in Informatica (L-31)",
+    "ongoing": "In corso",
+    "archimede_degree": "Diploma in Elettronica e Automazione",
+    "archimede_link": "Progetto finale: radar Arduino",
+    "about_label": "Chi sono",
+    "about_title": "Metodo prima di effetto.",
+    "about_intro": "Il mio percorso attraversa elettronica, gestione dei dati e informatica. Mi interessano i sistemi che rendono l’informazione affidabile, utilizzabile e comprensibile.",
+    "about_steps": [
+      [
+        "Capire",
+        "Parto dal contesto e dai vincoli reali."
+      ],
+      [
+        "Costruire",
+        "Cerco una soluzione semplice da spiegare e mantenere."
+      ],
+      [
+        "Verificare",
+        "Controllo il risultato e documento ciò che resta aperto."
+      ]
+    ],
+    "contact_label": "Contatti",
+    "contact_title": "Una conversazione parte da un problema concreto.",
+    "contact_intro": "Per confrontarci su dati, software o un progetto, puoi scrivermi via email oppure trovarmi su GitHub e LinkedIn.",
+    "contact_email_action": "Scrivimi via email",
+    "form_title": "Modulo di contatto",
+    "form_status": "In preparazione",
+    "form_note": "L’interfaccia è pronta; l’invio sarà attivato solo dopo il collegamento a un servizio reale e sicuro. Nel frattempo usa l’email.",
+    "form_name": "Nome",
+    "form_email": "Email",
+    "form_message": "Messaggio",
+    "form_button": "Invio non ancora disponibile",
+    "footer_top": "Torna all’inizio",
+    "module_name": "Modulo",
+    "module_grade": "Voto",
+    "modules_source_note": "Denominazioni e voti riprodotti come nel certificato ufficiale. Il documento originale non è pubblicato."
+  },
+  "extra": {
+    "writing_nav": "Scritti",
+    "gallery_nav": "Galleria",
+    "documents_title": "Documenti pubblici",
+    "moments_nav": "Life & Moments",
+    "moments_title": "Life & Moments",
+    "moments_intro": "Fotografie e appunti visivi dal mio percorso personale.",
+    "moments_open": "Apri fotografia",
+    "moments_close": "Chiudi fotografia",
+    "initiatives_nav": "Iniziative",
+    "initiatives_title": "Iniziative",
+    "initiatives_intro": "Progetti professionali e imprenditoriali pubblicati.",
+    "writing_title": "Scritti",
+    "writing_intro": "Articoli tecnici e riflessioni pubblicate.",
+    "gallery_title": "Galleria",
+    "gallery_intro": "Fotografia e lavori creativi con crediti e diritti verificati.",
+    "read_article": "Leggi l’articolo",
+    "published": "Pubblicato il",
+    "not_found_title": "Questa pagina non c’è.",
+    "not_found_text": "Il percorso potrebbe essere cambiato o non essere mai stato pubblicato. Riparti dalla home oppure esplora i progetti.",
+    "not_found_home": "Vai alla home",
+    "not_found_projects": "Esplora i progetti",
+    "gateway_title": "Samuel Okotako | Scegli la lingua",
+    "gateway_description": "Scegli italiano, inglese o francese per esplorare il lavoro di Samuel Okotako.",
+    "gateway_eyebrow": "Samuel Okotako / Portfolio",
+    "gateway_heading": "Scegli la tua lingua.",
+    "gateway_intro": "Esplora il mio lavoro tra ingegneria dei dati, governance e sviluppo software.",
+    "gateway_initial": "Le tre versioni sono disponibili qui sotto.",
+    "gateway_legacy": "Questa sezione ora ha una pagina dedicata. Scegli una lingua per continuare.",
+    "gateway_suggested": "Lingua suggerita: {language}. Puoi scegliere qualsiasi versione.",
+    "gateway_enter": "Entra nel portfolio",
+    "gateway_card_it": "Portfolio in italiano",
+    "gateway_card_en": "Portfolio in inglese",
+    "gateway_card_fr": "Portfolio in francese",
+    "case_cta": "Leggi il caso",
+    "case_context": "Contesto",
+    "case_problem": "Problema",
+    "case_goal": "Obiettivo",
+    "case_responsibility": "Responsabilità personali",
+    "case_technologies": "Tecnologie",
+    "case_architecture": "Architettura e processo",
+    "case_decisions": "Decisioni e compromessi",
+    "case_results": "Risultati verificabili",
+    "case_limits": "Limiti e miglioramenti",
+    "case_evidence": "Fonti e perimetro",
+    "case_repository": "Repository GitHub",
+    "case_back": "Torna ai progetti",
+    "moment_categories": {
+      "technology-events": "Tecnologia ed eventi",
+      "culture-theatre": "Cultura e teatro",
+      "modelling-creative": "Modelling e creatività",
+      "education-moments": "Momenti del percorso formativo"
+    }
+  },
+  "cases": {
+    "governance": {
+      "context": "Il tirocinio presso Spindox ha riguardato Data Governance e Data Masking. Il caso tecnico qui documentato è un proof of concept personale su dati sintetici: i risultati non descrivono sistemi o attività interne a Spindox.",
+      "problem": "Mascherare identificativi sensibili campo per campo può interrompere join, vincoli e corrispondenze tra sistemi. Copiare dati non protetti in ambienti di sviluppo o analisi aumenta invece l’esposizione delle persone.",
+      "goal": "Inventariare e classificare le colonne PII, applicare pseudonimi coerenti a dati relazionali collegati e verificare che il dataset protetto conservi le proprietà tecniche previste.",
+      "responsibility": "Ho sviluppato e documentato il repository del proof of concept: flusso CLI, regole di classificazione e mascheramento, controlli sul database protetto e test automatici. Non descrivo qui responsabilità o deliverable interni all’azienda.",
+      "technologies": [
+        "Python 3.12",
+        "PostgreSQL 16",
+        "YAML",
+        "pytest"
+      ],
+      "architecture": "Il flusso locale genera dati sintetici, inventaria schemi e relazioni, profila e classifica i campi, applica le regole di pseudonimizzazione e valida gli schemi protetti. Le policy sono versionate in YAML; le mappature dei valori restano in memoria durante il batch.",
+      "decisions": [
+        {
+          "heading": "Coerenza tra tabelle",
+          "text": "Gli pseudonimi deterministici usano una chiave esterna, normalizzazione e namespace. Le chiavi tecniche autorizzate restano stabili per preservare le relazioni. Questo mantiene una possibilità di collegamento: si tratta di pseudonimizzazione, non di anonimizzazione."
+        },
+        {
+          "heading": "Revisione delle ambiguità",
+          "text": "Una classificazione ambigua non viene mascherata con una regola indovinata: l’esecuzione richiede una scelta esplicita. Il controllo manuale aumenta il lavoro operativo, ma rende la decisione tracciabile."
+        }
+      ],
+      "results": [
+        {
+          "label": "Inventario sintetico",
+          "detail": "20 tabelle sorgente e 20 protette; 109 colonne inventariate e classificate nel carico di riferimento."
+        },
+        {
+          "label": "Controlli documentati",
+          "detail": "La suite del repository verifica relazioni, vincoli, assenza di drift dello schema e idempotenza deterministica sul dataset sintetico."
+        }
+      ],
+      "limits": "La verifica riguarda solo dati sintetici. Non dimostra accuratezza su dati reali, prestazioni aziendali o conformità normativa. Autenticazione, gestione operativa dei segreti e osservabilità di produzione richiedono lavoro ulteriore.",
+      "evidence": "Le quantità e i controlli derivano dal repository personale del proof of concept. Non sono misure del tirocinio Spindox; codice, documenti e dati aziendali non sono inclusi.",
+      "repo_note": "Il repository non è attualmente accessibile pubblicamente; il collegamento al codice sarà aggiunto solo quando sarà pubblicabile."
+    },
+    "dbt": {
+      "context": "Progetto personale di Data Engineering su dati e-commerce interamente sintetici, distinto dal tirocinio Spindox. La pipeline e la dashboard sono documentate in un repository locale.",
+      "problem": "Ordini in ritardo, correzioni successive e colonne introdotte in un run più recente possono produrre duplicati o indicatori economici incoerenti se l’ingestion e le trasformazioni non condividono regole precise.",
+      "goal": "Costruire caricamenti ripetibili, un modello dimensionale con grain esplicito e controlli che rendano verificabili le correzioni e le metriche consultate nella dashboard.",
+      "responsibility": "Ho realizzato nel repository la generazione sintetica, il caricamento raw, i modelli dbt, i test e la dashboard Streamlit. La logica economica viene calcolata e verificata nei mart, non ricalcolata nell’interfaccia.",
+      "technologies": [
+        "Python",
+        "DuckDB",
+        "dbt Core e dbt-duckdb",
+        "SQL",
+        "Streamlit"
+      ],
+      "architecture": "Python genera CSV riproducibili e li carica in DuckDB con un manifest transazionale. dbt organizza staging, selezione della versione corrente e mart dimensionali. La fact delle righe d’ordine si collega alle dimensioni cliente, prodotto e data; Streamlit legge uno snapshot in sola lettura.",
+      "decisions": [
+        {
+          "heading": "Upsert deterministico",
+          "text": "La chiave stabile è order_line_id. La versione corrente usa updated_at e, in caso di parità, un confronto canonico del payload. La regola aggiunge complessità, ma rende replay e ordine di arrivo indipendenti dal risultato finale."
+        },
+        {
+          "heading": "Anomalie osservabili",
+          "text": "Le righe economicamente non valide restano nella fact ma non contribuiscono al fatturato. Le chiavi dimensionali mancanti puntano a membri tecnici Unknown: si conserva il fatto senza fingere che il dato sia completo."
+        }
+      ],
+      "results": [
+        {
+          "label": "Caricamento incrementale",
+          "detail": "Nel dataset sintetico documentato, 10 nuove righe tardive e 5 correzioni portano a 5.010 order_line_id distinti, senza duplicati finali."
+        },
+        {
+          "label": "Verifiche",
+          "detail": "I test documentano replay idempotente e corrispondenza tra risultato incrementale e full refresh per fact e dimensioni."
+        }
+      ],
+      "limits": "Il workload è sintetico e locale. Non dimostra comportamento su sorgenti reali, volumi di produzione o piattaforme cloud; la dashboard consulta uno snapshot e non esegue ingestion all’avvio.",
+      "evidence": "Struttura, controlli e risultati sono documentati nel repository locale del progetto. Non vengono attribuiti a un ambiente aziendale.",
+      "repo_note": "Il repository non è attualmente accessibile pubblicamente; il collegamento al codice sarà aggiunto dopo la revisione della sua pubblicabilità."
+    },
+    "nosql": {
+      "context": "Project work ITS del gruppo Big Data NoSQL Gang, sviluppato nel vecchio Databricks Community Edition. L’archivio recuperato contiene notebook sorgente Bronze, Silver e Gold, una documentazione e una configurazione di visualizzazione; non contiene i CSV né output di esecuzione. “NoSQL” è il nome del project work, non la prova dell’uso di un database NoSQL.",
+      "problem": "Preparare dati Inside Airbnb relativi ad Amsterdam e Rio de Janeiro per analizzare annunci e recensioni senza confondere acquisizione, normalizzazione e interrogazioni analitiche.",
+      "goal": "Organizzare una pipeline a livelli Bronze/Silver/Gold e produrre interrogazioni utili al confronto delle due città. L’obiettivo del gruppo non equivale a un’esecuzione end-to-end verificata.",
+      "responsibility": "Ero team leader e mi occupavo principalmente del coordinamento e della data ingestion. Il notebook Bronze esportato porta il mio nome e descrive questa fase. Le trasformazioni Silver, le query Gold e le visualizzazioni sono presentate come lavoro del gruppo: i nomi dei file non dimostrano da soli chi abbia scritto ogni cella.",
+      "technologies": [
+        "Databricks Community Edition (ambiente originale)",
+        "PySpark",
+        "Spark SQL",
+        "Delta Lake",
+        "Inside Airbnb (dati sorgente dichiarati)"
+      ],
+      "architecture": "Il notebook Bronze legge quattro CSV dettagliati di listings e reviews da un volume Databricks, aggiunge città e timestamp di ingestion e definisce quattro tabelle Delta. Il notebook Silver crea silver_listings con UNION ALL di Amsterdam e Rio, selezione di colonne e conversioni di tipo e prezzo. La documentazione cita silver_reviews, ma il relativo codice manca nell’archivio. Il notebook Gold definisce viste SQL per conteggi e distribuzioni; il file IPYNB conserva due configurazioni di grafici, senza valori esportati.",
+      "decisions": [
+        {
+          "heading": "Parsing dei CSV",
+          "text": "La lettura Bronze mantiene le colonne come stringhe e imposta multilinea, virgolette, escape e modalità PERMISSIVE per i campi testuali complessi. La documentazione motiva la scelta dei dataset detailed rispetto ai summary per la presenza dei rating; l’archivio non permette di verificare i file originali."
+        },
+        {
+          "heading": "Separazione dei livelli",
+          "text": "Silver conserva i record con UNION ALL e rinvia gli eventuali filtri analitici al Gold. La documentazione dichiara di non deduplicare gli annunci; non sono presenti controlli che dimostrino l’unicità degli ID."
+        },
+        {
+          "heading": "Comparabilità dei prezzi",
+          "text": "La documentazione distingue euro per Amsterdam e real brasiliani per Rio e propone confronti per città. Alcune query Gold esportate non applicano il filtro di città previsto: questa cautela non è verificata per tutte le visualizzazioni."
+        }
+      ],
+      "results": [
+        {
+          "label": "Artefatti sorgente",
+          "detail": "Sono disponibili un notebook di ingestion che definisce quattro tabelle Bronze, un notebook che definisce silver_listings e un notebook Gold con viste e query analitiche."
+        },
+        {
+          "label": "Visualizzazioni",
+          "detail": "Un export IPYNB conserva le impostazioni di due grafici su conteggi per città e tipologia di alloggio. Non include i dati dei grafici né uno snapshot della dashboard finale."
+        }
+      ],
+      "limits": "Non è possibile verificare conteggi, prestazioni o completamento dell’intera pipeline senza dataset, run log e output. Il codice di silver_reviews manca; alcune query Gold dipendono da questa tabella o presentano errori e incoerenze. Il volume Databricks e il catalogo devono essere ricreati per un nuovo run. Prima di diffondere artefatti del gruppo servono verifica dei diritti e consenso dei coautori.",
+      "evidence": "Il caso descrive esclusivamente il contenuto dell’export originale recuperato e il ruolo personale dichiarato da Samuel. Le definizioni SQL documentano l’intenzione tecnica; non provano che ogni cella sia stata eseguita con successo. Nessuna metrica o dashboard finale è attribuita al progetto.",
+      "repo_note": "Notebook, dataset e dashboard restano privati durante la verifica di dati, licenze, contributi e autorizzazioni del gruppo."
+    }
+  }
+}
