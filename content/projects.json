@@ -150,5 +150,44 @@
       }
     },
     "detail": "draft"
+  },
+  {
+    "id": "bank-loan-approval-prediction",
+    "status": "draft",
+    "detail": "draft",
+    "category": "machine-learning",
+    "number": "05",
+    "translations": {
+      "it": {
+        "name": "Bank Loan Approval Prediction",
+        "type": "Machine Learning & Predictive Analytics · progetto formativo in bozza",
+        "teaser": "Progetto formativo per prevedere l’esito di richieste di prestito da dati relativi a clienti bancari; dataset e metodo ancora da verificare.",
+        "context": "Samuel riferisce che il progetto è stato realizzato durante la formazione. Fonte, natura, licenza e autorizzazioni sui dati non sono ancora documentate.",
+        "problem": "Studiare la previsione dell’esito delle richieste di prestito, distinguendo una stima statistica da una decisione creditizia reale.",
+        "approach": "Dataset, variabili, target, preprocessing, algoritmi, explainability, split e validazione sono da verificare sugli artefatti originali.",
+        "outcome": "Nessuna metrica o prestazione è stata verificata; il modello non è presentato come idoneo a prendere decisioni creditizie.",
+        "tech": "Machine Learning · strumenti da verificare"
+      },
+      "en": {
+        "name": "Bank Loan Approval Prediction",
+        "type": "Machine Learning & Predictive Analytics · training project draft",
+        "teaser": "Training project to predict loan application outcomes from bank-customer-related data; dataset and method still need verification.",
+        "context": "Samuel states that this project was completed during his training. The data source, nature, license and permissions are not yet documented.",
+        "problem": "Study predictions of loan application outcomes while distinguishing a statistical estimate from a real credit decision.",
+        "approach": "Dataset, features, target, preprocessing, algorithms, explainability, splits and validation require review of the original artifacts.",
+        "outcome": "No metric or model performance has been verified; the model is not presented as suitable for making credit decisions.",
+        "tech": "Machine Learning · tools to verify"
+      },
+      "fr": {
+        "name": "Bank Loan Approval Prediction",
+        "type": "Machine Learning et analyse prédictive · brouillon de projet de formation",
+        "teaser": "Projet de formation visant à prédire l’issue des demandes de prêt à partir de données relatives à des clients bancaires ; jeu de données et méthode à vérifier.",
+        "context": "Samuel indique avoir réalisé ce projet pendant sa formation. La source, la nature, la licence et les autorisations des données ne sont pas encore documentées.",
+        "problem": "Étudier la prédiction de l’issue des demandes de prêt, en distinguant une estimation statistique d’une véritable décision de crédit.",
+        "approach": "Jeu de données, variables, cible, prétraitement, algorithmes, explicabilité, découpages et validation doivent être vérifiés dans les artefacts originaux.",
+        "outcome": "Aucune métrique ni performance du modèle n’a été vérifiée ; le modèle n’est pas présenté comme apte à prendre des décisions de crédit.",
+        "tech": "Machine Learning · outils à vérifier"
+      }
+    }
   }
 ]

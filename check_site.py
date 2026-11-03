@@ -8,7 +8,7 @@ import sys
 import xml.etree.ElementTree as ET
 from site_config import SITE_URL
 from site_content import LANGS
-from build_pages import routes, ARTICLES, GALLERIES, MOMENTS, PROJECT_DETAILS, PROJECTS, INITIATIVES, ITS_MODULES, read_redirects
+from build_pages import routes, ARTICLES, GALLERIES, MOMENTS, PROJECT_DETAILS, PROJECTS, ALL_PROJECTS, INITIATIVES, ITS_MODULES, read_redirects
 
 ROOT = Path(__file__).resolve().parent
 PUBLIC = ROOT / 'public'
@@ -82,6 +82,13 @@ def check():
     for file in expected:
         assert file.is_file(), f'Missing route: {file.relative_to(PUBLIC)}'
     for lang in LANGS:
+        contact = (PUBLIC / lang / 'contact' / 'index.html').read_text(encoding='utf-8')
+        assert 'action="https://formspree.io/f/xgaappab"' in contact and 'method="POST"' in contact, f'Formspree action or POST method missing: {lang}'
+        assert all(f'name="{name}"' in contact for name in ('name', 'email', 'reason', 'message', '_gotcha')), f'Incomplete contact form: {lang}'
+        assert 'contact-form.js' in contact and 'data-form-status' in contact and 'aria-live="polite"' in contact, f'Accessible AJAX form missing: {lang}'
+        assert 'https://formspree.io/legal/privacy-policy/' in contact, f'Privacy notice missing: {lang}'
+        email = 'samuel.okotako.work@gmail.com'
+        assert contact.count('href="mailto:') == 1 and f'<a class="contact-email" href="mailto:{email}">{email}</a>' in contact, f'Professional mailto missing or duplicated: {lang}'
         education = (PUBLIC / lang / 'experience' / 'index.html').read_text(encoding='utf-8')
         assert education.count('class="module-grade"') == 28, f'Incomplete ITS module table: {lang}'
         assert all(escape(item['name']) in education and f'class="module-grade">{escape(item["grade"])}</td>' in education for item in ITS_MODULES), f'Incorrect ITS module transcription: {lang}'
@@ -89,8 +96,13 @@ def check():
         for project in PROJECT_DETAILS:
             detail = (PUBLIC / lang / 'projects' / project['id'] / 'index.html').read_text(encoding='utf-8')
             assert detail.count('class="case-section') >= 9 and 'case-evidence' in detail, f'Incomplete case study: {lang}/{project["id"]}'
-        for draft in (item['id'] for item in PROJECTS if item.get('detail') != 'published'):
+        for draft in (item['id'] for item in ALL_PROJECTS if item.get('detail') != 'published'):
             assert not (PUBLIC / lang / 'projects' / draft).exists(), f'Draft case study published: {lang}/{draft}'
+        project_index = (PUBLIC / lang / 'projects' / 'index.html').read_text(encoding='utf-8')
+        for item in ALL_PROJECTS:
+            if item.get('status') == 'draft':
+                assert f'id="project-{item["id"]}"' not in project_index, f'Draft card published: {lang}/{item["id"]}'
+                assert not (PUBLIC / lang / 'projects' / item['id']).exists(), f'Draft route published: {lang}/{item["id"]}'
     redirects = read_redirects()
     assert (PUBLIC / '_redirects').exists() == bool(redirects), 'Generated redirect file mismatch'
     pages = {}

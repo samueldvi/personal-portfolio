@@ -14,6 +14,7 @@ from site_config import SITE_URL
 from site_content import CONTENT, EXTRA, CASE_STUDIES, LANGS
 
 ROOT = Path(__file__).resolve().parent
+CONTACT_EMAIL = 'samuel.okotako.work@gmail.com'
 OUTPUT = ROOT / 'public'
 BASE_ROUTES = ('home', 'about', 'projects', 'experience', 'contact')
 ORIGIN = SITE_URL.rstrip('/')
@@ -34,7 +35,8 @@ def load_registry(name):
     return value
 
 
-PROJECTS = load_registry('projects')
+ALL_PROJECTS = load_registry('projects')
+PROJECTS = [item for item in ALL_PROJECTS if item.get('status', 'published') == 'published']
 ITS_MODULES = load_registry('its_modules')
 PROJECT_DETAILS = [item for item in PROJECTS if item.get('detail') == 'published']
 ARTICLES = [item for item in load_registry('articles') if item.get('status') == 'published']
@@ -56,10 +58,14 @@ def validate():
     for item in ITS_MODULES:
         if not item.get('name') or not re.fullmatch(r'(?:[0-9]|10)/10|IDONEO', item.get('grade','')):
             raise ValueError('Invalid official ITS module name or grade')
-    project_ids = [slug(item['id']) for item in PROJECTS]
+    project_ids = [slug(item['id']) for item in ALL_PROJECTS]
     if len(project_ids) != len(set(project_ids)):
         raise ValueError('Duplicate project ID')
-    for item in PROJECTS:
+    for item in ALL_PROJECTS:
+        if item.get('status', 'published') not in ('draft', 'published') or item.get('detail') not in ('draft', 'published'):
+            raise ValueError(f'Invalid project publication state: {item["id"]}')
+        if item.get('status') == 'draft' and item.get('detail') != 'draft':
+            raise ValueError(f'Unpublished project cannot have a published detail: {item["id"]}')
         if item.get('github'):
             link = urlsplit(item['github'])
             if link.scheme != 'https' or link.netloc != 'github.com' or len(link.path.strip('/').split('/')) < 2:
@@ -203,7 +209,7 @@ def absolute(local_path):
 
 
 def early_theme():
-    return '''<script>try{const choice=localStorage.getItem('portfolio-theme');if(choice==='light'||choice==='dark')document.documentElement.dataset.theme=choice}catch(_){}document.documentElement.classList.add('js')</script>'''
+    return '''<script>try{const choice=localStorage.getItem('portfolio-theme');if(choice==='light'||choice==='dark')document.documentElement.dataset.theme=choice}catch(_){}</script>'''
 
 
 def seo_head(lang, route, title, description, slug_value=None, noindex=False, image=None, article=None):
@@ -264,12 +270,13 @@ def shell(lang, route, body, title, description, *, not_found=False, slug_value=
     asset_prefix = '../' * depth
     home_href = '/' if root else path(lang)
     nav = navigation(lang)
+    contact_script = f'<script src="{asset_prefix}contact-form.js" defer></script>' if route == 'contact' else ''
     return f'''<!doctype html>
 <html lang="{lang}">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{h(title)}</title>
   {seo_head(lang, route, title, description, slug_value, noindex=not_found, image=image, article=article)}
   {early_theme()}
-  <link rel="stylesheet" href="{asset_prefix}style.css"><script src="{asset_prefix}script.js" defer></script>
+  <link rel="stylesheet" href="{asset_prefix}style.css"><script src="{asset_prefix}script.js" defer></script>{contact_script}
 </head>
 <body data-page="{h(route)}">
 <a class="skip-link" href="#main">{h(c['skip'])}</a>
@@ -332,9 +339,26 @@ def experience(lang):
 
 
 def contact(lang):
-    c=CONTENT[lang]
-    body=f'''<section class="section contact inner-page" id="contact" aria-labelledby="contact-title"><div class="container contact-layout"><div class="contact-copy"><p class="eyebrow">{h(c['contact_label'])}</p><h1 id="contact-title">{h(c['contact_title'])}</h1><p>{h(c['contact_intro'])}</p><a class="button button--solid" href="mailto:samuel.okotako.work@gmail.com">{h(c['contact_email_action'])}<span aria-hidden="true">↗</span></a><div class="contact-social"><a href="https://github.com/samueldvi" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/okotako-samuel-44492620b" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div><div class="form-panel"><div class="form-panel__head"><h2>{h(c['form_title'])}</h2><span class="status-pill">{h(c['form_status'])}</span></div><p id="formNote">{h(c['form_note'])}</p><form aria-describedby="formNote"><fieldset disabled><label for="contactName">{h(c['form_name'])}</label><input id="contactName" type="text" autocomplete="name"><label for="contactEmail">{h(c['form_email'])}</label><input id="contactEmail" type="email" autocomplete="email"><label for="contactMessage">{h(c['form_message'])}</label><textarea id="contactMessage" rows="4"></textarea><button type="button" disabled>{h(c['form_button'])}</button></fieldset></form></div></div></section>'''
-    return shell(lang,'contact',body,f'{c["contact_label"]} | Samuel Okotako',c['contact_intro'])
+    c = CONTENT[lang]
+    reasons = ''.join(f'<option value="{value}">{h(c[key])}</option>' for value, key in (
+        ('project', 'form_reason_project'),
+        ('collaboration', 'form_reason_collaboration'),
+        ('question', 'form_reason_question'),
+        ('other', 'form_reason_other'),
+    ))
+    body = f'''<section class="section contact inner-page" id="contact" aria-labelledby="contact-title"><div class="container contact-layout"><div class="contact-copy"><p class="eyebrow">{h(c['contact_label'])}</p><h1 id="contact-title">{h(c['contact_title'])}</h1><p>{h(c['contact_intro'])}</p><div class="contact-actions"><a class="button button--solid" href="#contactForm">{h(c['contact_form_action'])}<span aria-hidden="true">↗</span></a><a class="contact-email" href="mailto:{h(CONTACT_EMAIL)}">{h(CONTACT_EMAIL)}</a></div><div class="contact-social"><a href="https://github.com/samueldvi" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/okotako-samuel-44492620b" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div><div class="form-panel"><div class="form-panel__head"><h2>{h(c['form_title'])}</h2></div><p id="formNote">{h(c['form_note'])}</p>
+<form id="contactForm" action="https://formspree.io/f/xgaappab" method="POST" aria-describedby="formNote formPrivacy" data-sending="{h(c['form_sending'])}" data-success="{h(c['form_success'])}" data-error-required="{h(c['form_error_required'])}" data-error-email="{h(c['form_error_email'])}" data-error-invalid="{h(c['form_error_invalid'])}" data-error-server-field="{h(c['form_error_server_field'])}" data-error-validation="{h(c['form_error_validation'])}" data-error-server-validation="{h(c['form_error_server_validation'])}" data-error-rate="{h(c['form_error_rate'])}" data-error-blocked="{h(c['form_error_blocked'])}" data-error-honeypot="{h(c['form_error_honeypot'])}" data-error-http="{h(c['form_error_http'])}" data-error-network="{h(c['form_error_network'])}">
+<fieldset><legend class="visually-hidden">{h(c['form_title'])}</legend>
+<div class="form-field"><label for="contactName">{h(c['form_name'])}</label><input id="contactName" name="name" type="text" autocomplete="name" required maxlength="120" aria-describedby="contactNameError"><span class="form-field-error" id="contactNameError" data-error-for="name"></span></div>
+<div class="form-field"><label for="contactEmail">{h(c['form_email'])}</label><input id="contactEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="contactEmailError"><span class="form-field-error" id="contactEmailError" data-error-for="email"></span></div>
+<div class="form-field"><label for="contactReason">{h(c['form_reason'])}</label><select id="contactReason" name="reason" required aria-describedby="contactReasonError"><option value="">{h(c['form_reason_placeholder'])}</option>{reasons}</select><span class="form-field-error" id="contactReasonError" data-error-for="reason"></span></div>
+<div class="form-field"><label for="contactMessage">{h(c['form_message'])}</label><textarea id="contactMessage" name="message" rows="5" required maxlength="10000" aria-describedby="contactMessageError"></textarea><span class="form-field-error" id="contactMessageError" data-error-for="message"></span></div>
+</fieldset>
+<div class="form-honeypot" aria-hidden="true"><label for="contactWebsite">Website</label><input id="contactWebsite" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
+<p class="form-privacy" id="formPrivacy">{h(c['form_privacy'])} <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">{h(c['form_privacy_link'])}</a> {h(c['form_privacy_tail'])}</p>
+<button type="submit">{h(c['form_button'])}</button><p class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true"></p>
+</form></div></div></section>'''
+    return shell(lang, 'contact', body, f'{c["contact_label"]} | Samuel Okotako', c['contact_intro'])
 
 
 
@@ -555,6 +579,7 @@ def main():
     (OUTPUT / '.generated-by-build-pages').write_text('Generated by build_pages.py; edit sources outside public/.\n')
     shutil.copy2(ROOT / 'style.css', OUTPUT / 'style.css')
     shutil.copy2(ROOT / 'script.js', OUTPUT / 'script.js')
+    shutil.copy2(ROOT / 'contact-form.js', OUTPUT / 'contact-form.js')
     if redirects:
         shutil.copy2(redirects, OUTPUT / '_redirects')
     builders={'home':home,'about':about,'projects':projects,'experience':experience,'contact':contact,'writing':writing,'gallery':gallery,'moments':moments,'initiatives':initiatives}

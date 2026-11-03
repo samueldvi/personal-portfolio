@@ -7,6 +7,7 @@
   const themeSelect = document.getElementById('themeSelect');
   const savedTheme = read('portfolio-theme');
   const theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'auto';
+  if (theme !== 'auto') root.dataset.theme = theme;
   if (themeSelect) {
     themeSelect.value = theme;
     themeSelect.addEventListener('change', () => {
@@ -126,4 +127,7 @@
       if (counter) counter.textContent = `${visible} ${visible === 1 ? counter.dataset.one : counter.dataset.many}`;
     }));
   }
+
+  // Enable enhanced controls only after their handlers are ready.
+  root.classList.add('js');
 }());
