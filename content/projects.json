@@ -8,30 +8,30 @@
         "name": "Data Governance & Masking",
         "type": "Privacy engineering · PoC sintetico",
         "teaser": "Classificazione PII e pseudonimizzazione coerente su dati relazionali sintetici.",
-        "context": "PoC personale su dati sintetici, distinto dalle attività interne del tirocinio Spindox.",
+        "context": "Proof of concept personale su dati relazionali sintetici.",
         "problem": "Proteggere identificativi sensibili senza interrompere relazioni e vincoli tra tabelle.",
         "approach": "Flusso di inventario, classificazione, mascheramento e validazione con policy esplicite.",
-        "outcome": "Nel carico sintetico: 20 tabelle sorgente e 20 protette, 109 colonne inventariate. Nessun risultato aziendale è attribuito al PoC.",
+        "outcome": "Su dati sintetici: 20 tabelle sorgente e 20 protette, 109 colonne inventariate.",
         "tech": "Python · PostgreSQL · YAML"
       },
       "en": {
         "name": "Data Governance & Masking",
         "type": "Privacy engineering · synthetic PoC",
         "teaser": "PII classification and consistent pseudonymization across synthetic relational data.",
-        "context": "Personal proof of concept on synthetic data, separate from internal Spindox internship work.",
+        "context": "Personal proof of concept using synthetic relational data.",
         "problem": "Protect sensitive identifiers without breaking relationships and constraints across tables.",
         "approach": "Inventory, classification, masking and validation with explicit policies.",
-        "outcome": "Synthetic workload: 20 source and 20 protected tables, 109 inventoried columns. No company outcome is attributed to the PoC.",
+        "outcome": "Synthetic workload: 20 source and 20 protected tables, 109 inventoried columns.",
         "tech": "Python · PostgreSQL · YAML"
       },
       "fr": {
         "name": "Gouvernance des données et masquage",
         "type": "Ingénierie de la confidentialité · prototype synthétique",
         "teaser": "Classification des données personnelles et pseudonymisation cohérente de données relationnelles synthétiques.",
-        "context": "Prototype personnel sur données synthétiques, distinct des travaux internes du stage chez Spindox.",
+        "context": "Prototype personnel sur des données relationnelles synthétiques.",
         "problem": "Protéger les identifiants sensibles sans rompre relations et contraintes entre tables.",
         "approach": "Inventaire, classification, masquage et validation fondés sur des politiques explicites.",
-        "outcome": "Jeu synthétique : 20 tables sources et 20 protégées, 109 colonnes inventoriées. Aucun résultat d’entreprise n’est attribué au prototype.",
+        "outcome": "Sur données synthétiques : 20 tables sources et 20 protégées, 109 colonnes inventoriées.",
         "tech": "Python · PostgreSQL · YAML"
       }
     },
@@ -46,7 +46,7 @@
         "name": "E-commerce Data Pipeline",
         "type": "Data Engineering · dati sintetici",
         "teaser": "Pipeline incrementale con correzioni, dati tardivi, test di qualità e dashboard.",
-        "context": "Progetto personale su dati e-commerce sintetici, distinto dal tirocinio Spindox.",
+        "context": "Progetto personale di Data Engineering su dati e-commerce sintetici.",
         "problem": "Evitare duplicati e metriche incoerenti quando arrivano correzioni e colonne nuove.",
         "approach": "Python e DuckDB per generazione e ingestion; dbt per staging e mart; Streamlit legge lo snapshot.",
         "outcome": "Nel workload sintetico documentato: 5.010 righe d’ordine correnti, replay idempotente e parità con il full refresh.",
@@ -56,7 +56,7 @@
         "name": "E-commerce Data Pipeline",
         "type": "Data Engineering · synthetic data",
         "teaser": "Incremental pipeline handling corrections, late data, quality checks and a dashboard.",
-        "context": "Personal project on synthetic e-commerce data, separate from the Spindox internship.",
+        "context": "Personal Data Engineering project using synthetic e-commerce data.",
         "problem": "Avoid duplicates and inconsistent metrics when corrections and new columns arrive.",
         "approach": "Python and DuckDB for generation and ingestion; dbt for staging and marts; Streamlit reads the snapshot.",
         "outcome": "Documented synthetic workload: 5,010 current order lines, idempotent replay and full-refresh parity.",
@@ -66,7 +66,7 @@
         "name": "Pipeline de données e-commerce",
         "type": "Ingénierie des données · données synthétiques",
         "teaser": "Pipeline incrémental avec corrections, données tardives, contrôles de qualité et tableau de bord.",
-        "context": "Projet personnel sur données e-commerce synthétiques, distinct du stage chez Spindox.",
+        "context": "Projet personnel d’ingénierie des données sur des données e-commerce synthétiques.",
         "problem": "Éviter les doublons et indicateurs incohérents lorsque des corrections et de nouvelles colonnes arrivent.",
         "approach": "Python et DuckDB pour la génération et l’ingestion ; dbt pour staging et marts ; Streamlit lit l’instantané.",
         "outcome": "Jeu synthétique documenté : 5 010 lignes de commande courantes, rejeu idempotent et correspondance avec le recalcul complet.",
@@ -81,34 +81,34 @@
     "number": "03",
     "translations": {
       "it": {
-        "name": "Big Data NoSQL con Databricks",
-        "type": "Project work ITS · progetto di gruppo",
-        "teaser": "Analisi di annunci Inside Airbnb per Amsterdam e Rio de Janeiro: export dei livelli Bronze, Silver e Gold, con limiti di esecuzione documentati.",
-        "context": "Progetto del gruppo Big Data NoSQL Gang nel vecchio Databricks Community Edition. Samuel era team leader; ha seguito soprattutto coordinamento e ingestion.",
-        "problem": "Organizzare annunci e recensioni di due città in livelli distinti per preparare analisi confrontabili.",
-        "approach": "I notebook esportati definiscono quattro tabelle Bronze Delta, una tabella Silver degli annunci e viste/query Gold. La tabella Silver delle recensioni è descritta ma non definita nell’archivio.",
-        "outcome": "Sono verificabili codice, query e impostazioni di due grafici; mancano output numerici, dataset nell’archivio e prova di esecuzione completa.",
-        "tech": "Databricks CE · PySpark · Spark SQL · Delta Lake"
+        "name": "Analisi dei dati Airbnb con Databricks",
+        "type": "Data Engineering · progetto ITS di gruppo",
+        "teaser": "Dati Inside Airbnb di Amsterdam e Rio de Janeiro organizzati in livelli Bronze, Silver e Gold per l’analisi.",
+        "context": "Progetto ITS di gruppo su dati Inside Airbnb. Ho coordinato il team e curato soprattutto la data ingestion.",
+        "problem": "Organizzare annunci e recensioni di due città per preparare analisi confrontabili.",
+        "approach": "Notebook Databricks con ingestion Bronze, trasformazione Silver degli annunci e viste analitiche Gold.",
+        "outcome": "Sono documentati i notebook dei tre livelli e le configurazioni di due grafici.",
+        "tech": "Databricks · PySpark · Spark SQL · Delta Lake"
       },
       "en": {
-        "name": "NoSQL Big Data with Databricks",
-        "type": "ITS course project · group work",
-        "teaser": "Inside Airbnb listing analysis for Amsterdam and Rio de Janeiro: exported Bronze, Silver and Gold layers, with documented execution limits.",
-        "context": "Big Data NoSQL Gang group project in the former Databricks Community Edition. Samuel was team leader, focusing mainly on coordination and ingestion.",
-        "problem": "Organize listings and reviews from two cities into separate layers for comparable analysis.",
-        "approach": "The exported notebooks define four Delta Bronze tables, one Silver listings table, and Gold views/queries. A Silver reviews table is described but not defined in the archive.",
-        "outcome": "Code, queries and two chart settings are available for review; numerical outputs, datasets in the archive and proof of a complete run are missing.",
-        "tech": "Databricks CE · PySpark · Spark SQL · Delta Lake"
+        "name": "Airbnb Data Analysis with Databricks",
+        "type": "Data Engineering · ITS group project",
+        "teaser": "Inside Airbnb data for Amsterdam and Rio de Janeiro organized into Bronze, Silver and Gold layers for analysis.",
+        "context": "ITS group project using Inside Airbnb data. I led the team and focused mainly on data ingestion.",
+        "problem": "Organize listings and reviews from two cities for comparable analysis.",
+        "approach": "Databricks notebooks cover Bronze ingestion, Silver listings transformation and Gold analytical views.",
+        "outcome": "The three layers’ source notebooks and two chart configurations are documented.",
+        "tech": "Databricks · PySpark · Spark SQL · Delta Lake"
       },
       "fr": {
-        "name": "Big Data NoSQL avec Databricks",
-        "type": "Projet ITS · travail de groupe",
-        "teaser": "Analyse des annonces Inside Airbnb pour Amsterdam et Rio de Janeiro : couches Bronze, Silver et Gold exportées, avec leurs limites d’exécution.",
-        "context": "Projet du groupe Big Data NoSQL Gang sur l’ancienne Databricks Community Edition. Samuel était chef d’équipe, surtout chargé de la coordination et de l’ingestion.",
-        "problem": "Organiser les annonces et les avis de deux villes en couches distinctes pour préparer des analyses comparables.",
-        "approach": "Les notebooks exportés définissent quatre tables Bronze Delta, une table Silver des annonces et des vues/requêtes Gold. Une table Silver des avis est décrite mais pas définie dans l’archive.",
-        "outcome": "Le code, les requêtes et les paramètres de deux graphiques sont consultables ; les résultats chiffrés, les jeux de données dans l’archive et la preuve d’une exécution complète manquent.",
-        "tech": "Databricks CE · PySpark · Spark SQL · Delta Lake"
+        "name": "Analyse des données Airbnb avec Databricks",
+        "type": "Ingénierie des données · projet ITS en équipe",
+        "teaser": "Données Inside Airbnb d’Amsterdam et de Rio de Janeiro organisées en couches Bronze, Silver et Gold pour l’analyse.",
+        "context": "Projet ITS en équipe fondé sur les données Inside Airbnb. J’ai coordonné l’équipe et surtout pris en charge l’ingestion.",
+        "problem": "Organiser les annonces et les avis de deux villes pour préparer des analyses comparables.",
+        "approach": "Les notebooks Databricks couvrent l’ingestion Bronze, la transformation Silver des annonces et les vues analytiques Gold.",
+        "outcome": "Les notebooks sources des trois couches et deux configurations de graphiques sont documentés.",
+        "tech": "Databricks · PySpark · Spark SQL · Delta Lake"
       }
     },
     "detail": "published"
@@ -121,32 +121,32 @@
       "it": {
         "name": "Radar elettronico Arduino",
         "type": "Elettronica · progetto d’esame",
-        "teaser": "Un prototipo didattico per rilevare oggetti vicini, realizzato come progetto finale.",
+        "teaser": "Prototipo didattico Arduino per rilevare oggetti vicini, presentato come progetto finale del diploma.",
         "context": "Progetto d’esame del diploma in Elettronica e Automazione presso I.T. Archimede.",
         "problem": "Rilevare la presenza di oggetti vicini con un sistema elettronico didattico.",
-        "approach": "Prototipo Arduino per il rilevamento di prossimità. La presentazione collegava il progetto all’evoluzione storica della tecnologia militare tra le due guerre mondiali.",
-        "outcome": "Progetto presentato come elaborato finale. Misure e componenti specifici restano da verificare.",
-        "tech": "Arduino · componenti da confermare"
+        "approach": "Prototipo di rilevamento di prossimità con Arduino, accompagnato da un approfondimento storico sulle tecnologie militari tra le due guerre mondiali.",
+        "outcome": "Presentato come elaborato finale del diploma in Elettronica e Automazione.",
+        "tech": "Arduino · elettronica"
       },
       "en": {
         "name": "Arduino electronic radar",
         "type": "Electronics · final school project",
-        "teaser": "An educational prototype for detecting nearby objects, built as a final project.",
+        "teaser": "Arduino educational prototype for detecting nearby objects, presented as a final diploma project.",
         "context": "Final project for the Electronics and Automation diploma at I.T. Archimede.",
         "problem": "Detect nearby objects with an educational electronic system.",
-        "approach": "An Arduino proximity-detection prototype. The presentation connected the project to the historical evolution of military technology between the two world wars.",
-        "outcome": "Presented as a final school project. Measurements and specific components still need verification.",
-        "tech": "Arduino · components to confirm"
+        "approach": "Arduino proximity-detection prototype accompanied by a historical study of military technology between the two world wars.",
+        "outcome": "Presented as the final project for the Electronics and Automation diploma.",
+        "tech": "Arduino · electronics"
       },
       "fr": {
         "name": "Radar électronique Arduino",
         "type": "Électronique · projet de fin d’études",
-        "teaser": "Un prototype pédagogique pour détecter les objets proches, réalisé comme projet final.",
+        "teaser": "Prototype pédagogique Arduino de détection d’objets proches, présenté comme projet final du diplôme.",
         "context": "Projet final du diplôme en électronique et automatisation à l’I.T. Archimede.",
         "problem": "Détecter les objets proches avec un système électronique pédagogique.",
-        "approach": "Prototype Arduino de détection de proximité. La présentation reliait le projet à l’évolution historique des technologies militaires entre les deux guerres mondiales.",
-        "outcome": "Présenté comme projet final. Mesures et composants précis restent à vérifier.",
-        "tech": "Arduino · composants à confirmer"
+        "approach": "Prototype Arduino de détection de proximité accompagné d’une étude historique des technologies militaires entre les deux guerres mondiales.",
+        "outcome": "Présenté comme projet final du diplôme en électronique et automatisation.",
+        "tech": "Arduino · électronique"
       }
     },
     "detail": "draft"

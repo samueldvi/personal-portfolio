@@ -100,6 +100,9 @@ def check():
     expected += [PUBLIC / lang / 'projects' / item['id'] / 'index.html' for lang in LANGS for item in PROJECT_DETAILS]
     for file in expected:
         assert file.is_file(), f'Missing route: {file.relative_to(PUBLIC)}'
+    for file in PUBLIC.rglob('*.html'):
+        markup = file.read_text(encoding='utf-8')
+        assert 'Big Data NoSQL' not in markup and 'Databricks Community Edition' not in markup, f'Internal Databricks wording published: {file.relative_to(PUBLIC)}'
     for lang in LANGS:
         home = (PUBLIC / lang / 'index.html').read_text(encoding='utf-8')
         assert all(f'class="{section}' in home for section in ('home-hero', 'home-featured', 'home-scope', 'home-path', 'home-contact')), f'Incomplete homepage: {lang}'
@@ -129,12 +132,14 @@ def check():
         email = 'samuel.okotako.work@gmail.com'
         assert contact.count('href="mailto:') == 1 and f'<a class="contact-email" href="mailto:{email}">{email}</a>' in contact, f'Professional mailto missing or duplicated: {lang}'
         education = (PUBLIC / lang / 'experience' / 'index.html').read_text(encoding='utf-8')
+        assert 'id="experience-projects-title"' in education, f'Personal projects must have a separate experience section: {lang}'
         assert education.count('class="module-grade"') == 28, f'Incomplete ITS module table: {lang}'
         assert all(escape(item['name']) in education and f'class="module-grade">{escape(item["grade"])}</td>' in education for item in ITS_MODULES), f'Incorrect ITS module transcription: {lang}'
         assert 'Ore</th>' not in education and 'CFU</th>' not in education, f'Hours or credits leaked: {lang}'
         for project in PROJECT_DETAILS:
             detail = (PUBLIC / lang / 'projects' / project['id'] / 'index.html').read_text(encoding='utf-8')
-            assert detail.count('class="case-section') >= 9 and 'case-evidence' in detail, f'Incomplete case study: {lang}/{project["id"]}'
+            assert detail.count('class="case-section') >= 9 and 'case-evidence' not in detail, f'Incomplete or audit-style case study: {lang}/{project["id"]}'
+            assert 'Big Data NoSQL' not in detail and 'Community Edition' not in detail, f'Internal project wording leaked: {lang}/{project["id"]}'
             assert 'id="architecture"' in detail and '<ol>' in detail and 'case-jump' in detail and 'case-next' in detail, f'Case navigation or process missing: {lang}/{project["id"]}'
             assert 'case-section--architecture' in detail, f'Missing architecture: {lang}/{project["id"]}'
             if project['id'] == 'dbt':
