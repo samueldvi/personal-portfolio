@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Samuel Okotako">
+  <rect width="64" height="64" rx="14" fill="#172B26"/>
+  <path d="M15 23c1-5 6-8 12-8 6 0 10 3 11 7l-6 2c-1-2-3-3-6-3-3 0-5 1-5 3 0 2 2 3 7 4 7 2 11 5 11 11 0 7-6 11-14 11-7 0-12-3-14-9l6-2c1 3 4 5 8 5s7-2 7-5c0-2-2-3-8-5-7-2-10-5-9-11Z" fill="#F7F6F2"/>
+  <circle cx="44" cy="39" r="11" fill="#B9D8C6"/>
+  <circle cx="44" cy="39" r="5" fill="#172B26"/>
+</svg>

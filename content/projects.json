@@ -1,0 +1,193 @@
+[
+  {
+    "id": "governance",
+    "category": "governance",
+    "number": "01",
+    "translations": {
+      "it": {
+        "name": "Data Governance & Masking",
+        "type": "Privacy engineering · PoC sintetico",
+        "teaser": "Classificazione PII e pseudonimizzazione coerente su dati relazionali sintetici.",
+        "context": "PoC personale su dati sintetici, distinto dalle attività interne del tirocinio Spindox.",
+        "problem": "Proteggere identificativi sensibili senza interrompere relazioni e vincoli tra tabelle.",
+        "approach": "Flusso di inventario, classificazione, mascheramento e validazione con policy esplicite.",
+        "outcome": "Nel carico sintetico: 20 tabelle sorgente e 20 protette, 109 colonne inventariate. Nessun risultato aziendale è attribuito al PoC.",
+        "tech": "Python · PostgreSQL · YAML"
+      },
+      "en": {
+        "name": "Data Governance & Masking",
+        "type": "Privacy engineering · synthetic PoC",
+        "teaser": "PII classification and consistent pseudonymization across synthetic relational data.",
+        "context": "Personal proof of concept on synthetic data, separate from internal Spindox internship work.",
+        "problem": "Protect sensitive identifiers without breaking relationships and constraints across tables.",
+        "approach": "Inventory, classification, masking and validation with explicit policies.",
+        "outcome": "Synthetic workload: 20 source and 20 protected tables, 109 inventoried columns. No company outcome is attributed to the PoC.",
+        "tech": "Python · PostgreSQL · YAML"
+      },
+      "fr": {
+        "name": "Gouvernance des données et masquage",
+        "type": "Ingénierie de la confidentialité · prototype synthétique",
+        "teaser": "Classification des données personnelles et pseudonymisation cohérente de données relationnelles synthétiques.",
+        "context": "Prototype personnel sur données synthétiques, distinct des travaux internes du stage chez Spindox.",
+        "problem": "Protéger les identifiants sensibles sans rompre relations et contraintes entre tables.",
+        "approach": "Inventaire, classification, masquage et validation fondés sur des politiques explicites.",
+        "outcome": "Jeu synthétique : 20 tables sources et 20 protégées, 109 colonnes inventoriées. Aucun résultat d’entreprise n’est attribué au prototype.",
+        "tech": "Python · PostgreSQL · YAML"
+      }
+    },
+    "detail": "published"
+  },
+  {
+    "id": "dbt",
+    "category": "engineering",
+    "number": "02",
+    "translations": {
+      "it": {
+        "name": "E-commerce Data Pipeline",
+        "type": "Data Engineering · dati sintetici",
+        "teaser": "Pipeline incrementale con correzioni, dati tardivi, test di qualità e dashboard.",
+        "context": "Progetto personale su dati e-commerce sintetici, distinto dal tirocinio Spindox.",
+        "problem": "Evitare duplicati e metriche incoerenti quando arrivano correzioni e colonne nuove.",
+        "approach": "Python e DuckDB per generazione e ingestion; dbt per staging e mart; Streamlit legge lo snapshot.",
+        "outcome": "Nel workload sintetico documentato: 5.010 righe d’ordine correnti, replay idempotente e parità con il full refresh.",
+        "tech": "Python · DuckDB · dbt · Streamlit"
+      },
+      "en": {
+        "name": "E-commerce Data Pipeline",
+        "type": "Data Engineering · synthetic data",
+        "teaser": "Incremental pipeline handling corrections, late data, quality checks and a dashboard.",
+        "context": "Personal project on synthetic e-commerce data, separate from the Spindox internship.",
+        "problem": "Avoid duplicates and inconsistent metrics when corrections and new columns arrive.",
+        "approach": "Python and DuckDB for generation and ingestion; dbt for staging and marts; Streamlit reads the snapshot.",
+        "outcome": "Documented synthetic workload: 5,010 current order lines, idempotent replay and full-refresh parity.",
+        "tech": "Python · DuckDB · dbt · Streamlit"
+      },
+      "fr": {
+        "name": "Pipeline de données e-commerce",
+        "type": "Ingénierie des données · données synthétiques",
+        "teaser": "Pipeline incrémental avec corrections, données tardives, contrôles de qualité et tableau de bord.",
+        "context": "Projet personnel sur données e-commerce synthétiques, distinct du stage chez Spindox.",
+        "problem": "Éviter les doublons et indicateurs incohérents lorsque des corrections et de nouvelles colonnes arrivent.",
+        "approach": "Python et DuckDB pour la génération et l’ingestion ; dbt pour staging et marts ; Streamlit lit l’instantané.",
+        "outcome": "Jeu synthétique documenté : 5 010 lignes de commande courantes, rejeu idempotent et correspondance avec le recalcul complet.",
+        "tech": "Python · DuckDB · dbt · Streamlit"
+      }
+    },
+    "detail": "published"
+  },
+  {
+    "id": "nosql",
+    "category": "engineering",
+    "number": "03",
+    "translations": {
+      "it": {
+        "name": "Big Data NoSQL con Databricks",
+        "type": "Project work ITS · progetto di gruppo",
+        "teaser": "Analisi di annunci Inside Airbnb per Amsterdam e Rio de Janeiro: export dei livelli Bronze, Silver e Gold, con limiti di esecuzione documentati.",
+        "context": "Progetto del gruppo Big Data NoSQL Gang nel vecchio Databricks Community Edition. Samuel era team leader; ha seguito soprattutto coordinamento e ingestion.",
+        "problem": "Organizzare annunci e recensioni di due città in livelli distinti per preparare analisi confrontabili.",
+        "approach": "I notebook esportati definiscono quattro tabelle Bronze Delta, una tabella Silver degli annunci e viste/query Gold. La tabella Silver delle recensioni è descritta ma non definita nell’archivio.",
+        "outcome": "Sono verificabili codice, query e impostazioni di due grafici; mancano output numerici, dataset nell’archivio e prova di esecuzione completa.",
+        "tech": "Databricks CE · PySpark · Spark SQL · Delta Lake"
+      },
+      "en": {
+        "name": "NoSQL Big Data with Databricks",
+        "type": "ITS course project · group work",
+        "teaser": "Inside Airbnb listing analysis for Amsterdam and Rio de Janeiro: exported Bronze, Silver and Gold layers, with documented execution limits.",
+        "context": "Big Data NoSQL Gang group project in the former Databricks Community Edition. Samuel was team leader, focusing mainly on coordination and ingestion.",
+        "problem": "Organize listings and reviews from two cities into separate layers for comparable analysis.",
+        "approach": "The exported notebooks define four Delta Bronze tables, one Silver listings table, and Gold views/queries. A Silver reviews table is described but not defined in the archive.",
+        "outcome": "Code, queries and two chart settings are available for review; numerical outputs, datasets in the archive and proof of a complete run are missing.",
+        "tech": "Databricks CE · PySpark · Spark SQL · Delta Lake"
+      },
+      "fr": {
+        "name": "Big Data NoSQL avec Databricks",
+        "type": "Projet ITS · travail de groupe",
+        "teaser": "Analyse des annonces Inside Airbnb pour Amsterdam et Rio de Janeiro : couches Bronze, Silver et Gold exportées, avec leurs limites d’exécution.",
+        "context": "Projet du groupe Big Data NoSQL Gang sur l’ancienne Databricks Community Edition. Samuel était chef d’équipe, surtout chargé de la coordination et de l’ingestion.",
+        "problem": "Organiser les annonces et les avis de deux villes en couches distinctes pour préparer des analyses comparables.",
+        "approach": "Les notebooks exportés définissent quatre tables Bronze Delta, une table Silver des annonces et des vues/requêtes Gold. Une table Silver des avis est décrite mais pas définie dans l’archive.",
+        "outcome": "Le code, les requêtes et les paramètres de deux graphiques sont consultables ; les résultats chiffrés, les jeux de données dans l’archive et la preuve d’une exécution complète manquent.",
+        "tech": "Databricks CE · PySpark · Spark SQL · Delta Lake"
+      }
+    },
+    "detail": "published"
+  },
+  {
+    "id": "radar",
+    "category": "electronics",
+    "number": "04",
+    "translations": {
+      "it": {
+        "name": "Radar elettronico Arduino",
+        "type": "Elettronica · progetto d’esame",
+        "teaser": "Un prototipo didattico per rilevare oggetti vicini, realizzato come progetto finale.",
+        "context": "Progetto d’esame del diploma in Elettronica e Automazione presso I.T. Archimede.",
+        "problem": "Rilevare la presenza di oggetti vicini con un sistema elettronico didattico.",
+        "approach": "Prototipo Arduino per il rilevamento di prossimità. La presentazione collegava il progetto all’evoluzione storica della tecnologia militare tra le due guerre mondiali.",
+        "outcome": "Progetto presentato come elaborato finale. Misure e componenti specifici restano da verificare.",
+        "tech": "Arduino · componenti da confermare"
+      },
+      "en": {
+        "name": "Arduino electronic radar",
+        "type": "Electronics · final school project",
+        "teaser": "An educational prototype for detecting nearby objects, built as a final project.",
+        "context": "Final project for the Electronics and Automation diploma at I.T. Archimede.",
+        "problem": "Detect nearby objects with an educational electronic system.",
+        "approach": "An Arduino proximity-detection prototype. The presentation connected the project to the historical evolution of military technology between the two world wars.",
+        "outcome": "Presented as a final school project. Measurements and specific components still need verification.",
+        "tech": "Arduino · components to confirm"
+      },
+      "fr": {
+        "name": "Radar électronique Arduino",
+        "type": "Électronique · projet de fin d’études",
+        "teaser": "Un prototype pédagogique pour détecter les objets proches, réalisé comme projet final.",
+        "context": "Projet final du diplôme en électronique et automatisation à l’I.T. Archimede.",
+        "problem": "Détecter les objets proches avec un système électronique pédagogique.",
+        "approach": "Prototype Arduino de détection de proximité. La présentation reliait le projet à l’évolution historique des technologies militaires entre les deux guerres mondiales.",
+        "outcome": "Présenté comme projet final. Mesures et composants précis restent à vérifier.",
+        "tech": "Arduino · composants à confirmer"
+      }
+    },
+    "detail": "draft"
+  },
+  {
+    "id": "bank-loan-approval-prediction",
+    "status": "draft",
+    "detail": "draft",
+    "category": "machine-learning",
+    "number": "05",
+    "translations": {
+      "it": {
+        "name": "Bank Loan Approval Prediction",
+        "type": "Machine Learning & Predictive Analytics · progetto formativo in bozza",
+        "teaser": "Progetto formativo per prevedere l’esito di richieste di prestito da dati relativi a clienti bancari; dataset e metodo ancora da verificare.",
+        "context": "Samuel riferisce che il progetto è stato realizzato durante la formazione. Fonte, natura, licenza e autorizzazioni sui dati non sono ancora documentate.",
+        "problem": "Studiare la previsione dell’esito delle richieste di prestito, distinguendo una stima statistica da una decisione creditizia reale.",
+        "approach": "Dataset, variabili, target, preprocessing, algoritmi, explainability, split e validazione sono da verificare sugli artefatti originali.",
+        "outcome": "Nessuna metrica o prestazione è stata verificata; il modello non è presentato come idoneo a prendere decisioni creditizie.",
+        "tech": "Machine Learning · strumenti da verificare"
+      },
+      "en": {
+        "name": "Bank Loan Approval Prediction",
+        "type": "Machine Learning & Predictive Analytics · training project draft",
+        "teaser": "Training project to predict loan application outcomes from bank-customer-related data; dataset and method still need verification.",
+        "context": "Samuel states that this project was completed during his training. The data source, nature, license and permissions are not yet documented.",
+        "problem": "Study predictions of loan application outcomes while distinguishing a statistical estimate from a real credit decision.",
+        "approach": "Dataset, features, target, preprocessing, algorithms, explainability, splits and validation require review of the original artifacts.",
+        "outcome": "No metric or model performance has been verified; the model is not presented as suitable for making credit decisions.",
+        "tech": "Machine Learning · tools to verify"
+      },
+      "fr": {
+        "name": "Bank Loan Approval Prediction",
+        "type": "Machine Learning et analyse prédictive · brouillon de projet de formation",
+        "teaser": "Projet de formation visant à prédire l’issue des demandes de prêt à partir de données relatives à des clients bancaires ; jeu de données et méthode à vérifier.",
+        "context": "Samuel indique avoir réalisé ce projet pendant sa formation. La source, la nature, la licence et les autorisations des données ne sont pas encore documentées.",
+        "problem": "Étudier la prédiction de l’issue des demandes de prêt, en distinguant une estimation statistique d’une véritable décision de crédit.",
+        "approach": "Jeu de données, variables, cible, prétraitement, algorithmes, explicabilité, découpages et validation doivent être vérifiés dans les artefacts originaux.",
+        "outcome": "Aucune métrique ni performance du modèle n’a été vérifiée ; le modèle n’est pas présenté comme apte à prendre des décisions de crédit.",
+        "tech": "Machine Learning · outils à vérifier"
+      }
+    }
+  }
+]

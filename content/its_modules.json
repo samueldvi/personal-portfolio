@@ -1,0 +1,142 @@
+[
+  {
+    "number": 1,
+    "name": "Accounting E Management",
+    "grade": "9/10"
+  },
+  {
+    "number": 2,
+    "name": "Big Data Analysis",
+    "grade": "10/10"
+  },
+  {
+    "number": 3,
+    "name": "Cloud E Dev-Ops",
+    "grade": "10/10"
+  },
+  {
+    "number": 4,
+    "name": "Controllo Di Gestione",
+    "grade": "9/10"
+  },
+  {
+    "number": 5,
+    "name": "Data Governance",
+    "grade": "10/10"
+  },
+  {
+    "number": 6,
+    "name": "Data Information Visualizzation",
+    "grade": "9/10"
+  },
+  {
+    "number": 7,
+    "name": "DataBase",
+    "grade": "8/10"
+  },
+  {
+    "number": 8,
+    "name": "Finance",
+    "grade": "10/10"
+  },
+  {
+    "number": 9,
+    "name": "Fondamenti Di Informatica",
+    "grade": "8/10"
+  },
+  {
+    "number": 10,
+    "name": "I.A. Generativa - Prompt Engineering",
+    "grade": "9/10"
+  },
+  {
+    "number": 11,
+    "name": "KPI - Gestione E Monitoraggio Aziendale",
+    "grade": "9/10"
+  },
+  {
+    "number": 12,
+    "name": "Lean E Soft Skills",
+    "grade": "9/10"
+  },
+  {
+    "number": 13,
+    "name": "Legislazione Di Settore",
+    "grade": "8/10"
+  },
+  {
+    "number": 14,
+    "name": "Lingua Inglese",
+    "grade": "10/10"
+  },
+  {
+    "number": 15,
+    "name": "Machine Learning",
+    "grade": "10/10"
+  },
+  {
+    "number": 16,
+    "name": "Marketing E Storytelling",
+    "grade": "9/10"
+  },
+  {
+    "number": 17,
+    "name": "Matematica",
+    "grade": "8/10"
+  },
+  {
+    "number": 18,
+    "name": "Matematica Statistica",
+    "grade": "10/10"
+  },
+  {
+    "number": 19,
+    "name": "Microservice Architecture",
+    "grade": "10/10"
+  },
+  {
+    "number": 20,
+    "name": "No-Code / Low-Code",
+    "grade": "9/10"
+  },
+  {
+    "number": 21,
+    "name": "Organizzazione E Gestione Aziendale",
+    "grade": "10/10"
+  },
+  {
+    "number": 22,
+    "name": "Power BI/DAX",
+    "grade": "8/10"
+  },
+  {
+    "number": 23,
+    "name": "Preparazione Esame Finale",
+    "grade": "IDONEO"
+  },
+  {
+    "number": 24,
+    "name": "Project Work In Data Governance",
+    "grade": "9/10"
+  },
+  {
+    "number": 25,
+    "name": "Reporting E Visualizzazione 1",
+    "grade": "8/10"
+  },
+  {
+    "number": 26,
+    "name": "Reporting E Visualizzazione 2",
+    "grade": "10/10"
+  },
+  {
+    "number": 27,
+    "name": "Sicurezza Sul Lavoro",
+    "grade": "IDONEO"
+  },
+  {
+    "number": 28,
+    "name": "Tirocinio Formativo",
+    "grade": "9/10"
+  }
+]

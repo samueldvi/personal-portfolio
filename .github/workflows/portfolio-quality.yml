@@ -1,0 +1,56 @@
+name: Portfolio quality
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  site-quality:
+    name: Build, tests and publication checks
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: https://samuelokotako.com
+      CF_PAGES: '1'
+      CF_PAGES_BRANCH: main
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Generate static pages
+        run: python3 -B build_pages.py
+      - name: Check routes, SEO state and assets
+        run: python3 -B check_site.py
+      - name: Check local, preview and public build gates
+        run: python3 -B tools/test_build_modes.py
+      - name: JavaScript tests
+        run: node --test tests/*.test.cjs
+      - name: Check obvious private artifacts and credentials
+        run: python3 -B tools/check_public_safety.py
+      - name: Check formatting and generated output
+        run: |
+          git diff --check "origin/${GITHUB_BASE_REF}"...HEAD
+          git diff --check
+          python3 -c 'import subprocess; dirty = subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=all", "--", "public"], text=True); assert not dirty, "Generated public/ differs from committed output:\n" + dirty'
+
+  secret-scan:
+    name: Gitleaks history scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
