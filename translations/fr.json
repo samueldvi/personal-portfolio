@@ -1,7 +1,7 @@
 {
   "content": {
-    "title": "Samuel Okotako | Données, ML et gouvernance",
-    "description": "Des projets documentés en ingénierie des données, Machine Learning et gouvernance, au service de données fiables et de décisions éclairées.",
+    "title": "Samuel Okotako | Ingénierie et gouvernance des données",
+    "description": "Projets documentés en ingénierie, gestion et gouvernance des données. Le Machine Learning reste un domaine de formation.",
     "skip": "Aller au contenu",
     "nav_label": "Navigation principale",
     "nav": [
@@ -20,10 +20,10 @@
       "Sombre"
     ],
     "language_label": "Langue",
-    "hero_kicker": "Ingénierie des données · Machine Learning · Gouvernance des données",
+    "hero_kicker": "Ingénierie des données · Gestion des données · Gouvernance des données",
     "hero_title": "Les données recèlent des réponses.",
     "hero_title_follow": "Je les transforme en valeur concrète.",
-    "hero_value": "Je conçois des pipelines de données fiables, développe des modèles prédictifs et applique une gouvernance responsable des données pour aider les organisations à prendre des décisions mieux informées.",
+    "hero_value": "Je conçois des pipelines de données fiables et applique des méthodes de gestion et de gouvernance pour rendre l’information plus utile à la décision.",
     "hero_intro": "Les études de cas présentent la démarche technique et ses limites.",
     "hero_cta": "Découvrir mes projets",
     "hero_contact": "Me contacter",
@@ -38,7 +38,7 @@
       [
         "02",
         "Machine Learning",
-        "Développement et évaluation de modèles prédictifs, avec une attention portée à la qualité des données, à l’interprétabilité, aux limites et à l’usage responsable.",
+        "Ma formation comprend des méthodes de Machine Learning, avec une attention portée à la qualité des données, à l’évaluation, à l’interprétabilité et à un usage responsable.",
         "machine-learning"
       ],
       [
@@ -53,7 +53,7 @@
     "selected_intro": "Trois contextes techniques, présentés à travers les problèmes, les choix et les éléments disponibles.",
     "selected_action": "Voir le projet",
     "home_all_projects": "Tous les projets",
-    "home_skills_title": "Des données fiables, des modèles compréhensibles.",
+    "home_skills_title": "Des données fiables, des méthodes responsables.",
     "home_case_label": "Études de cas",
     "home_path_label": "Le parcours",
     "home_path_title": "De l’électronique aux systèmes de données.",
@@ -193,7 +193,13 @@
     "about_note_label": "Une note personnelle",
     "about_note_intro": "Ce portfolio est en constante évolution. Je le mets personnellement à jour tout en continuant à apprendre, à expérimenter et à progresser. Vous avez des suggestions ou des remarques constructives ?",
     "about_note_link": "N’hésitez pas à me contacter",
-    "about_note_close": " : chaque échange est une occasion d’apprendre et de progresser."
+    "about_note_close": " : chaque échange est une occasion d’apprendre et de progresser.",
+    "about_languages_title": "Langues",
+    "about_languages": [
+      "Anglais · langue maternelle",
+      "Italien · C1",
+      "Français · B1"
+    ]
   },
   "extra": {
     "writing_nav": "Écrits",

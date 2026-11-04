@@ -371,6 +371,7 @@ def shell(lang, route, body, title, description, *, not_found=False, slug_value=
   {early_theme()}
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/fonts/newsreader-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/manrope-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{asset_prefix}style.css"><script src="{asset_prefix}script.js" defer></script>{contact_script}
 </head>
 <body data-page="{h(route)}">
@@ -453,8 +454,10 @@ def about(lang):
         entries = ''.join(f'<li><a href="{h(item["file"])}">{h(item["translations"][lang]["title"])} ↗</a><p>{h(item["translations"][lang]["description"])}</p></li>' for item in other_documents)
         documents = f'<section class="section public-documents"><div class="container"><h2>{h(extra["documents_title"])}</h2><ul>{entries}</ul></div></section>'
     portrait = portrait_figure(lang, 'about-hero')
+    languages = ''.join(f'<li>{h(item)}</li>' for item in c['about_languages'])
     body = f'''<section class="about-hero section inner-page" id="about" aria-labelledby="about-title"><div class="container about-hero__layout"><div class="about-hero__copy"><p class="eyebrow"><span class="eyebrow-rule"></span>{h(c['about_label'])}</p><h1 id="about-title">{h(c['about_title'])}</h1><p>{h(c['about_intro'])}</p></div>{portrait}</div></section>
 <section class="about-method section" aria-labelledby="about-method-title"><div class="container"><div class="about-method__head"><p class="eyebrow"><span class="eyebrow-rule"></span>{h(c['about_method_label'])}</p><h2 id="about-method-title">{h(c['about_method_title'])}</h2></div><ol class="method-list">{steps}</ol></div></section>
+<section class="about-languages" aria-labelledby="about-languages-title"><div class="container about-languages__layout"><h2 id="about-languages-title">{h(c['about_languages_title'])}</h2><ul>{languages}</ul></div></section>
 <section class="about-beyond section" aria-labelledby="about-beyond-title"><div class="container"><div class="about-beyond__head"><p class="eyebrow"><span class="eyebrow-rule"></span>{h(c['about_beyond_label'])}</p><h2 id="about-beyond-title">{h(c['about_beyond_title'])}</h2><p>{h(c['about_beyond_intro'])}</p></div><div class="about-beyond__grid"><article><span aria-hidden="true">01</span><h3>{h(c['about_fashion_title'])}</h3><p>{h(c['about_fashion_body'])}</p></article><article><span aria-hidden="true">02</span><h3>{h(c['about_mediation_title'])}</h3><p>{h(c['about_mediation_body'])}</p></article></div></div></section>
 <aside class="about-note section" aria-label="{h(c['about_note_label'])}"><div class="container"><p>{h(c['about_note_intro'])} <a href="{path(lang, 'contact')}">{h(c['about_note_link'])}</a>{h(c['about_note_close'])}</p><p class="about-note__signature">— Samuel Okotako</p></div></aside>{documents}'''
     return shell(lang, 'about', body, f'{c["about_label"]} | Samuel Okotako', c['about_intro'], image=HOME_MEDIA['portrait']['src'] if HOME_MEDIA['portrait'] else None)
