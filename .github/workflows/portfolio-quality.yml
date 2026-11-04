@@ -37,6 +37,8 @@ jobs:
         run: node --test tests/*.test.cjs
       - name: Check obvious private artifacts and credentials
         run: python3 -B tools/check_public_safety.py
+      - name: Test publication safety gate
+        run: python3 -B tools/test_public_safety.py
       - name: Check formatting and generated output
         run: |
           git diff --check "origin/${GITHUB_BASE_REF}"...HEAD

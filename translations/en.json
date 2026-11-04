@@ -1,7 +1,7 @@
 {
   "content": {
-    "title": "Samuel Okotako | Data Engineering, ML & Governance",
-    "description": "Documented work in Data Engineering, Machine Learning and Data Governance, focused on reliable data and informed decisions.",
+    "title": "Samuel Okotako | Data Engineering & Governance",
+    "description": "Documented Data Engineering, Data Management and Data Governance projects. Machine Learning is an area of study.",
     "skip": "Skip to content",
     "nav_label": "Main navigation",
     "nav": [
@@ -20,10 +20,10 @@
       "Dark"
     ],
     "language_label": "Language",
-    "hero_kicker": "Data Engineering · Machine Learning · Data Governance",
+    "hero_kicker": "Data Engineering · Data Management · Data Governance",
     "hero_title": "Data holds answers.",
     "hero_title_follow": "I turn it into value.",
-    "hero_value": "I build reliable data pipelines, develop predictive models, and implement responsible data governance to help organizations make better decisions.",
+    "hero_value": "I build reliable data pipelines and apply data management and governance practices to make information more useful for decision-making.",
     "hero_intro": "The case studies show the technical approach and its limits.",
     "hero_cta": "Explore my projects",
     "hero_contact": "Contact me",
@@ -38,7 +38,7 @@
       [
         "02",
         "Machine Learning",
-        "Developing and evaluating predictive models with attention to data quality, interpretability, limitations and responsible use.",
+        "My training includes Machine Learning methods, with attention to data quality, evaluation, interpretability and responsible use.",
         "machine-learning"
       ],
       [
@@ -53,7 +53,7 @@
     "selected_intro": "Three technical contexts, presented through problems, decisions and available evidence.",
     "selected_action": "View project",
     "home_all_projects": "All projects",
-    "home_skills_title": "Reliable data, understandable models.",
+    "home_skills_title": "Reliable data, responsible methods.",
     "home_case_label": "Case studies",
     "home_path_label": "The path",
     "home_path_title": "From electronics to data systems.",
@@ -193,7 +193,13 @@
     "about_note_label": "A personal note",
     "about_note_intro": "This portfolio is always evolving. I personally maintain and update it as I continue to learn, experiment, and improve. Have suggestions or constructive feedback?",
     "about_note_link": "Feel free to get in touch",
-    "about_note_close": ". I welcome every opportunity to learn and grow."
+    "about_note_close": ". I welcome every opportunity to learn and grow.",
+    "about_languages_title": "Languages",
+    "about_languages": [
+      "English · native",
+      "Italian · C1",
+      "French · B1"
+    ]
   },
   "extra": {
     "writing_nav": "Writing",

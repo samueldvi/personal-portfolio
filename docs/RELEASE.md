@@ -1,6 +1,6 @@
 # Rilascio del portfolio
 
-Obiettivo del rilascio: `main` come branch di produzione Cloudflare Pages. Prima del passaggio la produzione risultava associata a `feature/portfolio-v2`; verificare il valore effettivo nella dashboard dopo il merge. Il cambio di branch Git non aggiorna automaticamente la configurazione Pages.
+La produzione Cloudflare Pages del portfolio usa `main` e il dominio `https://samuelokotako.com`. Questa procedura si applica alle modifiche successive: una pull request verificata precede ogni merge e il deployment è un passaggio separato. Controllare sempre la configurazione Pages e l’HTML effettivamente servito; il branch Git da solo non aggiorna le impostazioni Cloudflare.
 
 ## Verifiche prima della pull request
 
@@ -9,15 +9,16 @@ python3 -B build_pages.py
 python3 -B check_site.py
 python3 -B tools/test_build_modes.py
 python3 -B tools/check_public_safety.py
+python3 -B tools/test_public_safety.py
 node --test tests/*.test.cjs
 git diff --check
 ```
 
-Confermare che `git status --short` mostri solo i file voluti. Riesaminare a mano media, documenti e contenuti nuovi: la scansione automatica rileva solo alcuni formati privati e credenziali riconoscibili. I tre CV Data Engineer IT/EN/FR provenienti da `cv/final/website-ready/` sono gli unici PDF approvati nel registro e nell’output, sotto `/cv/`; verificare le lingue, i checksum e i link localizzati prima del merge. Non aggiungere altre varianti, sorgenti LaTeX o report QA. Bank Loan Approval Prediction resta in bozza finché dataset, metodologia, metriche e rischi non sono documentati.
+Confermare che `git status --short` mostri solo i file voluti. Riesaminare a mano media, documenti e contenuti nuovi: la scansione automatica rileva solo alcuni formati privati, metadati incorporati e credenziali riconoscibili. Conservare report di sicurezza dettagliati fuori da Git. I file originali della fotocamera e le configurazioni locali non devono essere tracciati; `.gitignore` non protegge file già committati. I tre CV Data Engineer IT/EN/FR provenienti da `cv/final/website-ready/` sono gli unici PDF approvati nel registro e nell’output, sotto `/cv/`; verificare le lingue, i checksum e i link localizzati prima del merge. Non aggiungere altre varianti, sorgenti LaTeX o report QA. Bank Loan Approval Prediction resta in bozza finché dataset, metodologia, metriche e rischi non sono documentati.
 
 ## CI e protezione di `main`
 
-Il workflow `.github/workflows/portfolio-quality.yml` si attiva su pull request verso `main`, senza deploy. I job sono `Build, tests and publication checks` e `Gitleaks history scan`. Il primo rigenera `public/` in modalità produzione autorizzata per `main` e richiede che corrisponda ai file committati. Il secondo controlla la cronologia Git; su un account personale Gitleaks Action non richiede licenza separata, ma la prima esecuzione va comunque verificata. Dopo una prima esecuzione riuscita, configurare su GitHub una regola di protezione per `main` che richieda pull request, revisione e i due status check. Verificare che il nome dei check sia univoco prima di renderli obbligatori. Non configurare credenziali Cloudflare in questo workflow.
+Il workflow `.github/workflows/portfolio-quality.yml` si attiva su pull request verso `main`, senza deploy. I job sono `Build, tests and publication checks` e `Gitleaks history scan`. Il primo rigenera `public/` in modalità produzione autorizzata per `main` e richiede che corrisponda ai file committati. Il secondo controlla la cronologia Git; verificarne sempre l’esito nella pull request. Configurare su GitHub una regola di protezione per `main` che richieda pull request, revisione e i due status check; la CI è già stata eseguita su pull request precedenti. Verificare che il nome dei check sia univoco prima di renderli obbligatori. Non configurare credenziali Cloudflare in questo workflow.
 
 ## Modalità SEO
 
@@ -29,7 +30,7 @@ Il workflow `.github/workflows/portfolio-quality.yml` si attiva su pull request 
 
 Cloudflare inietta `CF_PAGES` e `CF_PAGES_BRANCH` durante il build Pages. Il generatore approva esplicitamente `main` come unico branch indicizzabile; variabili legacy `PORTFOLIO_PRODUCTION_BRANCH` e `PORTFOLIO_INDEXING` non controllano più questa scelta. Un `SITE_URL` vuoto usa il dominio canonico noto; un URL temporaneo mantiene `noindex`. `SITE_URL` da solo non abilita l'indicizzazione. Le modalità sono testate in directory temporanee da `tools/test_build_modes.py`.
 
-Verificare nella dashboard Pages che la output directory sia `public`. Se il build command è `python3 -B build_pages.py`, la build su `main` userà le variabili automatiche Pages e genererà l'output indicizzabile. Se il build command è vuoto, il sito servirà il `public/` di produzione committato. In entrambi i casi controllare l'HTML **servito** su `https://samuelokotako.com` e una preview.
+La configurazione Pages attuale usa `python3 build_pages.py && python3 check_site.py` come build command e `public` come output directory. Le variabili automatiche `CF_PAGES` e `CF_PAGES_BRANCH` distinguono produzione e preview. Dopo ogni modifica alla configurazione, verificare nella dashboard che questi valori siano ancora corretti; controllare l'HTML **servito** sul dominio e su una preview.
 
 ## Controlli sul dominio dopo un deployment autorizzato
 
@@ -42,3 +43,9 @@ Verificare nella dashboard Pages che la output directory sia `public`. Se il bui
 - Controllare pagina, temi, lingua, menu, filtri, contrasto, tastiera, zoom 200% e 320–1440 px su dispositivi e browser reali.
 
 Dopo il rilascio, documentare commit, pull request, merge, branch di produzione Pages e verifiche HTTP nel rapporto finale. Non segnare un controllo come superato senza una prova sul dominio.
+
+## Modulo di contatto: verifica reale
+
+L'endpoint HTML e Fetch è `https://formspree.io/f/xgaappab`; entrambi usano POST. Il controller invia `FormData` con `Accept: application/json`, mantiene la validazione HTML5, disabilita il pulsante durante l'invio e mostra il successo solo dopo una risposta HTTP positiva non reindirizzata. `_gotcha` è l'honeypot. Il sito non memorizza il messaggio nel browser né lo invia ad analytics.
+
+Un test locale conferma la logica del form, non il recapito. Per una verifica reale, aprire `/it/contact/`, `/en/contact/` o `/fr/contact/` dal dominio o da un server locale e inviare **un solo** messaggio di prova non sensibile. Nelle DevTools, conservare il log di rete e annotare metodo, endpoint, stato HTTP, redirect ed eventuali errori Console, senza copiare il messaggio. Nel dashboard Formspree verificare che l'endpoint appartenga all'account corretto, la destinazione sia confermata, le impostazioni di restrizione dominio e antispam siano coerenti con il sito, e che il messaggio appaia. Controllare anche la casella di destinazione prima di dichiarare la consegna email. In caso di errore di rete o CORS, controllare il dashboard prima di ripetere l'invio: il browser potrebbe non poter leggere una risposta a un POST già accettato. Il link `mailto:` richiede un client di posta configurato sul dispositivo.

@@ -117,6 +117,8 @@ def check():
             assert f'href="{expected_cv}" type="application/pdf" download>{expected_label}' in home, f'CV language, label or PDF path: {lang}'
         about = (PUBLIC / lang / 'about' / 'index.html').read_text(encoding='utf-8')
         assert 'id="about-beyond-title"' in about, f'About secondary section missing: {lang}'
+        assert f'id="about-languages-title">{escape(CONTENT[lang]["about_languages_title"])}' in about, f'About language skills missing: {lang}'
+        assert all(escape(item) in about for item in CONTENT[lang]['about_languages']), f'About language entries missing: {lang}'
         assert f'href="/{lang}/contact/"' in about and 'class="about-note section"' in about, f'About personal note contact link missing: {lang}'
         assert CONTENT[lang]['about_fashion_title'] in about and CONTENT[lang]['about_mediation_title'] in about, f'About personal areas missing: {lang}'
         contact = (PUBLIC / lang / 'contact' / 'index.html').read_text(encoding='utf-8')

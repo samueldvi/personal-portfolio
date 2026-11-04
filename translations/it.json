@@ -1,7 +1,7 @@
 {
   "content": {
-    "title": "Samuel Okotako | Data Engineering, ML e Governance",
-    "description": "Data Engineering, Machine Learning e Data Governance: progetti documentati per rendere i dati affidabili e utili alle decisioni.",
+    "title": "Samuel Okotako | Data Engineering e Governance",
+    "description": "Progetti documentati di Data Engineering, Data Management e Data Governance. Machine Learning come area di formazione.",
     "skip": "Vai al contenuto",
     "nav_label": "Navigazione principale",
     "nav": [
@@ -20,10 +20,10 @@
       "Scuro"
     ],
     "language_label": "Lingua",
-    "hero_kicker": "Data Engineering · Machine Learning · Data Governance",
+    "hero_kicker": "Data Engineering · Data Management · Data Governance",
     "hero_title": "I dati contengono risposte.",
     "hero_title_follow": "Io li trasformo in valore.",
-    "hero_value": "Progetto pipeline di dati affidabili, sviluppo modelli predittivi e applico pratiche responsabili di data governance per aiutare le organizzazioni a prendere decisioni meglio informate.",
+    "hero_value": "Progetto pipeline di dati affidabili e applico metodi di gestione e governance dei dati per renderli più utili alle decisioni.",
     "hero_intro": "I case study mostrano l’approccio tecnico e i suoi limiti.",
     "hero_cta": "Scopri i miei progetti",
     "hero_contact": "Contattami",
@@ -38,7 +38,7 @@
       [
         "02",
         "Machine Learning",
-        "Sviluppo e valutazione di modelli predittivi, con attenzione a qualità dei dati, interpretabilità, limiti e utilizzo responsabile.",
+        "La mia formazione comprende metodi di Machine Learning, con attenzione a qualità dei dati, valutazione, interpretabilità e uso responsabile.",
         "machine-learning"
       ],
       [
@@ -53,7 +53,7 @@
     "selected_intro": "Tre contesti tecnici raccontati attraverso problemi, scelte e prove disponibili.",
     "selected_action": "Vai al progetto",
     "home_all_projects": "Tutti i progetti",
-    "home_skills_title": "Dati affidabili, modelli comprensibili.",
+    "home_skills_title": "Dati affidabili, metodi responsabili.",
     "home_case_label": "Case study",
     "home_path_label": "Il percorso",
     "home_path_title": "Dall’elettronica ai sistemi per i dati.",
@@ -193,7 +193,13 @@
     "about_note_label": "Una nota personale",
     "about_note_intro": "Questo portfolio è in continua evoluzione. Lo aggiorno personalmente, mentre continuo a imparare, sperimentare e migliorare. Hai suggerimenti o critiche costruttive?",
     "about_note_link": "Non esitare a contattarmi",
-    "about_note_close": ": ogni confronto è un’opportunità di crescita."
+    "about_note_close": ": ogni confronto è un’opportunità di crescita.",
+    "about_languages_title": "Lingue",
+    "about_languages": [
+      "Inglese · madrelingua",
+      "Italiano · C1",
+      "Francese · B1"
+    ]
   },
   "extra": {
     "writing_nav": "Scritti",

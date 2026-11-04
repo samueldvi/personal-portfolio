@@ -542,6 +542,11 @@ p { margin-top: 0; }
 .about-method .method-list h3 { font-size: clamp(1.8rem, 2.5vw, 2.4rem); }
 .about-method .method-list p { max-width: 34ch; font-size: 1rem; line-height: 1.6; }
 
+.about-languages { padding-block: clamp(1.5rem, 3vw, 2.5rem); background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+.about-languages__layout { display: flex; flex-wrap: wrap; align-items: baseline; gap: .65rem clamp(1.5rem, 4vw, 3.5rem); }
+.about-languages h2 { margin: 0; font-size: clamp(1.5rem, 2.7vw, 2.15rem); }
+.about-languages ul { display: flex; flex-wrap: wrap; gap: .45rem 1.5rem; list-style: none; margin: 0; padding: 0; }
+.about-languages li { color: var(--muted); font-size: clamp(.95rem, 1.2vw, 1.05rem); font-weight: 650; }
 .about-beyond { background: var(--bg); }
 .about-beyond__head { max-width: 58rem; }
 .about-beyond__head h2 { margin-bottom: 1.2rem; }
