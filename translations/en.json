@@ -1,7 +1,7 @@
 {
   "content": {
-    "title": "Samuel Okotako | Data Engineering & Governance",
-    "description": "Documented Data Engineering, Data Management and Data Governance projects. Machine Learning is an area of study.",
+    "title": "Samuel Okotako | Data Engineering and Governance",
+    "description": "Explore Samuel Okotako’s work in data pipelines, data quality and governance, and his approach to reliable information and better decisions.",
     "skip": "Skip to content",
     "nav_label": "Main navigation",
     "nav": [
@@ -21,10 +21,10 @@
     ],
     "language_label": "Language",
     "hero_kicker": "Data Engineering · Data Management · Data Governance",
-    "hero_title": "Data holds answers.",
-    "hero_title_follow": "I turn it into value.",
-    "hero_value": "I build reliable data pipelines and apply data management and governance practices to make information more useful for decision-making.",
-    "hero_intro": "The case studies show the technical approach and its limits.",
+    "hero_title": "Reliable data.",
+    "hero_title_follow": "Better decisions.",
+    "hero_value": "I help organizations make responsible use of their data. I design pipelines and apply data quality and governance practices to make information reliable, accessible and useful for decisions.",
+    "hero_intro": "Explore projects in incremental pipelines, quality checks and pseudonymization.",
     "hero_cta": "Explore my projects",
     "hero_contact": "Contact me",
     "focus_label": "Areas of practice",
@@ -38,7 +38,7 @@
       [
         "02",
         "Machine Learning",
-        "My training includes Machine Learning methods, with attention to data quality, evaluation, interpretability and responsible use.",
+        "My Machine Learning and AI studies focus on data quality, model evaluation, interpretability and responsible use.",
         "machine-learning"
       ],
       [
@@ -50,10 +50,10 @@
     ],
     "selected_label": "Selected work",
     "selected_title": "Featured projects",
-    "selected_intro": "Three technical contexts, presented through problems, decisions and available evidence.",
+    "selected_intro": "Pipelines, governance and analysis explained through architecture, technical choices and checks.",
     "selected_action": "View project",
     "home_all_projects": "All projects",
-    "home_skills_title": "Reliable data, responsible methods.",
+    "home_skills_title": "Reliable data, useful solutions.",
     "home_case_label": "Case studies",
     "home_path_label": "The path",
     "home_path_title": "From electronics to data systems.",
@@ -61,23 +61,23 @@
     "home_experience_link": "Explore experience",
     "home_education_intro": "ITS Higher Technical Diploma in Data Management, EQF 5. Final grade: 110/110.",
     "home_education_link": "Explore education",
-    "home_contact_title": "Have a project to discuss?",
-    "home_contact_intro": "For projects and collaborations, use the contact form or write to me directly by email.",
+    "home_contact_title": "Let’s talk about your project.",
+    "home_contact_intro": "For collaborations or technical questions, use the contact form or email me directly.",
     "home_creative_label": "Beyond the work",
     "home_creative_title": "A more personal perspective.",
     "home_creative_intro": "Photography, modelling and theatre are part of my interests alongside technical work.",
     "experience_label": "Experience",
-    "experience_title": "Working with data responsibly.",
-    "experience_intro": "My internship at Spindox focused on Data Governance, Data Masking and pseudonymization. Personal and educational projects are presented separately.",
+    "experience_title": "Experience in data management.",
+    "experience_intro": "My internship at Spindox focused on Data Governance in a professional setting.",
     "experience_period": "June – October 2026",
     "experience_role": "Internship · Data Governance and Data Masking",
-    "experience_actual_title": "Internship scope",
-    "experience_actual": "Data Governance, Data Masking and pseudonymization. No internal company processes, data or documents are published.",
-    "experience_separate_title": "Projects and study",
-    "experience_separate": "The dbt and DuckDB pipeline, NoSQL work on Databricks and AI education are presented separately; they are not attributed to Spindox.",
+    "experience_actual_title": "Internship work",
+    "experience_actual": "I worked on Data Masking and pseudonymization, with attention to protecting information and using it responsibly.",
+    "experience_separate_title": "Personal and course projects",
+    "experience_separate": "The e-commerce pipeline, governance proof of concept and Inside Airbnb analysis on Databricks show how I approach problems and technical choices in different settings.",
     "projects_label": "Selected engineering work",
-    "projects_title": "From ideas to systems.",
-    "projects_intro": "Data pipelines, governance and analytics: projects presented through concrete problems, technical decisions and available evidence.",
+    "projects_title": "Projects and solutions.",
+    "projects_intro": "Incremental pipelines, pseudonymization and data analysis: personal and course projects with clear goals and responsibilities.",
     "filters_label": "Filter projects",
     "filters": [
       [
@@ -103,13 +103,12 @@
     ],
     "filter_count": "projects shown",
     "filter_count_one": "project shown",
-    "details": "Available details",
+    "details": "Project details",
     "field_context": "Context",
     "field_problem": "Problem",
     "field_approach": "Technical approach",
-    "field_outcome": "Available evidence",
+    "field_outcome": "Outcome",
     "field_tech": "Technology",
-    "no_repo": "Code link pending verification",
     "education_link": "See education",
     "education_label": "Education",
     "education_title": "A broad technical foundation.",
@@ -125,20 +124,20 @@
     "archimede_degree": "Diploma in Electronics and Automation",
     "archimede_link": "Final project: Arduino radar",
     "about_label": "About",
-    "about_title": "From electronics to data, grounded in method.",
-    "about_intro": "My path spans electronics, data management and computer science. I’m interested in systems that make information reliable, usable and understandable.",
+    "about_title": "From problem to solution.",
+    "about_intro": "I start with the context and constraints, then build solutions that are clear and testable. My background in electronics, data management and computer science helps me connect systems, data and people.",
     "about_steps": [
       [
-        "Understand",
-        "I start with the context and real constraints."
+        "Analyze",
+        "I clarify goals, sources and constraints before choosing tools."
       ],
       [
         "Build",
-        "I look for a solution that is easy to explain and maintain."
+        "I organize data and processes into readable, repeatable components."
       ],
       [
         "Verify",
-        "I check the outcome and document what remains open."
+        "I check data quality, relationships and the solution’s limits."
       ]
     ],
     "contact_label": "Contact",
@@ -180,20 +179,20 @@
     "home_archimede_intro": "Electronics and Automation diploma; final project: an Arduino radar.",
     "photo_credit": "Photo: Samuel Okotako",
     "about_method_label": "The method",
-    "about_method_title": "Understand. Build. Verify.",
+    "about_method_title": "Analyze. Build. Verify.",
     "project_visual_concept": "Conceptual illustration",
     "cv_download": "Download resume",
     "about_beyond_label": "Personal path",
     "about_beyond_title": "Beyond Technology",
-    "about_beyond_intro": "My path extends beyond technology. I have worked in fashion and communications, taking part in projects and campaigns with different brands. I have also worked in cultural mediation, an experience that has shaped how I listen, communicate, and work with people from different backgrounds.",
+    "about_beyond_intro": "Fashion and cultural mediation have shaped how I communicate and collaborate with people from different backgrounds.",
     "about_fashion_title": "Fashion and communications",
-    "about_fashion_body": "Modelling has given me opportunities to take part in creative projects and campaigns with brands and production teams. I keep this work distinct from my technical projects.",
+    "about_fashion_body": "I have taken part in creative projects and campaigns with brands and production teams. That work has strengthened my communication and teamwork across different settings.",
     "about_mediation_title": "Cultural mediation",
-    "about_mediation_body": "Working in cultural mediation strengthened my listening skills, intercultural communication, and ability to connect with people from different backgrounds.",
-    "about_note_label": "A personal note",
-    "about_note_intro": "This portfolio is always evolving. I personally maintain and update it as I continue to learn, experiment, and improve. Have suggestions or constructive feedback?",
-    "about_note_link": "Feel free to get in touch",
-    "about_note_close": ". I welcome every opportunity to learn and grow.",
+    "about_mediation_body": "Through cultural mediation, I have worked with people from different backgrounds and developed stronger listening and intercultural communication skills.",
+    "about_note_label": "An evolving portfolio",
+    "about_note_intro": "This portfolio brings together the projects, solutions and ideas I develop over time. I maintain it myself to share my work and how my skills evolve. To discuss a project,",
+    "about_note_link": "get in touch",
+    "about_note_close": ".",
     "about_languages_title": "Languages",
     "about_languages": [
       "English · native",
@@ -227,7 +226,7 @@
     "gateway_description": "Choose Italian, English or French to explore Samuel Okotako’s work in data engineering, governance and software.",
     "gateway_eyebrow": "Samuel Okotako / Portfolio",
     "gateway_heading": "Choose your language.",
-    "gateway_intro": "Explore my work in data engineering, data governance and software development.",
+    "gateway_intro": "Explore projects in Data Engineering, data quality and governance.",
     "gateway_initial": "All three versions are available below.",
     "gateway_legacy": "This section has a dedicated page now. Choose a language to continue.",
     "gateway_suggested": "Suggested language: {language}. You can choose any version.",
@@ -243,9 +242,8 @@
     "case_technologies": "Technologies",
     "case_architecture": "Architecture",
     "case_decisions": "Technical decisions and tradeoffs",
-    "case_results": "Documented evidence and results",
-    "case_limits": "Limits and improvements",
-    "case_evidence": "Evidence and scope",
+    "case_results": "Results",
+    "case_limits": "Scope and next steps",
     "case_repository": "GitHub repository",
     "case_back": "Back to projects",
     "moment_categories": {
@@ -255,17 +253,17 @@
       "education-moments": "Education moments"
     },
     "case_implementation": "Documented implementation",
-    "case_checks": "Checks and verification",
+    "case_checks": "Technical checks",
     "case_jump": "Explore the architecture",
     "case_next": "Next case study",
     "case_license": "Screenshot MIT license"
   },
   "cases": {
     "governance": {
-      "context": "My Spindox internship covered Data Governance and Data Masking. This technical case study describes a separate personal proof of concept using synthetic data; its results do not describe Spindox systems or internal work.",
+      "context": "A personal proof of concept on synthetic relational data, focused on PII classification and consistent pseudonymization.",
       "problem": "Masking sensitive identifiers one field at a time can break joins, constraints and cross-system consistency. Moving unprotected data into development or analytics environments increases exposure.",
       "goal": "Inventory and classify PII columns, apply consistent pseudonyms across related relational data and check that the protected dataset retains the intended technical properties.",
-      "responsibility": "I developed and documented the proof-of-concept repository: its CLI workflow, classification and masking rules, protected-database checks and automated tests. I do not describe internal company responsibilities or deliverables here.",
+      "responsibility": "I designed and documented the CLI workflow, classification and masking rules, protected-database checks and automated tests.",
       "technologies": [
         "Python 3.12",
         "PostgreSQL 16",
@@ -276,11 +274,11 @@
       "decisions": [
         {
           "heading": "Consistency across tables",
-          "text": "Deterministic pseudonyms use an external key, normalization and namespaces. Approved technical keys remain stable to preserve relationships. This also retains linkability: the process is pseudonymization, not anonymization."
+          "text": "Deterministic pseudonyms use an external key, normalization and namespaces. Approved technical keys stay stable to preserve relationships: records remain linkable, so the result is pseudonymized rather than anonymous."
         },
         {
-          "heading": "Reviewing ambiguity",
-          "text": "Ambiguous classification does not trigger a guessed masking rule: execution requires an explicit decision. This adds manual work but makes the decision traceable."
+          "heading": "Ambiguous classifications",
+          "text": "Ambiguous classifications require an explicit decision before masking. Manual review adds work but avoids applying an arbitrary rule."
         }
       ],
       "results": [
@@ -293,11 +291,9 @@
           "detail": "The repository suite checks relationships, constraints, absence of schema drift and deterministic idempotence on the synthetic dataset."
         }
       ],
-      "limits": "Validation covers synthetic data only. It does not establish real-data detection accuracy, enterprise performance or legal compliance. Authentication, operational secret management and production observability remain future work.",
-      "evidence": "Counts and checks come from the personal proof-of-concept repository. They are not measurements of the Spindox internship; no company code, documents or data are included.",
-      "repo_note": "The repository is not currently publicly accessible. A code link will be added only when publication is appropriate.",
+      "limits": "The workflow has been tested on synthetic data. Use with real data would require evaluation of classification, operational key management and monitoring; pseudonymization alone does not establish legal compliance.",
       "diagram_title": "Synthetic PoC workflow",
-      "diagram_note": "Implemented in the local CLI. Checks cover the synthetic reference dataset only.",
+      "diagram_note": "From synthetic data generation to relationship checks.",
       "diagram_steps": [
         "Generate",
         "Inventory",
@@ -306,13 +302,13 @@
         "Mask",
         "Validate"
       ],
-      "checks": "The repository documents tests for counts, constraints, cross-table relationships, consistency groups, schema drift and deterministic idempotence on the synthetic workload."
+      "checks": "The project suite tests counts, constraints, cross-table relationships, consistency groups, schema drift and deterministic idempotence on the synthetic workload."
     },
     "dbt": {
-      "context": "A personal Data Engineering project using entirely synthetic e-commerce data, separate from the Spindox internship. The pipeline and dashboard are documented in a local repository.",
+      "context": "A personal Data Engineering project built on synthetic e-commerce data.",
       "problem": "Late orders, subsequent corrections and columns introduced in later runs can create duplicates or inconsistent business metrics unless ingestion and transformations share explicit rules.",
       "goal": "Build repeatable loads, a dimensional model with an explicit grain and checks that make corrections and dashboard metrics verifiable.",
-      "responsibility": "I built the synthetic generator, raw ingestion, dbt models, tests and Streamlit dashboard in the project repository. Business measures are calculated and checked in the marts, not recomputed in the interface.",
+      "responsibility": "I built the data generator, raw ingestion, dbt models, tests and Streamlit dashboard. Business measures are defined and checked in the marts; the interface presents them without recalculating them.",
       "technologies": [
         "Python",
         "DuckDB",
@@ -341,9 +337,7 @@
           "detail": "Documented tests show idempotent replay and parity between incremental and full-refresh results for the fact and dimensions."
         }
       ],
-      "limits": "The workload is synthetic and local. It does not demonstrate behavior on real sources, production volumes or cloud platforms; the dashboard reads a snapshot and does not run ingestion on startup.",
-      "evidence": "The project’s local repository documents the structure, checks and results. They are not attributed to a company environment.",
-      "repo_note": "The repository is not currently publicly accessible. A code link will follow a publication review.",
+      "limits": "Tests cover a local synthetic workload. Real sources and larger volumes would require evaluation of runtime, monitoring and how the dashboard snapshot is refreshed.",
       "diagram_title": "Local e-commerce pipeline",
       "diagram_note": "Synthetic data; Streamlit reads the DuckDB snapshot in read-only mode.",
       "diagram_steps": [
@@ -353,57 +347,55 @@
         "Marts and tests",
         "Streamlit"
       ],
-      "checks": "Project tests document grain uniqueness, business rules, idempotent replay and parity between incremental and full-refresh results for the fact and dimensions.",
+      "checks": "Project tests cover grain uniqueness, business rules, idempotent replay and parity between incremental and full-refresh results for the fact and dimensions.",
       "visual_caption": "Authentic Streamlit dashboard screenshot from the personal project, using synthetic data."
     },
     "nosql": {
-      "context": "ITS course project by the Big Data NoSQL Gang group, developed in the former Databricks Community Edition. The recovered archive contains Bronze, Silver and Gold source notebooks, documentation and a visualization configuration; it contains neither CSV files nor execution outputs. “NoSQL” is the project name, not evidence that a NoSQL database was used.",
-      "problem": "Prepare Inside Airbnb data for Amsterdam and Rio de Janeiro to analyze listings and reviews while keeping ingestion, normalization and analytical queries separate.",
-      "goal": "Organize a Bronze/Silver/Gold pipeline and write queries for comparing the two cities. The group goal does not establish that the pipeline completed an end-to-end run.",
-      "responsibility": "I was team leader and worked mainly on coordination and data ingestion. The exported Bronze notebook bears my name and documents that stage. Silver transformations, Gold queries and visualizations are described as group work: filenames alone do not prove authorship of individual cells.",
+      "context": "A group Data Engineering project developed during the ITS programme, using Databricks and Inside Airbnb data for Amsterdam and Rio de Janeiro.",
+      "problem": "Organize listings and reviews from two cities while separating ingestion, transformation and analytical queries.",
+      "goal": "Structure the data in Bronze, Silver and Gold layers to support analysis and comparisons between the two cities.",
+      "responsibility": "I led the team and focused mainly on data ingestion, helping structure the Bronze layer. The Silver transformations, Gold queries and visualizations are presented as group work.",
       "technologies": [
-        "Databricks Community Edition (original environment)",
+        "Databricks",
         "PySpark",
         "Spark SQL",
-        "Delta Lake",
-        "Inside Airbnb (stated data source)"
+        "Delta Lake"
       ],
-      "architecture": "The Bronze notebook reads four detailed listings and reviews CSVs from a Databricks volume, adds city and ingestion timestamp, and defines four Delta tables. The Silver notebook creates silver_listings with a UNION ALL of Amsterdam and Rio, selected columns, and type and price conversions. The documentation mentions silver_reviews, but its defining code is absent from the archive. The Gold notebook defines SQL views for counts and distributions; the IPYNB retains two chart configurations without exported values.",
+      "architecture": "The Bronze notebook sets up ingestion from four detailed listings and reviews CSVs in a Databricks volume, adds city and ingestion timestamp, and includes definitions for four Delta tables. The Silver notebook brings Amsterdam and Rio listings into silver_listings with UNION ALL and converts selected types and prices. Gold contains SQL views and analytical queries; an export preserves two chart configurations.",
       "decisions": [
         {
-          "heading": "CSV parsing",
-          "text": "Bronze reads columns as strings and configures multiline input, quotes, escaping and PERMISSIVE mode for complex text fields. The documentation explains the move from summary to detailed datasets to retain ratings; the original data files are not in the archive."
+          "heading": "CSV ingestion",
+          "text": "Bronze reads fields as strings and configures multiline input, quotes, escaping and PERMISSIVE mode for complex text. The project documentation explains the choice of detailed datasets to retain ratings."
         },
         {
           "heading": "Layer separation",
-          "text": "Silver preserves records with UNION ALL and defers analytical filtering to Gold. The documentation states that listings were not deduplicated; no exported check establishes ID uniqueness."
+          "text": "Silver combines listings with UNION ALL and prepares fields for analysis. Listing deduplication is outside the documented transformations."
         },
         {
-          "heading": "Price comparability",
-          "text": "The documentation distinguishes euros for Amsterdam from Brazilian reais for Rio and proposes city-specific comparisons. Some exported Gold queries do not apply the intended city filter, so the safeguard is not established for every visualization."
+          "heading": "City-specific comparisons",
+          "text": "Amsterdam and Rio use different currencies, so prices need to be compared within each city. Some Gold queries need a city filter to follow that rule."
         }
       ],
       "results": [
         {
-          "label": "Source artifacts",
-          "detail": "An ingestion notebook defining four Bronze tables, a notebook defining silver_listings, and a Gold notebook containing analytical views and queries are available."
+          "label": "Source notebooks",
+          "detail": "The Bronze ingestion flow, silver_listings transformation and Gold analytical views and queries are documented."
         },
         {
           "label": "Visualizations",
-          "detail": "An IPYNB export preserves settings for two charts of counts by city and accommodation type. It contains neither chart data nor a snapshot of the final dashboard."
+          "detail": "The export retains settings for two charts, one by city and one by accommodation type."
         }
       ],
-      "limits": "Counts, performance and full-pipeline completion cannot be verified without datasets, run logs and outputs. The silver_reviews code is missing; some Gold queries depend on that table or contain errors and inconsistencies. The Databricks volume and catalog must be recreated for a new run. Publishing group artifacts requires a rights review and coauthor consent.",
-      "evidence": "This case covers only the recovered original export and Samuel’s stated personal role. SQL definitions show technical intent, not successful execution of every cell. No metric or final dashboard is attributed to the project.",
-      "repo_note": "Notebooks, datasets and dashboards remain private while data, licenses, contributions and group permissions are reviewed.",
-      "diagram_title": "Layers defined in the export",
-      "diagram_note": "The notebooks define Bronze, Silver and Gold; silver_reviews is missing and a complete run is unverified.",
+      "limits": "This case presents the architecture defined in the notebooks. Reproducing the flow requires completing silver_reviews and correcting some Gold queries; quantitative results from a complete run are not documented.",
+      "diagram_title": "Bronze, Silver and Gold architecture",
+      "diagram_note": "The notebooks separate ingestion, listings transformation and SQL analysis.",
       "diagram_steps": [
-        "Bronze: 4 tables",
+        "Bronze: ingestion",
         "Silver: listings",
-        "Gold: views and queries"
+        "Gold: analysis"
       ],
-      "checks": "Review is limited to the exported source. Datasets, run logs and outputs are missing; silver_reviews code is absent and some Gold queries need correction."
+      "checks": "The code review covers Bronze definitions, silver_listings, Gold views and two chart configurations. Some queries need correction before a new run.",
+      "results_heading": "Project materials"
     }
   }
 }

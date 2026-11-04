@@ -5,7 +5,7 @@
 ## Fonte e contributi
 
 - ZIP originale letto in una directory di lavoro separata dal repository pubblico.
-- Gruppo **Big Data NoSQL Gang**. Samuel dichiara di essere stato team leader e di aver contribuito principalmente a coordinamento e ingestion.
+- Progetto di gruppo ITS. Samuel dichiara di essere stato team leader e di aver contribuito principalmente a coordinamento e ingestion.
 - Il notebook Bronze porta il nome Samuel; il nome del file non prova l’autorialità delle singole celle. Silver, Gold e dashboard restano attribuiti al gruppo.
 - Databricks Community Edition è l’ambiente originale; non è confermato l’accesso al workspace oggi.
 
