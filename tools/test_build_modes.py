@@ -64,18 +64,22 @@ def main():
 
 
 def run_cv_fixture():
-    """Test the hidden-until-approved CV component with temporary fake PDFs."""
+    """Only a complete approved IT/EN/FR set may appear in the localized HTML."""
+    import hashlib
     with TemporaryDirectory(prefix='portfolio-cv-fixture-') as temp:
         site = Path(temp) / 'site'
         shutil.copytree(ROOT, site, ignore=shutil.ignore_patterns('.git', 'public', '__pycache__', '*.pyc', 'node_modules'))
         documents = []
-        for lang in ('it', 'en'):
-            asset = site / f'assets/docs/cv-{lang}.pdf'
+        for lang in ('it', 'en', 'fr'):
+            filename = f'Samuel_Okotako_Data_Engineer_{lang.upper()}.pdf'
+            asset = site / 'assets/cv' / filename
             asset.parent.mkdir(parents=True, exist_ok=True)
-            asset.write_bytes(b'%PDF-1.4\n% Temporary test fixture only\n%%EOF\n')
+            contents = b'%PDF-1.4\n% Temporary test fixture only\n%%EOF\n'
+            asset.write_bytes(contents)
             documents.append({
                 'status': 'published', 'slug': f'cv-{lang}', 'kind': 'cv', 'language': lang,
-                'file': f'/assets/docs/cv-{lang}.pdf', 'updated': '2026-11-03',
+                'file': f'/cv/{filename}', 'source': f'/assets/cv/{filename}',
+                'sha256': hashlib.sha256(contents).hexdigest(), 'updated': '2026-11-04',
                 'approval': {'owner': True, 'privacy_reviewed': True},
                 'translations': {code: {'title': f'CV {lang.upper()}', 'description': 'Temporary test fixture'} for code in ('it', 'en', 'fr')},
             })
@@ -88,21 +92,31 @@ def run_cv_fixture():
             result = subprocess.run(command, cwd=site, env=env, capture_output=True, text=True)
             if result.returncode:
                 raise AssertionError(f'CV fixture failed:\n{result.stdout}\n{result.stderr}')
-        for lang, pdf, label in (('it', 'cv-it.pdf', 'Scarica il CV'), ('en', 'cv-en.pdf', 'Download resume'), ('fr', 'cv-en.pdf', 'Télécharger mon CV')):
+        for lang in ('it', 'en', 'fr'):
+            filename = f'Samuel_Okotako_Data_Engineer_{lang.upper()}.pdf'
             home = (site / f'public/{lang}/index.html').read_text(encoding='utf-8')
-            assert f'href="/assets/docs/{pdf}" type="application/pdf" download>{label}' in home
-        documents[1]['status'] = 'draft'
+            label = {'it': 'Scarica il CV', 'en': 'Download resume', 'fr': 'Télécharger mon CV'}[lang]
+            assert f'href="/cv/{filename}" type="application/pdf" download>{label}' in home
+            assert (site / 'public/cv' / filename).is_file()
+        assert not (site / 'public/assets/cv').exists()
+        fr_asset = site / 'assets/cv/Samuel_Okotako_Data_Engineer_FR.pdf'
+        fr_asset.write_bytes(fr_asset.read_bytes() + b' changed')
+        changed = subprocess.run(('python3', '-B', 'build_pages.py'), cwd=site, env=env, capture_output=True, text=True)
+        assert changed.returncode != 0 and 'differs from its approved PDF checksum' in changed.stderr, 'Changed CV passed checksum gate'
+        fr_asset.write_bytes(contents)
+        documents[2]['status'] = 'draft'
         register.write_text(json.dumps(documents), encoding='utf-8')
         result = subprocess.run(('python3', '-B', 'build_pages.py'), cwd=site, env=env, capture_output=True, text=True)
-        assert result.returncode != 0 and 'Public CV requires one approved IT PDF' in result.stderr, 'Partial CV pair was accepted'
-        documents[0]['status'] = 'draft'
+        assert result.returncode != 0 and 'Public CV requires one approved IT, EN and FR PDF' in result.stderr, 'Partial CV set was accepted'
+        for item in documents:
+            item['status'] = 'draft'
+        (site / '_redirects').unlink()  # No migrated destination exists in the no-CV fixture.
         register.write_text(json.dumps(documents), encoding='utf-8')
         result = subprocess.run(('python3', '-B', 'build_pages.py'), cwd=site, env=env, capture_output=True, text=True)
         assert result.returncode == 0, result.stderr
         for lang in ('it', 'en', 'fr'):
             assert 'home-contact__cv' not in (site / f'public/{lang}/index.html').read_text(encoding='utf-8')
-        print('OK: CV download appears only with both approved IT/EN PDFs (temporary fixture)')
-
+        print('OK: localized CV download requires all three approved PDFs (temporary fixture)')
 
 if __name__ == '__main__':
     main()

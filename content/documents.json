@@ -4,7 +4,7 @@
     "slug": "samuel-okotako-data-engineer-it",
     "kind": "cv",
     "language": "it",
-    "file": "/assets/cv/Samuel_Okotako_Data_Engineer_IT.pdf",
+    "file": "/cv/Samuel_Okotako_Data_Engineer_IT.pdf",
     "updated": "2026-11-04",
     "approval": {
       "owner": true,
@@ -23,14 +23,16 @@
         "title": "CV Data Engineer · italien",
         "description": "Curriculum en italien au format PDF."
       }
-    }
+    },
+    "source": "/assets/cv/Samuel_Okotako_Data_Engineer_IT.pdf",
+    "sha256": "ca22dcdc4c3552118e0a0757d6bb3bed14f00b8aca3f41fde6490fad9f3ca691"
   },
   {
     "status": "published",
     "slug": "samuel-okotako-data-engineer-en",
     "kind": "cv",
     "language": "en",
-    "file": "/assets/cv/Samuel_Okotako_Data_Engineer_EN.pdf",
+    "file": "/cv/Samuel_Okotako_Data_Engineer_EN.pdf",
     "updated": "2026-11-04",
     "approval": {
       "owner": true,
@@ -49,6 +51,36 @@
         "title": "CV Data Engineer · anglais",
         "description": "Curriculum en anglais au format PDF."
       }
-    }
+    },
+    "source": "/assets/cv/Samuel_Okotako_Data_Engineer_EN.pdf",
+    "sha256": "e04fddea5ee4ba37502cec5b89207b490822f4e0e344c0e37d5fd3b6fb7d4ac6"
+  },
+  {
+    "status": "published",
+    "slug": "samuel-okotako-data-engineer-fr",
+    "kind": "cv",
+    "language": "fr",
+    "updated": "2026-11-04",
+    "approval": {
+      "owner": true,
+      "privacy_reviewed": true
+    },
+    "translations": {
+      "it": {
+        "title": "Curriculum Data Engineer · Francese",
+        "description": "Curriculum in francese in formato PDF."
+      },
+      "en": {
+        "title": "Data Engineer resume · French",
+        "description": "French resume in PDF format."
+      },
+      "fr": {
+        "title": "CV Data Engineer · français",
+        "description": "CV en français au format PDF."
+      }
+    },
+    "file": "/cv/Samuel_Okotako_Data_Engineer_FR.pdf",
+    "source": "/assets/cv/Samuel_Okotako_Data_Engineer_FR.pdf",
+    "sha256": "ca42325afe7ee5799a2ad218a9a5291e2e145d8ee366c800400b2d1c04b2b199"
   }
 ]

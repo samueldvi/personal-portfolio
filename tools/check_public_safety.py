@@ -27,9 +27,10 @@ def check():
     approved_pdfs = set()
     for item in documents:
         approval = item.get('approval') or {}
-        source = str(item.get('file') or '').lstrip('/')
-        if item.get('status') == 'published' and approval.get('owner') is True and approval.get('privacy_reviewed') is True and source.endswith('.pdf'):
-            approved_pdfs.update((source, 'public/' + source))
+        source = str(item.get('source') or item.get('file') or '').lstrip('/')
+        public_path = str(item.get('file') or '').lstrip('/')
+        if item.get('status') == 'published' and approval.get('owner') is True and approval.get('privacy_reviewed') is True and source.endswith('.pdf') and public_path.endswith('.pdf'):
+            approved_pdfs.update((source, 'public/' + public_path))
     files = (path for path in ROOT.rglob('*') if path.is_file() and not any(part in {'.git', '__pycache__', 'node_modules'} for part in path.relative_to(ROOT).parts))
     for file in files:
         relative = file.relative_to(ROOT)
@@ -39,7 +40,7 @@ def check():
             issues.append(f'Private artifact name or type: {label}')
         if suffix == '.pdf' and label not in approved_pdfs:
             issues.append(f'PDF needs an explicit privacy and publication review: {label}')
-        if relative.parts[0] == 'public' and (suffix not in {'.html', '.css', '.js', '.svg', '.webp', '.jpg', '.jpeg', '.png', '.woff2', '.txt', '.xml', '.pdf'} and file.name != '.generated-by-build-pages'):
+        if relative.parts[0] == 'public' and (suffix not in {'.html', '.css', '.js', '.svg', '.webp', '.jpg', '.jpeg', '.png', '.woff2', '.txt', '.xml', '.pdf'} and file.name not in {'.generated-by-build-pages', '_redirects'}):
             issues.append(f'Unexpected public asset type: {label}')
         if suffix in TEXT_SUFFIXES and file.stat().st_size < 2_000_000:
             text = file.read_text(encoding='utf-8', errors='replace')

@@ -184,7 +184,18 @@
     "about_method_label": "The method",
     "about_method_title": "Understand. Build. Verify.",
     "project_visual_concept": "Conceptual illustration; prototype specifications still need verification",
-    "cv_download": "Download resume"
+    "cv_download": "Download resume",
+    "about_beyond_label": "Personal path",
+    "about_beyond_title": "Beyond Technology",
+    "about_beyond_intro": "My path extends beyond technology. I have worked in fashion and communications, taking part in projects and campaigns with different brands. I have also worked in cultural mediation, an experience that has shaped how I listen, communicate, and work with people from different backgrounds.",
+    "about_fashion_title": "Fashion and communications",
+    "about_fashion_body": "Modelling has given me opportunities to take part in creative projects and campaigns with brands and production teams. I keep this work distinct from my technical projects.",
+    "about_mediation_title": "Cultural mediation",
+    "about_mediation_body": "Working in cultural mediation strengthened my listening skills, intercultural communication, and ability to connect with people from different backgrounds.",
+    "about_note_label": "A personal note",
+    "about_note_intro": "This portfolio is always evolving. I personally maintain and update it as I continue to learn, experiment, and improve. Have suggestions or constructive feedback?",
+    "about_note_link": "Feel free to get in touch",
+    "about_note_close": ". I welcome every opportunity to learn and grow."
   },
   "extra": {
     "writing_nav": "Writing",

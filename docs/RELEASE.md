@@ -13,7 +13,7 @@ node --test tests/*.test.cjs
 git diff --check
 ```
 
-Confermare che `git status --short` mostri solo i file voluti. Riesaminare a mano media, documenti e contenuti nuovi: la scansione automatica rileva solo alcuni formati privati e credenziali riconoscibili. I due CV Data Engineer IT/EN sono gli unici PDF approvati nel registro e nell’output; non aggiungere le altre varianti, sorgenti LaTeX o report QA. Bank Loan Approval Prediction resta in bozza finché dataset, metodologia, metriche e rischi non sono documentati.
+Confermare che `git status --short` mostri solo i file voluti. Riesaminare a mano media, documenti e contenuti nuovi: la scansione automatica rileva solo alcuni formati privati e credenziali riconoscibili. I tre CV Data Engineer IT/EN/FR provenienti da `cv/final/website-ready/` sono gli unici PDF approvati nel registro e nell’output, sotto `/cv/`; verificare le lingue, i checksum e i link localizzati prima del merge. Non aggiungere altre varianti, sorgenti LaTeX o report QA. Bank Loan Approval Prediction resta in bozza finché dataset, metodologia, metriche e rischi non sono documentati.
 
 ## CI e protezione di `main`
 
