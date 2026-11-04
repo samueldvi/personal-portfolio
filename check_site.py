@@ -106,7 +106,7 @@ def check():
         assert home.count('class="home-project"') == min(3, len(PROJECTS)), f'Featured projects mismatch: {lang}'
         assert f'id="hero-title"><span>{escape(CONTENT[lang]["hero_title"])}</span>' in home and escape(CONTENT[lang]['hero_title_follow']) in home, f'Home value proposition missing: {lang}'
         assert 'aria-current="page"' in home, f'Active homepage navigation missing: {lang}'
-        assert home.count('class="home-skill__evidence"') == 2 and home.count('class="home-skill__pending"') == 1, f'Homepage case-study evidence mismatch: {lang}'
+        assert home.count('class="home-skill__evidence"') == 2 and 'home-skill__pending' not in home, f'Homepage case-study evidence mismatch: {lang}'
         assert all(f'href="/{lang}/projects/{item["id"]}/"' in home for item in PROJECT_DETAILS if item['category'] in ('engineering', 'governance')), f'Available case-study link missing: {lang}'
         assert 'bank-loan-approval-prediction' not in home, f'Unverified ML draft linked from homepage: {lang}'
         cv = {item['language']: item for item in DOCUMENTS if item.get('kind') == 'cv'}
