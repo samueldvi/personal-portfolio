@@ -1,7 +1,19 @@
-"""Set the final Cloudflare Pages origin here after deployment.
+"""Fail-closed SEO configuration for local, preview and approved public builds.
 
-Example: SITE_URL = 'https://your-actual-project.pages.dev'
-Leave empty while the public address is unknown. The generator will then emit
-noindex pages and will not invent canonical or hreflang URLs.
+Cloudflare supplies CF_PAGES and CF_PAGES_BRANCH during a Pages build. The
+explicit opt-in and branch name must be configured for the production build;
+setting SITE_URL alone never makes pages indexable.
 """
-SITE_URL = ''
+import os
+
+CANONICAL_ORIGIN = 'https://samuelokotako.com'
+SITE_URL = os.environ.get('SITE_URL', CANONICAL_ORIGIN).strip().rstrip('/')
+PRODUCTION_BRANCH = os.environ.get('PORTFOLIO_PRODUCTION_BRANCH', '').strip()
+INDEXING_REQUESTED = os.environ.get('PORTFOLIO_INDEXING', '').strip().lower() == 'enabled'
+INDEXING_ENABLED = all((
+    INDEXING_REQUESTED,
+    SITE_URL == CANONICAL_ORIGIN,
+    os.environ.get('CF_PAGES') == '1',
+    PRODUCTION_BRANCH,
+    os.environ.get('CF_PAGES_BRANCH') == PRODUCTION_BRANCH,
+))

@@ -40,6 +40,10 @@ for lang, copy in CONTENT.items():
         raise ValueError(f'{lang}: navigation/theme option count is inconsistent with shared components')
     if {key for key, _ in copy['filters']} != {key for key, _ in CONTENT['it']['filters']}:
         raise ValueError(f'{lang}: project filter keys differ')
+    if len(copy['focus']) != 3 or any(len(item) != 4 or not all(item) for item in copy['focus']):
+        raise ValueError(f'{lang}: expected three complete homepage skill entries')
+    if [item[3] for item in copy['focus']] != ['engineering', 'machine-learning', 'governance']:
+        raise ValueError(f'{lang}: homepage skills must map to the same project categories')
 
 for lang in LANGS:
     if set(EXTRA[lang]['moment_categories']) != set(EXTRA['it']['moment_categories']):

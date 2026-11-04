@@ -1,7 +1,7 @@
 {
   "content": {
-    "title": "Samuel Okotako | Ingénierie des données et gouvernance",
-    "description": "Portfolio de Samuel Okotako : systèmes de données, gouvernance, projets techniques et formation.",
+    "title": "Samuel Okotako | Données, ML et gouvernance",
+    "description": "Des projets documentés en ingénierie des données, Machine Learning et gouvernance, au service de données fiables et de décisions éclairées.",
     "skip": "Aller au contenu",
     "nav_label": "Navigation principale",
     "nav": [
@@ -20,45 +20,65 @@
       "Sombre"
     ],
     "language_label": "Langue",
-    "hero_kicker": "Ingénierie des données · Gouvernance · Logiciel",
-    "hero_title": "Je conçois des systèmes qui transforment des données complexes en solutions concrètes.",
-    "hero_intro": "Je suis Samuel Okotako. Mon travail relie gestion des données, développement logiciel et exploration de l’IA : du problème initial à des processus compréhensibles et vérifiables.",
-    "hero_cta": "Explorer les projets",
-    "hero_contact": "Contact",
-    "focus_label": "Domaines de travail",
+    "hero_kicker": "Ingénierie des données · Machine Learning · Gouvernance des données",
+    "hero_title": "Les données recèlent des réponses.",
+    "hero_title_follow": "Je les transforme en valeur concrète.",
+    "hero_value": "Je conçois des pipelines de données fiables, développe des modèles prédictifs et applique une gouvernance responsable des données pour aider les organisations à prendre des décisions mieux informées.",
+    "hero_intro": "Les études de cas présentent la démarche technique et ses limites.",
+    "hero_cta": "Découvrir mes projets",
+    "hero_contact": "Me contacter",
+    "focus_label": "Domaines de pratique",
     "focus": [
       [
         "01",
         "Ingénierie des données",
-        "Pipelines, transformations et modèles de données."
+        "Conception de pipelines, de transformations, de contrôles de qualité et de systèmes qui rendent les données fiables et disponibles pour l’analyse et le reporting.",
+        "engineering"
       ],
       [
         "02",
-        "Gouvernance des données",
-        "Qualité, traçabilité et protection des données."
+        "Machine Learning",
+        "Développement et évaluation de modèles prédictifs, avec une attention portée à la qualité des données, à l’interprétabilité, aux limites et à l’usage responsable.",
+        "machine-learning"
       ],
       [
         "03",
-        "IA et logiciel",
-        "Formation, prototypes et développement de solutions."
+        "Gouvernance des données",
+        "Qualité, classification, protection et gestion des données, y compris le masquage et la pseudonymisation.",
+        "governance"
       ]
     ],
     "selected_label": "Sélection",
     "selected_title": "Projets à découvrir",
-    "selected_intro": "Quatre contextes différents, une même démarche : clarifier le problème et distinguer les résultats documentés des points à vérifier.",
+    "selected_intro": "Trois contextes techniques, présentés à travers les problèmes, les choix et les éléments disponibles.",
     "selected_action": "Voir le projet",
+    "home_all_projects": "Tous les projets",
+    "home_skills_title": "Des données fiables, des modèles compréhensibles.",
+    "home_case_label": "Études de cas",
+    "home_case_pending": "Fiche projet en préparation",
+    "home_path_label": "Le parcours",
+    "home_path_title": "De l’électronique aux systèmes de données.",
+    "home_experience_intro": "Un stage en gouvernance des données, masquage et pseudonymisation.",
+    "home_experience_link": "Explorer l’expérience",
+    "home_education_intro": "Diplôme ITS de technicien supérieur en gestion des données, EQF 5. Note finale : 110/110.",
+    "home_education_link": "Explorer la formation",
+    "home_contact_title": "Un projet à discuter ?",
+    "home_contact_intro": "Pour un projet ou une collaboration, utilisez le formulaire de contact ou écrivez-moi directement par e-mail.",
+    "home_creative_label": "Au-delà du travail",
+    "home_creative_title": "Un regard plus personnel.",
+    "home_creative_intro": "La photographie, le mannequinat et le théâtre font partie de mes centres d’intérêt, aux côtés de mon travail sur les données.",
     "experience_label": "Expérience",
-    "experience_title": "Travailler avec les données dans leur contexte.",
-    "experience_intro": "Mon stage chez Spindox portait sur la gouvernance des données, le masquage et la pseudonymisation. Les activités précises publiables restent à vérifier.",
+    "experience_title": "Travailler avec les données de façon responsable.",
+    "experience_intro": "Mon stage chez Spindox a porté sur la gouvernance des données, le masquage et la pseudonymisation. Les projets personnels et de formation sont présentés séparément.",
     "experience_period": "Juin – octobre 2026",
     "experience_role": "Stage · Gouvernance et masquage des données",
     "experience_actual_title": "Périmètre du stage",
     "experience_actual": "Gouvernance des données, masquage et pseudonymisation. Aucun processus, jeu de données ou document interne à l’entreprise n’est publié.",
     "experience_separate_title": "Projets et formation",
     "experience_separate": "Le pipeline dbt et DuckDB, le travail NoSQL sur Databricks et la formation en IA sont présentés séparément ; ils ne sont pas attribués à Spindox.",
-    "projects_label": "Portfolio technique",
-    "projects_title": "Des projets présentés dans leur contexte.",
-    "projects_intro": "Chaque fiche présente d’abord l’essentiel. Les détails techniques restent accessibles ; aucun résultat ni indicateur manquant n’est inventé.",
+    "projects_label": "Projets techniques sélectionnés",
+    "projects_title": "Des idées aux systèmes.",
+    "projects_intro": "Pipelines de données, gouvernance et analyse : des projets présentés à travers des problèmes concrets, des choix techniques et les éléments disponibles.",
     "filters_label": "Filtrer les projets",
     "filters": [
       [
@@ -66,29 +86,29 @@
         "Tous"
       ],
       [
-        "governance",
-        "Gouvernance"
-      ],
-      [
         "engineering",
         "Ingénierie des données"
       ],
       [
-        "electronics",
-        "Électronique"
+        "machine-learning",
+        "Machine Learning"
       ],
       [
-        "machine-learning",
-        "Machine Learning et analyse prédictive"
+        "governance",
+        "Gouvernance des données"
+      ],
+      [
+        "electronics",
+        "Logiciel et électronique"
       ]
     ],
     "filter_count": "projets affichés",
     "filter_count_one": "projet affiché",
-    "details": "Contexte et détails",
+    "details": "Éléments disponibles",
     "field_context": "Contexte",
     "field_problem": "Problème",
     "field_approach": "Approche technique",
-    "field_outcome": "Résultat vérifiable",
+    "field_outcome": "Éléments disponibles",
     "field_tech": "Technologies",
     "no_repo": "Lien vers le code à vérifier",
     "education_link": "Voir la formation",
@@ -106,7 +126,7 @@
     "archimede_degree": "Diplôme en électronique et automatisation",
     "archimede_link": "Projet final : radar Arduino",
     "about_label": "À propos",
-    "about_title": "La méthode avant l’effet.",
+    "about_title": "De l’électronique aux données, avec méthode.",
     "about_intro": "Mon parcours relie électronique, gestion des données et informatique. Je m’intéresse aux systèmes qui rendent l’information fiable, exploitable et compréhensible.",
     "about_steps": [
       [
@@ -123,7 +143,7 @@
       ]
     ],
     "contact_label": "Contact",
-    "contact_title": "Une conversation commence par un problème concret.",
+    "contact_title": "Parlons de votre projet.",
     "contact_intro": "Vous souhaitez me contacter directement ? Remplissez le formulaire pour m’envoyer votre demande. Si vous préférez, vous pouvez aussi m’écrire par e-mail.",
     "form_title": "Formulaire de contact",
     "form_note": "Recommandé pour les demandes professionnelles et les collaborations. Tous les champs sont obligatoires.",
@@ -157,7 +177,14 @@
     "form_privacy_link": "Politique de confidentialité de Formspree.",
     "form_privacy_tail": "Formspree peut traiter des données hors de l’UE.",
     "form_error_http": "Le service a répondu avec une erreur. Réessayez plus tard.",
-    "form_error_honeypot": "Le contrôle antispam a bloqué cet envoi. Rechargez la page et réessayez."
+    "form_error_honeypot": "Le contrôle antispam a bloqué cet envoi. Rechargez la page et réessayez.",
+    "home_unict_intro": "Une licence d’informatique (L-31) à l’Université de Catane, en cours.",
+    "home_archimede_intro": "Diplôme en électronique et automatisation ; projet final : un radar Arduino.",
+    "photo_credit": "Photo : Samuel Okotako",
+    "about_method_label": "La méthode",
+    "about_method_title": "Comprendre. Construire. Vérifier.",
+    "project_visual_concept": "Illustration conceptuelle ; caractéristiques du prototype à vérifier",
+    "cv_download": "Télécharger mon CV"
   },
   "extra": {
     "writing_nav": "Écrits",
@@ -199,9 +226,9 @@
     "case_goal": "Objectif",
     "case_responsibility": "Mes responsabilités",
     "case_technologies": "Technologies",
-    "case_architecture": "Architecture et processus",
+    "case_architecture": "Architecture",
     "case_decisions": "Décisions techniques et compromis",
-    "case_results": "Résultats vérifiables",
+    "case_results": "Éléments et résultats documentés",
     "case_limits": "Limites et améliorations",
     "case_evidence": "Sources et périmètre",
     "case_repository": "Dépôt GitHub",
@@ -211,7 +238,12 @@
       "culture-theatre": "Culture et théâtre",
       "modelling-creative": "Modelling et créativité",
       "education-moments": "Moments de formation"
-    }
+    },
+    "case_implementation": "Mise en œuvre documentée",
+    "case_checks": "Contrôles et vérifications",
+    "case_jump": "Explorer l’architecture",
+    "case_next": "Étude de cas suivante",
+    "case_license": "Licence MIT de la capture"
   },
   "cases": {
     "governance": {
@@ -248,7 +280,18 @@
       ],
       "limits": "La validation porte uniquement sur des données synthétiques. Elle ne démontre ni la précision sur des données réelles, ni les performances en entreprise, ni la conformité juridique. Authentification, gestion opérationnelle des secrets et observabilité restent à développer.",
       "evidence": "Les chiffres et contrôles proviennent du dépôt personnel du prototype. Ils ne mesurent pas le stage chez Spindox ; aucun code, document ou jeu de données de l’entreprise n’est inclus.",
-      "repo_note": "Le dépôt n’est pas actuellement accessible au public. Un lien vers le code sera ajouté uniquement lorsque sa publication sera appropriée."
+      "repo_note": "Le dépôt n’est pas actuellement accessible au public. Un lien vers le code sera ajouté uniquement lorsque sa publication sera appropriée.",
+      "diagram_title": "Processus du prototype synthétique",
+      "diagram_note": "Séquence implémentée dans la CLI locale. Les contrôles ne portent que sur le jeu de données synthétique.",
+      "diagram_steps": [
+        "Génération",
+        "Inventaire",
+        "Profilage",
+        "Classification",
+        "Masquage",
+        "Validation"
+      ],
+      "checks": "Le dépôt documente des tests sur les comptages, contraintes, relations entre tables, groupes de cohérence, dérive du schéma et idempotence déterministe sur le jeu synthétique."
     },
     "dbt": {
       "context": "Projet personnel d’ingénierie des données fondé sur des données e-commerce entièrement synthétiques, distinct du stage chez Spindox. La pipeline et le tableau de bord sont documentés dans un dépôt local.",
@@ -285,7 +328,18 @@
       ],
       "limits": "Le jeu est synthétique et local. Il ne démontre pas le comportement sur des sources réelles, à l’échelle de production ou dans le cloud ; le tableau de bord lit un instantané et ne lance pas l’ingestion au démarrage.",
       "evidence": "La structure, les contrôles et les résultats sont documentés dans le dépôt local du projet. Ils ne sont pas attribués à un environnement d’entreprise.",
-      "repo_note": "Le dépôt n’est pas actuellement accessible au public. Un lien vers le code suivra une vérification de sa publication."
+      "repo_note": "Le dépôt n’est pas actuellement accessible au public. Un lien vers le code suivra une vérification de sa publication.",
+      "diagram_title": "Pipeline e-commerce locale",
+      "diagram_note": "Données synthétiques ; Streamlit consulte l’instantané DuckDB en lecture seule.",
+      "diagram_steps": [
+        "CSV synthétiques",
+        "Raw et manifeste",
+        "Modèles dbt",
+        "Marts et tests",
+        "Streamlit"
+      ],
+      "checks": "Les tests du projet documentent l’unicité du grain, les règles métier, le rejeu idempotent et la correspondance des résultats incrémentaux avec un recalcul complet de la table de faits et des dimensions.",
+      "visual_caption": "Capture authentique du tableau de bord Streamlit du projet personnel, sur données synthétiques."
     },
     "nosql": {
       "context": "Projet ITS du groupe Big Data NoSQL Gang, développé sur l’ancienne Databricks Community Edition. L’archive récupérée contient les notebooks sources Bronze, Silver et Gold, une documentation et une configuration de visualisation ; elle ne contient ni CSV ni résultats d’exécution. « NoSQL » est le nom du projet, pas la preuve de l’usage d’une base NoSQL.",
@@ -326,7 +380,15 @@
       ],
       "limits": "Les comptages, performances et l’achèvement de la pipeline ne peuvent être vérifiés sans jeux de données, journaux d’exécution et résultats. Le code de silver_reviews manque ; certaines requêtes Gold en dépendent ou comportent des erreurs et incohérences. Le volume et le catalogue Databricks doivent être recréés pour une nouvelle exécution. La diffusion des artefacts collectifs exige une revue des droits et l’accord des coauteurs.",
       "evidence": "Ce cas décrit uniquement l’export original retrouvé et le rôle personnel déclaré par Samuel. Les définitions SQL montrent l’intention technique, pas la réussite de chaque cellule. Aucune métrique ni aucun tableau de bord final n’est attribué au projet.",
-      "repo_note": "Les notebooks, jeux de données et tableaux de bord restent privés pendant la vérification des données, licences, contributions et autorisations du groupe."
+      "repo_note": "Les notebooks, jeux de données et tableaux de bord restent privés pendant la vérification des données, licences, contributions et autorisations du groupe.",
+      "diagram_title": "Couches définies dans l’export",
+      "diagram_note": "Les notebooks définissent Bronze, Silver et Gold ; silver_reviews manque et aucune exécution complète n’est vérifiée.",
+      "diagram_steps": [
+        "Bronze : 4 tables",
+        "Silver : annonces",
+        "Gold : vues et requêtes"
+      ],
+      "checks": "La vérification se limite aux sources exportées. Jeux de données, journaux d’exécution et résultats manquent ; le code de silver_reviews est absent et certaines requêtes Gold doivent être corrigées."
     }
   }
 }

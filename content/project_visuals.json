@@ -1,0 +1,39 @@
+{
+  "governance": {
+    "kind": "flow",
+    "steps": ["generate", "inventory", "profile", "classify", "mask", "validate"],
+    "evidence": "implemented_synthetic"
+  },
+  "dbt": {
+    "kind": "screenshot",
+    "steps": ["synthetic_csv", "raw_manifest", "dbt_models", "marts_tests", "streamlit"],
+    "evidence": "implemented_synthetic",
+    "media": {
+      "src": "/assets/projects/ecommerce-dashboard.png",
+      "webp_srcset": "/assets/projects/ecommerce-dashboard-720.webp 720w, /assets/projects/ecommerce-dashboard-1440.webp 1440w",
+      "width": 1440,
+      "height": 990,
+      "license_file": "/assets/projects/ecommerce-LICENSE.txt",
+      "rights": {
+        "status": "licensed",
+        "license": "MIT",
+        "basis": "MIT LICENSE in the personal e-commerce repository; screenshot depicts its synthetic Streamlit demo",
+        "credit": "ecommerce-dbt-duckdb-pipeline contributors"
+      },
+      "alt": {
+        "it": "Dashboard Streamlit del progetto e-commerce con KPI e grafici su dati sintetici",
+        "en": "E-commerce project Streamlit dashboard with KPIs and charts from synthetic data",
+        "fr": "Tableau de bord Streamlit du projet e-commerce avec indicateurs et graphiques sur données synthétiques"
+      }
+    }
+  },
+  "nosql": {
+    "kind": "flow",
+    "steps": ["bronze", "silver", "gold"],
+    "evidence": "source_definitions_only"
+  },
+  "radar": {
+    "kind": "concept",
+    "evidence": "author_description_only"
+  }
+}

@@ -66,7 +66,7 @@
     document.addEventListener('click', (event) => {
       if (!nav.contains(event.target) && !menuToggle.contains(event.target)) setMenu(false);
     });
-    window.matchMedia('(min-width: 1060px)').addEventListener?.('change', () => setMenu(false));
+    window.matchMedia('(min-width: 1180px)').addEventListener?.('change', () => setMenu(false));
   }
 
   document.querySelectorAll('[data-embed-url]').forEach((button) => {
@@ -126,6 +126,23 @@
       });
       if (counter) counter.textContent = `${visible} ${visible === 1 ? counter.dataset.one : counter.dataset.many}`;
     }));
+  }
+
+  // Reveal off-screen home sections only when an observer and motion preference allow it.
+  const homeSections = document.querySelectorAll('.home-section');
+  if (homeSections.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    homeSections.forEach((section) => {
+      if (section.getBoundingClientRect().top >= window.innerHeight) section.classList.add('motion-ready');
+      observer.observe(section);
+    });
   }
 
   // Enable enhanced controls only after their handlers are ready.

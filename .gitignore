@@ -5,3 +5,6 @@ __pycache__/
 /IMG_4835.PNG
 /IMG_5358.HEIC
 /IMG_5750.JPG
+
+# macOS metadata is never part of a release.
+.DS_Store

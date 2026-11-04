@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "status": "published",
+    "slug": "samuel-okotako-data-engineer-it",
+    "kind": "cv",
+    "language": "it",
+    "file": "/assets/cv/Samuel_Okotako_Data_Engineer_IT.pdf",
+    "updated": "2026-11-04",
+    "approval": {
+      "owner": true,
+      "privacy_reviewed": true
+    },
+    "translations": {
+      "it": {
+        "title": "Curriculum Data Engineer · Italiano",
+        "description": "Curriculum in italiano in formato PDF."
+      },
+      "en": {
+        "title": "Data Engineer resume · Italian",
+        "description": "Italian resume in PDF format."
+      },
+      "fr": {
+        "title": "CV Data Engineer · italien",
+        "description": "Curriculum en italien au format PDF."
+      }
+    }
+  },
+  {
+    "status": "published",
+    "slug": "samuel-okotako-data-engineer-en",
+    "kind": "cv",
+    "language": "en",
+    "file": "/assets/cv/Samuel_Okotako_Data_Engineer_EN.pdf",
+    "updated": "2026-11-04",
+    "approval": {
+      "owner": true,
+      "privacy_reviewed": true
+    },
+    "translations": {
+      "it": {
+        "title": "Curriculum Data Engineer · Inglese",
+        "description": "Curriculum in inglese in formato PDF."
+      },
+      "en": {
+        "title": "Data Engineer resume · English",
+        "description": "English resume in PDF format."
+      },
+      "fr": {
+        "title": "CV Data Engineer · anglais",
+        "description": "Curriculum en anglais au format PDF."
+      }
+    }
+  }
+]

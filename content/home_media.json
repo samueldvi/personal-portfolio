@@ -1,0 +1,42 @@
+{
+  "portrait": {
+    "status": "approved",
+    "rights": {
+      "status": "approved",
+      "basis": "Owner confirmed publication rights in chat on 2026-11-03",
+      "credit": "Samuel Okotako"
+    },
+    "src": "/assets/portrait/samuel-okotako.jpg",
+    "webp_srcset": "/assets/portrait/samuel-okotako-320.webp 320w, /assets/portrait/samuel-okotako-426.webp 426w",
+    "width": 426,
+    "height": 640,
+    "alt": {
+      "it": "Ritratto di Samuel Okotako all'aperto",
+      "en": "Portrait of Samuel Okotako outdoors",
+      "fr": "Portrait de Samuel Okotako en extérieur"
+    }
+  },
+  "projects": {},
+  "creative": {
+    "status": "approved",
+    "rights": {
+      "status": "approved",
+      "basis": "Owner confirmed publication rights in chat on 2026-11-03",
+      "credit": "Samuel Okotako"
+    },
+    "src": "/assets/moments/teatro-bellini.jpg",
+    "webp_srcset": "/assets/moments/teatro-bellini-480.webp 480w, /assets/moments/teatro-bellini-960.webp 960w",
+    "width": 960,
+    "height": 1280,
+    "alt": {
+      "it": "Samuel Okotako all'interno del Teatro Massimo Bellini",
+      "en": "Samuel Okotako inside Teatro Massimo Bellini",
+      "fr": "Samuel Okotako à l'intérieur du Teatro Massimo Bellini"
+    },
+    "caption": {
+      "it": "Al Teatro Massimo Bellini per assistere a un'opera.",
+      "en": "At Teatro Massimo Bellini to attend an opera.",
+      "fr": "Au Teatro Massimo Bellini pour assister à un opéra."
+    }
+  }
+}

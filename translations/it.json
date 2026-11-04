@@ -1,7 +1,7 @@
 {
   "content": {
-    "title": "Samuel Okotako | Data Engineering e Data Governance",
-    "description": "Portfolio di Samuel Okotako: sistemi per i dati, Data Governance, progetti tecnici e percorso formativo.",
+    "title": "Samuel Okotako | Data Engineering, ML e Governance",
+    "description": "Data Engineering, Machine Learning e Data Governance: progetti documentati per rendere i dati affidabili e utili alle decisioni.",
     "skip": "Vai al contenuto",
     "nav_label": "Navigazione principale",
     "nav": [
@@ -20,45 +20,65 @@
       "Scuro"
     ],
     "language_label": "Lingua",
-    "hero_kicker": "Data Engineering · Data Governance · Software",
-    "hero_title": "Progetto sistemi che trasformano dati complessi in soluzioni concrete.",
-    "hero_intro": "Sono Samuel Okotako. Lavoro all’intersezione tra gestione del dato, sviluppo software e sperimentazione in AI: dal problema iniziale a processi comprensibili e verificabili.",
-    "hero_cta": "Esplora i progetti",
-    "hero_contact": "Contatti",
-    "focus_label": "Ambiti di lavoro",
+    "hero_kicker": "Data Engineering · Machine Learning · Data Governance",
+    "hero_title": "I dati contengono risposte.",
+    "hero_title_follow": "Io li trasformo in valore.",
+    "hero_value": "Progetto pipeline di dati affidabili, sviluppo modelli predittivi e applico pratiche responsabili di data governance per aiutare le organizzazioni a prendere decisioni meglio informate.",
+    "hero_intro": "I case study mostrano l’approccio tecnico e i suoi limiti.",
+    "hero_cta": "Scopri i miei progetti",
+    "hero_contact": "Contattami",
+    "focus_label": "Ambiti di competenza",
     "focus": [
       [
         "01",
         "Data Engineering",
-        "Pipeline, trasformazioni e modelli dati."
+        "Progettazione di pipeline, trasformazioni, controlli di qualità e sistemi che rendono i dati affidabili e disponibili per analisi e reporting.",
+        "engineering"
       ],
       [
         "02",
-        "Data Governance",
-        "Qualità, tracciabilità e protezione del dato."
+        "Machine Learning",
+        "Sviluppo e valutazione di modelli predittivi, con attenzione a qualità dei dati, interpretabilità, limiti e utilizzo responsabile.",
+        "machine-learning"
       ],
       [
         "03",
-        "AI e software",
-        "Studio, prototipi e sviluppo di soluzioni."
+        "Data Governance",
+        "Qualità, classificazione, protezione e gestione dei dati, inclusi masking e pseudonimizzazione.",
+        "governance"
       ]
     ],
     "selected_label": "Una selezione",
     "selected_title": "Progetti in evidenza",
-    "selected_intro": "Quattro contesti diversi, un approccio: chiarire il problema e distinguere i risultati documentati da quelli ancora da verificare.",
+    "selected_intro": "Tre contesti tecnici raccontati attraverso problemi, scelte e prove disponibili.",
     "selected_action": "Vai al progetto",
+    "home_all_projects": "Tutti i progetti",
+    "home_skills_title": "Dati affidabili, modelli comprensibili.",
+    "home_case_label": "Case study",
+    "home_case_pending": "Scheda progetto in preparazione",
+    "home_path_label": "Il percorso",
+    "home_path_title": "Dall’elettronica ai sistemi per i dati.",
+    "home_experience_intro": "Tirocinio in Data Governance, Data Masking e pseudonimizzazione.",
+    "home_experience_link": "Esplora l’esperienza",
+    "home_education_intro": "Diploma di Tecnico Superiore Data Manager, EQF 5. Voto finale 110/110.",
+    "home_education_link": "Esplora la formazione",
+    "home_contact_title": "Hai un progetto da discutere?",
+    "home_contact_intro": "Per progetti e collaborazioni, usa il modulo di contatto o scrivimi direttamente via email.",
+    "home_creative_label": "Vita e interessi",
+    "home_creative_title": "Uno sguardo più personale.",
+    "home_creative_intro": "La fotografia, il modelling e il teatro sono parte dei miei interessi, accanto al lavoro sui dati.",
     "experience_label": "Esperienza",
-    "experience_title": "Lavorare con il dato, nel suo contesto.",
-    "experience_intro": "Il tirocinio in Spindox ha riguardato Data Governance, Data Masking e pseudonimizzazione. Le attività specifiche pubblicabili richiedono ancora verifica.",
+    "experience_title": "Lavorare sui dati, con responsabilità.",
+    "experience_intro": "Il tirocinio presso Spindox si è concentrato su Data Governance, Data Masking e pseudonimizzazione. I progetti personali e formativi hanno un percorso distinto.",
     "experience_period": "Giugno – ottobre 2026",
     "experience_role": "Tirocinio · Data Governance e Data Masking",
     "experience_actual_title": "Ambiti del tirocinio",
     "experience_actual": "Data Governance, Data Masking e pseudonimizzazione. Non sono pubblicati processi, dati o documenti interni all’azienda.",
     "experience_separate_title": "Progetti e studio",
     "experience_separate": "Pipeline con dbt e DuckDB, lavoro NoSQL su Databricks e formazione in AI sono presentati separatamente: non vengono attribuiti a Spindox.",
-    "projects_label": "Portfolio tecnico",
-    "projects_title": "Progetti, con il contesto in primo piano.",
-    "projects_intro": "Le schede mostrano subito l’essenziale. I dettagli tecnici sono consultabili quando servono; risultati e metriche assenti non vengono inventati.",
+    "projects_label": "Lavori tecnici selezionati",
+    "projects_title": "Dalle idee ai sistemi.",
+    "projects_intro": "Pipeline di dati, governance e analisi: progetti raccontati attraverso problemi concreti, scelte tecniche e prove disponibili.",
     "filters_label": "Filtra i progetti",
     "filters": [
       [
@@ -66,29 +86,29 @@
         "Tutti"
       ],
       [
-        "governance",
-        "Governance"
-      ],
-      [
         "engineering",
         "Data Engineering"
       ],
       [
-        "electronics",
-        "Elettronica"
+        "machine-learning",
+        "Machine Learning"
       ],
       [
-        "machine-learning",
-        "Machine Learning e analisi predittiva"
+        "governance",
+        "Data Governance"
+      ],
+      [
+        "electronics",
+        "Software ed elettronica"
       ]
     ],
     "filter_count": "progetti visibili",
     "filter_count_one": "progetto visibile",
-    "details": "Contesto e dettagli",
+    "details": "Dettagli disponibili",
     "field_context": "Contesto",
     "field_problem": "Problema",
     "field_approach": "Approccio tecnico",
-    "field_outcome": "Risultato verificabile",
+    "field_outcome": "Evidenza disponibile",
     "field_tech": "Tecnologie",
     "no_repo": "Collegamento al codice da verificare",
     "education_link": "Vedi la formazione",
@@ -106,7 +126,7 @@
     "archimede_degree": "Diploma in Elettronica e Automazione",
     "archimede_link": "Progetto finale: radar Arduino",
     "about_label": "Chi sono",
-    "about_title": "Metodo prima di effetto.",
+    "about_title": "Dall’elettronica ai dati, con metodo.",
     "about_intro": "Il mio percorso attraversa elettronica, gestione dei dati e informatica. Mi interessano i sistemi che rendono l’informazione affidabile, utilizzabile e comprensibile.",
     "about_steps": [
       [
@@ -123,7 +143,7 @@
       ]
     ],
     "contact_label": "Contatti",
-    "contact_title": "Una conversazione parte da un problema concreto.",
+    "contact_title": "Parliamo del tuo progetto.",
     "contact_intro": "Vuoi contattarmi direttamente? Compila il modulo per inviarmi la tua richiesta. Se preferisci, puoi anche scrivermi via email.",
     "form_title": "Modulo di contatto",
     "form_note": "Canale consigliato per richieste professionali e collaborazioni. Tutti i campi sono obbligatori.",
@@ -157,7 +177,14 @@
     "form_privacy_link": "Informativa privacy di Formspree.",
     "form_privacy_tail": "Formspree può trattare dati anche fuori dall’UE.",
     "form_error_http": "Il servizio ha risposto con un errore. Riprova più tardi.",
-    "form_error_honeypot": "Il controllo antispam ha bloccato l’invio. Ricarica la pagina e riprova."
+    "form_error_honeypot": "Il controllo antispam ha bloccato l’invio. Ricarica la pagina e riprova.",
+    "home_unict_intro": "Laurea triennale in Informatica (L-31), in corso.",
+    "home_archimede_intro": "Diploma in Elettronica e Automazione; progetto finale: radar con Arduino.",
+    "photo_credit": "Foto: Samuel Okotako",
+    "about_method_label": "Il metodo",
+    "about_method_title": "Capire. Costruire. Verificare.",
+    "project_visual_concept": "Illustrazione concettuale; specifiche del prototipo da verificare",
+    "cv_download": "Scarica il CV"
   },
   "extra": {
     "writing_nav": "Scritti",
@@ -199,9 +226,9 @@
     "case_goal": "Obiettivo",
     "case_responsibility": "Responsabilità personali",
     "case_technologies": "Tecnologie",
-    "case_architecture": "Architettura e processo",
+    "case_architecture": "Architettura",
     "case_decisions": "Decisioni e compromessi",
-    "case_results": "Risultati verificabili",
+    "case_results": "Evidenze e risultati documentati",
     "case_limits": "Limiti e miglioramenti",
     "case_evidence": "Fonti e perimetro",
     "case_repository": "Repository GitHub",
@@ -211,7 +238,12 @@
       "culture-theatre": "Cultura e teatro",
       "modelling-creative": "Modelling e creatività",
       "education-moments": "Momenti del percorso formativo"
-    }
+    },
+    "case_implementation": "Implementazione documentata",
+    "case_checks": "Controlli e verifiche",
+    "case_jump": "Esplora l’architettura",
+    "case_next": "Prossimo case study",
+    "case_license": "Licenza MIT dello screenshot"
   },
   "cases": {
     "governance": {
@@ -248,7 +280,18 @@
       ],
       "limits": "La verifica riguarda solo dati sintetici. Non dimostra accuratezza su dati reali, prestazioni aziendali o conformità normativa. Autenticazione, gestione operativa dei segreti e osservabilità di produzione richiedono lavoro ulteriore.",
       "evidence": "Le quantità e i controlli derivano dal repository personale del proof of concept. Non sono misure del tirocinio Spindox; codice, documenti e dati aziendali non sono inclusi.",
-      "repo_note": "Il repository non è attualmente accessibile pubblicamente; il collegamento al codice sarà aggiunto solo quando sarà pubblicabile."
+      "repo_note": "Il repository non è attualmente accessibile pubblicamente; il collegamento al codice sarà aggiunto solo quando sarà pubblicabile.",
+      "diagram_title": "Processo del PoC sintetico",
+      "diagram_note": "Sequenza implementata nella CLI locale. I controlli riguardano soltanto il dataset sintetico.",
+      "diagram_steps": [
+        "Generazione",
+        "Inventario",
+        "Profiling",
+        "Classificazione",
+        "Mascheramento",
+        "Validazione"
+      ],
+      "checks": "Il repository documenta test su conteggi, vincoli, relazioni tra tabelle, gruppi di coerenza, drift dello schema e idempotenza deterministica sul carico sintetico."
     },
     "dbt": {
       "context": "Progetto personale di Data Engineering su dati e-commerce interamente sintetici, distinto dal tirocinio Spindox. La pipeline e la dashboard sono documentate in un repository locale.",
@@ -285,7 +328,18 @@
       ],
       "limits": "Il workload è sintetico e locale. Non dimostra comportamento su sorgenti reali, volumi di produzione o piattaforme cloud; la dashboard consulta uno snapshot e non esegue ingestion all’avvio.",
       "evidence": "Struttura, controlli e risultati sono documentati nel repository locale del progetto. Non vengono attribuiti a un ambiente aziendale.",
-      "repo_note": "Il repository non è attualmente accessibile pubblicamente; il collegamento al codice sarà aggiunto dopo la revisione della sua pubblicabilità."
+      "repo_note": "Il repository non è attualmente accessibile pubblicamente; il collegamento al codice sarà aggiunto dopo la revisione della sua pubblicabilità.",
+      "diagram_title": "Pipeline e-commerce locale",
+      "diagram_note": "Dati sintetici; Streamlit consulta lo snapshot DuckDB in sola lettura.",
+      "diagram_steps": [
+        "CSV sintetici",
+        "Raw e manifest",
+        "Modelli dbt",
+        "Mart e test",
+        "Streamlit"
+      ],
+      "checks": "I test del progetto documentano unicità del grain, regole economiche, replay idempotente e parità tra il risultato incrementale e un full refresh di fact e dimensioni.",
+      "visual_caption": "Schermata autentica della dashboard Streamlit del progetto personale, con dati sintetici."
     },
     "nosql": {
       "context": "Project work ITS del gruppo Big Data NoSQL Gang, sviluppato nel vecchio Databricks Community Edition. L’archivio recuperato contiene notebook sorgente Bronze, Silver e Gold, una documentazione e una configurazione di visualizzazione; non contiene i CSV né output di esecuzione. “NoSQL” è il nome del project work, non la prova dell’uso di un database NoSQL.",
@@ -326,7 +380,15 @@
       ],
       "limits": "Non è possibile verificare conteggi, prestazioni o completamento dell’intera pipeline senza dataset, run log e output. Il codice di silver_reviews manca; alcune query Gold dipendono da questa tabella o presentano errori e incoerenze. Il volume Databricks e il catalogo devono essere ricreati per un nuovo run. Prima di diffondere artefatti del gruppo servono verifica dei diritti e consenso dei coautori.",
       "evidence": "Il caso descrive esclusivamente il contenuto dell’export originale recuperato e il ruolo personale dichiarato da Samuel. Le definizioni SQL documentano l’intenzione tecnica; non provano che ogni cella sia stata eseguita con successo. Nessuna metrica o dashboard finale è attribuita al progetto.",
-      "repo_note": "Notebook, dataset e dashboard restano privati durante la verifica di dati, licenze, contributi e autorizzazioni del gruppo."
+      "repo_note": "Notebook, dataset e dashboard restano privati durante la verifica di dati, licenze, contributi e autorizzazioni del gruppo.",
+      "diagram_title": "Livelli definiti nell’export",
+      "diagram_note": "I notebook definiscono Bronze, Silver e Gold; silver_reviews manca e non è provata un’esecuzione completa.",
+      "diagram_steps": [
+        "Bronze: 4 tabelle",
+        "Silver: listings",
+        "Gold: viste e query"
+      ],
+      "checks": "La verifica è statica sugli artefatti esportati. Mancano dataset, run log e output; il codice di silver_reviews non è presente e alcune query Gold richiedono correzioni."
     }
   }
 }

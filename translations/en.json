@@ -1,7 +1,7 @@
 {
   "content": {
-    "title": "Samuel Okotako | Data Engineering & Data Governance",
-    "description": "Samuel Okotako’s portfolio: data systems, Data Governance, technical projects and education.",
+    "title": "Samuel Okotako | Data Engineering, ML & Governance",
+    "description": "Documented work in Data Engineering, Machine Learning and Data Governance, focused on reliable data and informed decisions.",
     "skip": "Skip to content",
     "nav_label": "Main navigation",
     "nav": [
@@ -20,45 +20,65 @@
       "Dark"
     ],
     "language_label": "Language",
-    "hero_kicker": "Data Engineering · Data Governance · Software",
-    "hero_title": "I design systems that turn complex data into concrete solutions.",
-    "hero_intro": "I’m Samuel Okotako. My work connects data management, software development and AI exploration: from the initial problem to processes that can be understood and verified.",
-    "hero_cta": "Explore projects",
-    "hero_contact": "Contact",
-    "focus_label": "Areas of work",
+    "hero_kicker": "Data Engineering · Machine Learning · Data Governance",
+    "hero_title": "Data holds answers.",
+    "hero_title_follow": "I turn it into value.",
+    "hero_value": "I build reliable data pipelines, develop predictive models, and implement responsible data governance to help organizations make better decisions.",
+    "hero_intro": "The case studies show the technical approach and its limits.",
+    "hero_cta": "Explore my projects",
+    "hero_contact": "Contact me",
+    "focus_label": "Areas of practice",
     "focus": [
       [
         "01",
         "Data Engineering",
-        "Pipelines, transformations and data models."
+        "Designing pipelines, transformations, quality checks and systems that make data reliable and available for analysis and reporting.",
+        "engineering"
       ],
       [
         "02",
-        "Data Governance",
-        "Quality, traceability and data protection."
+        "Machine Learning",
+        "Developing and evaluating predictive models with attention to data quality, interpretability, limitations and responsible use.",
+        "machine-learning"
       ],
       [
         "03",
-        "AI and software",
-        "Learning, prototypes and solution development."
+        "Data Governance",
+        "Data quality, classification, protection and management, including masking and pseudonymization.",
+        "governance"
       ]
     ],
     "selected_label": "Selected work",
     "selected_title": "Featured projects",
-    "selected_intro": "Four different contexts, one approach: clarify the problem and separate documented outcomes from details still to verify.",
+    "selected_intro": "Three technical contexts, presented through problems, decisions and available evidence.",
     "selected_action": "View project",
+    "home_all_projects": "All projects",
+    "home_skills_title": "Reliable data, understandable models.",
+    "home_case_label": "Case studies",
+    "home_case_pending": "Project profile in preparation",
+    "home_path_label": "The path",
+    "home_path_title": "From electronics to data systems.",
+    "home_experience_intro": "An internship in Data Governance, Data Masking and pseudonymization.",
+    "home_experience_link": "Explore experience",
+    "home_education_intro": "ITS Higher Technical Diploma in Data Management, EQF 5. Final grade: 110/110.",
+    "home_education_link": "Explore education",
+    "home_contact_title": "Have a project to discuss?",
+    "home_contact_intro": "For projects and collaborations, use the contact form or write to me directly by email.",
+    "home_creative_label": "Beyond the work",
+    "home_creative_title": "A more personal perspective.",
+    "home_creative_intro": "Photography, modelling and theatre are part of my interests alongside technical work.",
     "experience_label": "Experience",
-    "experience_title": "Working with data in context.",
-    "experience_intro": "My internship at Spindox covered Data Governance, Data Masking and pseudonymization. Specific publishable activities still need verification.",
+    "experience_title": "Working with data responsibly.",
+    "experience_intro": "My internship at Spindox focused on Data Governance, Data Masking and pseudonymization. Personal and educational projects are presented separately.",
     "experience_period": "June – October 2026",
     "experience_role": "Internship · Data Governance and Data Masking",
     "experience_actual_title": "Internship scope",
     "experience_actual": "Data Governance, Data Masking and pseudonymization. No internal company processes, data or documents are published.",
     "experience_separate_title": "Projects and study",
     "experience_separate": "The dbt and DuckDB pipeline, NoSQL work on Databricks and AI education are presented separately; they are not attributed to Spindox.",
-    "projects_label": "Technical portfolio",
-    "projects_title": "Projects, with context first.",
-    "projects_intro": "Each card presents the essentials first. Technical details are available when needed; missing results and metrics are never invented.",
+    "projects_label": "Selected engineering work",
+    "projects_title": "From ideas to systems.",
+    "projects_intro": "Data pipelines, governance and analytics: projects presented through concrete problems, technical decisions and available evidence.",
     "filters_label": "Filter projects",
     "filters": [
       [
@@ -66,29 +86,29 @@
         "All"
       ],
       [
-        "governance",
-        "Governance"
-      ],
-      [
         "engineering",
         "Data Engineering"
       ],
       [
-        "electronics",
-        "Electronics"
+        "machine-learning",
+        "Machine Learning"
       ],
       [
-        "machine-learning",
-        "Machine Learning & Predictive Analytics"
+        "governance",
+        "Data Governance"
+      ],
+      [
+        "electronics",
+        "Software & Electronics"
       ]
     ],
     "filter_count": "projects shown",
     "filter_count_one": "project shown",
-    "details": "Context and details",
+    "details": "Available details",
     "field_context": "Context",
     "field_problem": "Problem",
     "field_approach": "Technical approach",
-    "field_outcome": "Verifiable outcome",
+    "field_outcome": "Available evidence",
     "field_tech": "Technology",
     "no_repo": "Code link pending verification",
     "education_link": "See education",
@@ -106,7 +126,7 @@
     "archimede_degree": "Diploma in Electronics and Automation",
     "archimede_link": "Final project: Arduino radar",
     "about_label": "About",
-    "about_title": "Method before effect.",
+    "about_title": "From electronics to data, grounded in method.",
     "about_intro": "My path spans electronics, data management and computer science. I’m interested in systems that make information reliable, usable and understandable.",
     "about_steps": [
       [
@@ -123,7 +143,7 @@
       ]
     ],
     "contact_label": "Contact",
-    "contact_title": "A conversation starts with a concrete problem.",
+    "contact_title": "Let’s talk about your project.",
     "contact_intro": "Want to get in touch directly? Fill out the form to send me your request. If you prefer, you can also email me.",
     "form_title": "Contact form",
     "form_note": "Recommended for professional enquiries and collaborations. All fields are required.",
@@ -157,7 +177,14 @@
     "form_privacy_link": "Formspree privacy policy.",
     "form_privacy_tail": "Formspree may process data outside the EU.",
     "form_error_http": "The service returned an error. Try again later.",
-    "form_error_honeypot": "The spam check blocked this submission. Reload the page and try again."
+    "form_error_honeypot": "The spam check blocked this submission. Reload the page and try again.",
+    "home_unict_intro": "A Computer Science degree (L-31) at the University of Catania, in progress.",
+    "home_archimede_intro": "Electronics and Automation diploma; final project: an Arduino radar.",
+    "photo_credit": "Photo: Samuel Okotako",
+    "about_method_label": "The method",
+    "about_method_title": "Understand. Build. Verify.",
+    "project_visual_concept": "Conceptual illustration; prototype specifications still need verification",
+    "cv_download": "Download resume"
   },
   "extra": {
     "writing_nav": "Writing",
@@ -199,9 +226,9 @@
     "case_goal": "Goal",
     "case_responsibility": "My responsibilities",
     "case_technologies": "Technologies",
-    "case_architecture": "Architecture and process",
+    "case_architecture": "Architecture",
     "case_decisions": "Technical decisions and tradeoffs",
-    "case_results": "Verifiable results",
+    "case_results": "Documented evidence and results",
     "case_limits": "Limits and improvements",
     "case_evidence": "Evidence and scope",
     "case_repository": "GitHub repository",
@@ -211,7 +238,12 @@
       "culture-theatre": "Culture and theatre",
       "modelling-creative": "Modelling and creativity",
       "education-moments": "Education moments"
-    }
+    },
+    "case_implementation": "Documented implementation",
+    "case_checks": "Checks and verification",
+    "case_jump": "Explore the architecture",
+    "case_next": "Next case study",
+    "case_license": "Screenshot MIT license"
   },
   "cases": {
     "governance": {
@@ -248,7 +280,18 @@
       ],
       "limits": "Validation covers synthetic data only. It does not establish real-data detection accuracy, enterprise performance or legal compliance. Authentication, operational secret management and production observability remain future work.",
       "evidence": "Counts and checks come from the personal proof-of-concept repository. They are not measurements of the Spindox internship; no company code, documents or data are included.",
-      "repo_note": "The repository is not currently publicly accessible. A code link will be added only when publication is appropriate."
+      "repo_note": "The repository is not currently publicly accessible. A code link will be added only when publication is appropriate.",
+      "diagram_title": "Synthetic PoC workflow",
+      "diagram_note": "Implemented in the local CLI. Checks cover the synthetic reference dataset only.",
+      "diagram_steps": [
+        "Generate",
+        "Inventory",
+        "Profile",
+        "Classify",
+        "Mask",
+        "Validate"
+      ],
+      "checks": "The repository documents tests for counts, constraints, cross-table relationships, consistency groups, schema drift and deterministic idempotence on the synthetic workload."
     },
     "dbt": {
       "context": "A personal Data Engineering project using entirely synthetic e-commerce data, separate from the Spindox internship. The pipeline and dashboard are documented in a local repository.",
@@ -285,7 +328,18 @@
       ],
       "limits": "The workload is synthetic and local. It does not demonstrate behavior on real sources, production volumes or cloud platforms; the dashboard reads a snapshot and does not run ingestion on startup.",
       "evidence": "The project’s local repository documents the structure, checks and results. They are not attributed to a company environment.",
-      "repo_note": "The repository is not currently publicly accessible. A code link will follow a publication review."
+      "repo_note": "The repository is not currently publicly accessible. A code link will follow a publication review.",
+      "diagram_title": "Local e-commerce pipeline",
+      "diagram_note": "Synthetic data; Streamlit reads the DuckDB snapshot in read-only mode.",
+      "diagram_steps": [
+        "Synthetic CSVs",
+        "Raw and manifest",
+        "dbt models",
+        "Marts and tests",
+        "Streamlit"
+      ],
+      "checks": "Project tests document grain uniqueness, business rules, idempotent replay and parity between incremental and full-refresh results for the fact and dimensions.",
+      "visual_caption": "Authentic Streamlit dashboard screenshot from the personal project, using synthetic data."
     },
     "nosql": {
       "context": "ITS course project by the Big Data NoSQL Gang group, developed in the former Databricks Community Edition. The recovered archive contains Bronze, Silver and Gold source notebooks, documentation and a visualization configuration; it contains neither CSV files nor execution outputs. “NoSQL” is the project name, not evidence that a NoSQL database was used.",
@@ -326,7 +380,15 @@
       ],
       "limits": "Counts, performance and full-pipeline completion cannot be verified without datasets, run logs and outputs. The silver_reviews code is missing; some Gold queries depend on that table or contain errors and inconsistencies. The Databricks volume and catalog must be recreated for a new run. Publishing group artifacts requires a rights review and coauthor consent.",
       "evidence": "This case covers only the recovered original export and Samuel’s stated personal role. SQL definitions show technical intent, not successful execution of every cell. No metric or final dashboard is attributed to the project.",
-      "repo_note": "Notebooks, datasets and dashboards remain private while data, licenses, contributions and group permissions are reviewed."
+      "repo_note": "Notebooks, datasets and dashboards remain private while data, licenses, contributions and group permissions are reviewed.",
+      "diagram_title": "Layers defined in the export",
+      "diagram_note": "The notebooks define Bronze, Silver and Gold; silver_reviews is missing and a complete run is unverified.",
+      "diagram_steps": [
+        "Bronze: 4 tables",
+        "Silver: listings",
+        "Gold: views and queries"
+      ],
+      "checks": "Review is limited to the exported source. Datasets, run logs and outputs are missing; silver_reviews code is absent and some Gold queries need correction."
     }
   }
 }
