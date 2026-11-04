@@ -18,7 +18,7 @@ Confermare che `git status --short` mostri solo i file voluti. Riesaminare a man
 
 ## CI e protezione di `main`
 
-Il workflow `.github/workflows/portfolio-quality.yml` si attiva su pull request verso `main`, senza deploy. I job sono `Build, tests and publication checks` e `Gitleaks history scan`. Il primo rigenera `public/` in modalità produzione autorizzata per `main` e richiede che corrisponda ai file committati. Il secondo controlla la cronologia Git; verificarne sempre l’esito nella pull request. Configurare su GitHub una regola di protezione per `main` che richieda pull request, revisione e i due status check; la CI è già stata eseguita su pull request precedenti. Verificare che il nome dei check sia univoco prima di renderli obbligatori. Non configurare credenziali Cloudflare in questo workflow.
+Il workflow `.github/workflows/portfolio-quality.yml` si attiva su pull request verso `main`, senza deploy. I job sono `Build, tests and publication checks` e `Gitleaks history scan`. Il primo rigenera `public/` in modalità produzione autorizzata per `main` e richiede che corrisponda ai file committati. Il secondo controlla la cronologia Git; verificarne sempre l’esito nella pull request. La protezione di `main` richiede una pull request, entrambi i controlli aggiornati rispetto al branch e la risoluzione delle conversazioni; si applica anche agli amministratori e impedisce force push ed eliminazione del branch. Il numero di approvazioni obbligatorie è attualmente zero, perché il repository è gestito da una sola persona: questa configurazione non equivale a una revisione indipendente. Richiedere almeno una approvazione quando sarà disponibile un revisore autorizzato. Non configurare credenziali Cloudflare in questo workflow.
 
 ## Modalità SEO
 
