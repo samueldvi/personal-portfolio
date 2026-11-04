@@ -8,3 +8,15 @@ __pycache__/
 
 # macOS metadata is never part of a release.
 .DS_Store
+
+# Keep raw camera originals, local configuration and transient files out of Git.
+/IMG_*
+/.env*
+*.log
+*.bak
+*.tmp
+*.swp
+
+# Local QA reports remain outside the published source tree.
+/PORTFOLIO_RELEASE_REPORT.md
+/content/PROJECTS_REDESIGN_AUDIT.md

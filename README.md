@@ -45,6 +45,7 @@ python3 -B build_pages.py
 python3 -B check_site.py
 python3 -B tools/test_build_modes.py
 python3 -B tools/check_public_safety.py
+python3 -B tools/test_public_safety.py
 node --test tests/*.test.cjs
 git diff --check
 ```
@@ -56,6 +57,8 @@ La CI su pull request verso `main` ripete build e test, controlla il drift dell'
 Il dominio canonico è `https://samuelokotako.com`. La produzione Cloudflare Pages usa `main` e distribuisce solo `public/`. `site_config.py` abilita canonical, hreflang, sitemap e indicizzazione soltanto con `SITE_URL` canonico, `CF_PAGES=1` e `CF_PAGES_BRANCH=main`; build locali e preview restano `noindex`. `_redirects` contiene due regole 301 esatte dai vecchi URL `/assets/cv/` ai PDF sotto `/cv/`. Le 404 localizzate non usano rewrite catch-all. Configurazione, verifiche HTTP e passaggi di rilascio sono in [docs/RELEASE.md](docs/RELEASE.md).
 
 ## Contenuti, privacy e limiti
+
+Il repository GitHub è pubblico e deve contenere solo codice, documentazione e materiali intenzionalmente pubblicabili. File riservati e report di sicurezza dettagliati restano fuori da Git; `noindex` e `.gitignore` non rendono sicuro un file già tracciato.
 
 Per aggiungere progetti, articoli, media e traduzioni segui [content/README.md](content/README.md). Il generatore copia nell'output soltanto gli asset referenziati da contenuti pubblicati. Le immagini del ritratto e del teatro hanno autorizzazione e credito dell'autore; foto di gruppo o aziendali restano escluse senza consenso. I font Newsreader e Manrope sono distribuiti localmente con licenza SIL OFL 1.1 in `assets/fonts/`.
 

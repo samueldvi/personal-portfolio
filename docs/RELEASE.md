@@ -9,11 +9,12 @@ python3 -B build_pages.py
 python3 -B check_site.py
 python3 -B tools/test_build_modes.py
 python3 -B tools/check_public_safety.py
+python3 -B tools/test_public_safety.py
 node --test tests/*.test.cjs
 git diff --check
 ```
 
-Confermare che `git status --short` mostri solo i file voluti. Riesaminare a mano media, documenti e contenuti nuovi: la scansione automatica rileva solo alcuni formati privati e credenziali riconoscibili. I tre CV Data Engineer IT/EN/FR provenienti da `cv/final/website-ready/` sono gli unici PDF approvati nel registro e nell’output, sotto `/cv/`; verificare le lingue, i checksum e i link localizzati prima del merge. Non aggiungere altre varianti, sorgenti LaTeX o report QA. Bank Loan Approval Prediction resta in bozza finché dataset, metodologia, metriche e rischi non sono documentati.
+Confermare che `git status --short` mostri solo i file voluti. Riesaminare a mano media, documenti e contenuti nuovi: la scansione automatica rileva solo alcuni formati privati, metadati incorporati e credenziali riconoscibili. Conservare report di sicurezza dettagliati fuori da Git. I file originali della fotocamera e le configurazioni locali non devono essere tracciati; `.gitignore` non protegge file già committati. I tre CV Data Engineer IT/EN/FR provenienti da `cv/final/website-ready/` sono gli unici PDF approvati nel registro e nell’output, sotto `/cv/`; verificare le lingue, i checksum e i link localizzati prima del merge. Non aggiungere altre varianti, sorgenti LaTeX o report QA. Bank Loan Approval Prediction resta in bozza finché dataset, metodologia, metriche e rischi non sono documentati.
 
 ## CI e protezione di `main`
 
