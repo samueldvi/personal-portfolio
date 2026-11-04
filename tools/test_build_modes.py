@@ -46,16 +46,20 @@ def main():
     run_mode('local', {'SITE_URL': ORIGIN}, False)
     run_mode('preview', {
         'SITE_URL': ORIGIN, 'CF_PAGES': '1', 'CF_PAGES_BRANCH': 'preview-branch',
-        'PORTFOLIO_PRODUCTION_BRANCH': BRANCH, 'PORTFOLIO_INDEXING': 'enabled',
     }, False)
     run_mode('former-production-branch', {
         'SITE_URL': ORIGIN, 'CF_PAGES': '1', 'CF_PAGES_BRANCH': 'feature/portfolio-v2',
-        'PORTFOLIO_PRODUCTION_BRANCH': BRANCH, 'PORTFOLIO_INDEXING': 'enabled',
     }, False)
     run_mode('public-simulation', {
         'SITE_URL': ORIGIN, 'CF_PAGES': '1', 'CF_PAGES_BRANCH': BRANCH,
-        'PORTFOLIO_PRODUCTION_BRANCH': BRANCH, 'PORTFOLIO_INDEXING': 'enabled',
     }, True)
+    run_mode('main-with-stale-environment', {
+        'SITE_URL': '', 'CF_PAGES': '1', 'CF_PAGES_BRANCH': BRANCH,
+        'PORTFOLIO_PRODUCTION_BRANCH': 'feature/portfolio-v2', 'PORTFOLIO_INDEXING': 'disabled',
+    }, True)
+    run_mode('wrong-origin', {
+        'SITE_URL': 'https://temporary.pages.dev', 'CF_PAGES': '1', 'CF_PAGES_BRANCH': BRANCH,
+    }, False)
     run_cv_fixture()
 
 

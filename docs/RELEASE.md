@@ -21,15 +21,15 @@ Il workflow `.github/workflows/portfolio-quality.yml` si attiva su pull request 
 
 ## Modalità SEO
 
-| Modalità | Variabili rilevanti | Output |
+| Modalità | Condizione | Output |
 | --- | --- | --- |
-| Locale | Nessun opt-in | `noindex`, `Disallow: /`, senza canonical/hreflang/sitemap |
-| Preview Pages | `CF_PAGES_BRANCH` diverso da `PORTFOLIO_PRODUCTION_BRANCH` | Come locale; verificare anche `X-Robots-Tag: noindex` della preview |
-| Produzione autorizzata | `SITE_URL=https://samuelokotako.com`, `PORTFOLIO_INDEXING=enabled`, `CF_PAGES=1`, `CF_PAGES_BRANCH=PORTFOLIO_PRODUCTION_BRANCH` | Canonical, hreflang, sitemap e `Allow: /` |
+| Locale | `CF_PAGES` assente | `noindex`, `Disallow: /`, senza canonical/hreflang/sitemap |
+| Preview Pages | `CF_PAGES_BRANCH` diverso da `main` | Come locale; verificare anche `X-Robots-Tag: noindex` della preview |
+| Produzione autorizzata | `SITE_URL=https://samuelokotako.com`, `CF_PAGES=1`, `CF_PAGES_BRANCH=main` | Canonical, hreflang, sitemap e `Allow: /` |
 
-Cloudflare inietta `CF_PAGES` e `CF_PAGES_BRANCH` durante il build Pages. Configurare `PORTFOLIO_PRODUCTION_BRANCH` con il branch **effettivamente** designato come produzione. Attualmente è `feature/portfolio-v2`; dopo il passaggio autorizzato a `main` aggiornare la variabile. `SITE_URL` da solo non abilita l'indicizzazione. Le tre modalità sono testate in directory temporanee da `tools/test_build_modes.py`.
+Cloudflare inietta `CF_PAGES` e `CF_PAGES_BRANCH` durante il build Pages. Il generatore approva esplicitamente `main` come unico branch indicizzabile; variabili legacy `PORTFOLIO_PRODUCTION_BRANCH` e `PORTFOLIO_INDEXING` non controllano più questa scelta. Un `SITE_URL` vuoto usa il dominio canonico noto; un URL temporaneo mantiene `noindex`. `SITE_URL` da solo non abilita l'indicizzazione. Le modalità sono testate in directory temporanee da `tools/test_build_modes.py`.
 
-Prima del rilascio SEO verificare nella dashboard Pages che il build command sia `python3 -B build_pages.py` e la output directory `public`. Se Pages pubblica solo i file `public/` già committati senza eseguire Python, le variabili d'ambiente non hanno alcun effetto sui meta tag. Applicare la configurazione solo dopo approvazione; quindi controllare l'HTML **servito** su `https://samuelokotako.com` e una preview, non solo l'output locale.
+Verificare nella dashboard Pages che la output directory sia `public`. Se il build command è `python3 -B build_pages.py`, la build su `main` userà le variabili automatiche Pages e genererà l'output indicizzabile. Se il build command è vuoto, il sito servirà il `public/` di produzione committato. In entrambi i casi controllare l'HTML **servito** su `https://samuelokotako.com` e una preview.
 
 ## Controlli sul dominio dopo un deployment autorizzato
 

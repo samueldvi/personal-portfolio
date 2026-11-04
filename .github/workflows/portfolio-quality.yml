@@ -13,8 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SITE_URL: https://samuelokotako.com
-      PORTFOLIO_INDEXING: enabled
-      PORTFOLIO_PRODUCTION_BRANCH: main
       CF_PAGES: '1'
       CF_PAGES_BRANCH: main
     steps:
