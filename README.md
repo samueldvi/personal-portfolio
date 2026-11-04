@@ -15,7 +15,7 @@ Sito statico in italiano, inglese e francese, pensato per crescere con progetti 
 | `content/articles.json` | Registro articoli, al momento vuoto |
 | `content/galleries.json` | Registro lavori fotografici e media, al momento vuoto |
 | `content/moments.json` | Momenti personali e culturali, separati dalla galleria creativa e al momento vuoti |
-| `content/documents.json` | Registro di CV e documenti pubblici, al momento vuoto |
+| `content/documents.json` | Registro dei tre CV Data Engineer approvati e degli eventuali documenti pubblici |
 | `content/initiatives.json` | Registro separato di iniziative professionali e imprenditoriali, al momento vuoto |
 | `content/README.md` | Convenzioni per aggiungere contenuti e gestire spostamenti |
 | `tools/prepare_moment_image.py` | Preparazione locale di varianti WebP senza metadati |
@@ -53,7 +53,7 @@ Dopo un futuro deployment, verifica con `curl -I` lo status di un URL inesistent
 
 ## Curriculum e controlli di rilascio
 
-Il registro `content/documents.json` pubblica esclusivamente i due CV finali Data Engineer in italiano e inglese, conservati in `assets/cv/` e copiati da `build_pages.py` in `public/assets/cv/`. La homepage mostra un solo link: IT → PDF italiano, EN/FR → PDF inglese. Le altre sei varianti CV, i sorgenti LaTeX, i report QA e gli archivi rimangono fuori dal repository. I link includono `download` e il tipo PDF; verificare i documenti e i diritti prima di sostituirli. L'assenza di tag strutturali nel PDF resta un limite di accessibilità del documento, distinto dall'accessibilità del collegamento HTML.
+Il registro `content/documents.json` pubblica esclusivamente i tre CV Data Engineer definitivi in italiano, inglese e francese. I PDF approvati provengono da `cv/final/website-ready/`, sono copiati senza modificarli in `assets/cv/` e vengono distribuiti in `public/cv/`; il registro ne fissa gli SHA-256. La homepage mostra un solo link primario, sempre nella lingua della pagina: IT → PDF italiano, EN → PDF inglese, FR → PDF francese. I due vecchi percorsi `/assets/cv/` hanno redirect 301 esatti verso `/cv/`. Gli altri sei CV specializzati, i sorgenti LaTeX, i report QA e gli archivi rimangono fuori dal repository. I link includono `download` e il tipo PDF. L'assenza di tag strutturali nei PDF resta un limite di accessibilità del documento, distinto dall'accessibilità del collegamento HTML.
 
 La CI in `.github/workflows/portfolio-quality.yml` si attiva su pull request verso `main`: rigenera l'output pubblico di produzione, verifica il sito e i test JavaScript, rileva drift dei file generati, controlla artefatti privati evidenti e usa Gitleaks sulla cronologia Git. Non effettua deploy. La revisione umana di contenuti e diritti resta necessaria. Per proteggere `main`, richiedere pull request e i controlli obbligatori dopo la prima esecuzione riuscita. La procedura è in `docs/RELEASE.md`.
 

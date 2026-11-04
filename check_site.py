@@ -2,6 +2,7 @@
 """Check generated routes, anchors, assets, metadata and redirect safety."""
 from html.parser import HTMLParser
 from html import escape
+import hashlib
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import sys
@@ -110,10 +111,14 @@ def check():
         assert 'bank-loan-approval-prediction' not in home, f'Unverified ML draft linked from homepage: {lang}'
         cv = {item['language']: item for item in DOCUMENTS if item.get('kind') == 'cv'}
         if cv:
-            expected_cv = cv['it' if lang == 'it' else 'en']['file']
+            expected_cv = cv[lang]['file']
             expected_label = {'it': 'Scarica il CV', 'en': 'Download resume', 'fr': 'Télécharger mon CV'}[lang]
             assert home.count('class="home-contact__cv"') == 1, f'CV link count: {lang}'
             assert f'href="{expected_cv}" type="application/pdf" download>{expected_label}' in home, f'CV language, label or PDF path: {lang}'
+        about = (PUBLIC / lang / 'about' / 'index.html').read_text(encoding='utf-8')
+        assert 'id="about-beyond-title"' in about, f'About secondary section missing: {lang}'
+        assert f'href="/{lang}/contact/"' in about and 'class="about-note section"' in about, f'About personal note contact link missing: {lang}'
+        assert CONTENT[lang]['about_fashion_title'] in about and CONTENT[lang]['about_mediation_title'] in about, f'About personal areas missing: {lang}'
         contact = (PUBLIC / lang / 'contact' / 'index.html').read_text(encoding='utf-8')
         assert 'action="https://formspree.io/f/xgaappab"' in contact and 'method="POST"' in contact, f'Formspree action or POST method missing: {lang}'
         assert all(f'name="{name}"' in contact for name in ('name', 'email', 'reason', 'message', '_gotcha')), f'Incomplete contact form: {lang}'
@@ -151,6 +156,11 @@ def check():
     expected_pdfs = {item['file'].lstrip('/') for item in DOCUMENTS if item['file'].lower().endswith('.pdf')}
     public_pdfs = {str(file.relative_to(PUBLIC)) for file in PUBLIC.rglob('*.pdf')}
     assert public_pdfs == expected_pdfs, f'Unexpected or missing public PDF: {public_pdfs ^ expected_pdfs}'
+    assert len(public_pdfs) == 3 and all(path.startswith('cv/') for path in public_pdfs), 'Only the three localized Data Engineer CVs may be public'
+    for item in DOCUMENTS:
+        if item.get('kind') == 'cv':
+            public_file = PUBLIC / item['file'].lstrip('/')
+            assert hashlib.sha256(public_file.read_bytes()).hexdigest() == item['sha256'], f'Published CV differs from approved PDF: {item["language"]}'
     redirects = read_redirects()
     assert (PUBLIC / '_redirects').exists() == bool(redirects), 'Generated redirect file mismatch'
     pages = {}

@@ -184,7 +184,18 @@
     "about_method_label": "Il metodo",
     "about_method_title": "Capire. Costruire. Verificare.",
     "project_visual_concept": "Illustrazione concettuale; specifiche del prototipo da verificare",
-    "cv_download": "Scarica il CV"
+    "cv_download": "Scarica il CV",
+    "about_beyond_label": "Percorso personale",
+    "about_beyond_title": "Oltre la tecnologia",
+    "about_beyond_intro": "Il mio percorso non si limita alla tecnologia. Ho maturato esperienze nella moda e nella comunicazione, collaborando a progetti e campagne con diversi brand. Ho inoltre svolto attività di mediazione culturale, un’esperienza che ha arricchito il mio modo di ascoltare, comunicare e lavorare con persone provenienti da contesti diversi.",
+    "about_fashion_title": "Moda e comunicazione",
+    "about_fashion_body": "Il modelling mi ha portato a partecipare a progetti creativi e campagne, lavorando con brand e team di produzione. Racconto queste esperienze separatamente dal mio lavoro tecnico.",
+    "about_mediation_title": "Mediazione culturale",
+    "about_mediation_body": "L’attività di mediazione culturale ha rafforzato l’ascolto, la comunicazione interculturale e la capacità di entrare in relazione con persone di contesti diversi.",
+    "about_note_label": "Una nota personale",
+    "about_note_intro": "Questo portfolio è in continua evoluzione. Lo aggiorno personalmente, mentre continuo a imparare, sperimentare e migliorare. Hai suggerimenti o critiche costruttive?",
+    "about_note_link": "Non esitare a contattarmi",
+    "about_note_close": ": ogni confronto è un’opportunità di crescita."
   },
   "extra": {
     "writing_nav": "Scritti",

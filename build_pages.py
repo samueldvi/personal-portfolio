@@ -7,6 +7,7 @@ Local and preview builds remain noindex even when SITE_URL is populated.
 from html import escape
 from pathlib import Path
 from urllib.parse import urlsplit
+import hashlib
 import json
 import re
 import shutil
@@ -234,18 +235,28 @@ def validate():
         approval = item.get('approval') or {}
         if approval.get('owner') is not True or approval.get('privacy_reviewed') is not True:
             raise ValueError(f'Document {item["slug"]} needs explicit owner and privacy approval')
-        if item.get('kind') == 'cv' and (item.get('language') not in ('it', 'en') or not item['file'].lower().endswith('.pdf')):
-            raise ValueError(f'CV {item["slug"]} needs an IT/EN language and a PDF file')
+        source = item.get('source', item['file'])
+        if item.get('kind') == 'cv':
+            language = item.get('language')
+            filename = f'Samuel_Okotako_Data_Engineer_{str(language).upper()}.pdf'
+            if language not in LANGS or item['file'] != f'/cv/{filename}' or source != f'/assets/cv/{filename}':
+                raise ValueError(f'CV {item["slug"]} needs its matching localized public and source paths')
+            if not re.fullmatch(r'[0-9a-f]{64}', item.get('sha256', '')):
+                raise ValueError(f'CV {item["slug"]} needs the approved PDF SHA-256')
+        elif source != item['file']:
+            raise ValueError(f'Document {item["slug"]} has an unexpected alternate source')
         if item['file'].lower().endswith('.pdf'):
-            with media_file(item['file'])[0].open('rb') as document_file:
-                if document_file.read(4) != b'%PDF':
-                    raise ValueError(f'Document {item["slug"]} is not a PDF')
+            contents = media_file(source)[0].read_bytes()
+            if not contents.startswith(b'%PDF'):
+                raise ValueError(f'Document {item["slug"]} is not a PDF')
+            if item.get('kind') == 'cv' and hashlib.sha256(contents).hexdigest() != item['sha256']:
+                raise ValueError(f'CV {item["slug"]} differs from its approved PDF checksum')
         for lang in LANGS:
             if not all(item['translations'][lang].get(key) for key in ('title','description')):
                 raise ValueError(f'Document {item["slug"]} needs {lang} title and description')
     cv_languages = [item['language'] for item in DOCUMENTS if item.get('kind') == 'cv']
-    if cv_languages and sorted(cv_languages) != ['en', 'it']:
-        raise ValueError('Public CV requires one approved IT PDF and one approved EN PDF')
+    if cv_languages and sorted(cv_languages) != ['en', 'fr', 'it']:
+        raise ValueError('Public CV requires one approved IT, EN and FR PDF')
     for source in published_media_sources():
         media_file(source)
 
@@ -276,7 +287,7 @@ def absolute(local_path):
 
 
 def early_theme():
-    return '''<script>try{const choice=localStorage.getItem('portfolio-theme');if(choice==='light'||choice==='dark')document.documentElement.dataset.theme=choice}catch(_){}</script>'''
+    return '''<script>document.documentElement.classList.add('js');try{const choice=localStorage.getItem('portfolio-theme');if(choice==='light'||choice==='dark')document.documentElement.dataset.theme=choice}catch(_){}</script>'''
 
 
 def seo_head(lang, route, title, description, slug_value=None, noindex=False, image=None, article=None):
@@ -398,8 +409,8 @@ def home(lang):
     c = CONTENT[lang]
     cv_documents = {item.get('language'): item for item in DOCUMENTS if item.get('kind') == 'cv'}
     cv_link = ''
-    if {'it', 'en'} <= cv_documents.keys():
-        cv = cv_documents['it' if lang == 'it' else 'en']
+    if set(LANGS) <= cv_documents.keys():
+        cv = cv_documents[lang]
         cv_link = f'<a class="home-contact__cv" href="{h(cv["file"])}" type="application/pdf" download>{h(c["cv_download"])} <span aria-hidden="true">↓</span></a>'
     featured = []
     for item in PROJECTS[:3]:
@@ -443,7 +454,9 @@ def about(lang):
         documents = f'<section class="section public-documents"><div class="container"><h2>{h(extra["documents_title"])}</h2><ul>{entries}</ul></div></section>'
     portrait = portrait_figure(lang, 'about-hero')
     body = f'''<section class="about-hero section inner-page" id="about" aria-labelledby="about-title"><div class="container about-hero__layout"><div class="about-hero__copy"><p class="eyebrow"><span class="eyebrow-rule"></span>{h(c['about_label'])}</p><h1 id="about-title">{h(c['about_title'])}</h1><p>{h(c['about_intro'])}</p></div>{portrait}</div></section>
-<section class="about-method section" aria-labelledby="about-method-title"><div class="container"><div class="about-method__head"><p class="eyebrow"><span class="eyebrow-rule"></span>{h(c['about_method_label'])}</p><h2 id="about-method-title">{h(c['about_method_title'])}</h2></div><ol class="method-list">{steps}</ol></div></section>{documents}'''
+<section class="about-method section" aria-labelledby="about-method-title"><div class="container"><div class="about-method__head"><p class="eyebrow"><span class="eyebrow-rule"></span>{h(c['about_method_label'])}</p><h2 id="about-method-title">{h(c['about_method_title'])}</h2></div><ol class="method-list">{steps}</ol></div></section>
+<section class="about-beyond section" aria-labelledby="about-beyond-title"><div class="container"><div class="about-beyond__head"><p class="eyebrow"><span class="eyebrow-rule"></span>{h(c['about_beyond_label'])}</p><h2 id="about-beyond-title">{h(c['about_beyond_title'])}</h2><p>{h(c['about_beyond_intro'])}</p></div><div class="about-beyond__grid"><article><span aria-hidden="true">01</span><h3>{h(c['about_fashion_title'])}</h3><p>{h(c['about_fashion_body'])}</p></article><article><span aria-hidden="true">02</span><h3>{h(c['about_mediation_title'])}</h3><p>{h(c['about_mediation_body'])}</p></article></div></div></section>
+<aside class="about-note section" aria-label="{h(c['about_note_label'])}"><div class="container"><p>{h(c['about_note_intro'])} <a href="{path(lang, 'contact')}">{h(c['about_note_link'])}</a>{h(c['about_note_close'])}</p><p class="about-note__signature">— Samuel Okotako</p></div></aside>{documents}'''
     return shell(lang, 'about', body, f'{c["about_label"]} | Samuel Okotako', c['about_intro'], image=HOME_MEDIA['portrait']['src'] if HOME_MEDIA['portrait'] else None)
 
 
@@ -665,8 +678,6 @@ def published_media_sources():
                     sources.append(candidate.strip().split()[0])
     for item in MOMENTS:
         sources.extend(item['media'][key] for key in ('small', 'medium', 'large'))
-    for item in DOCUMENTS:
-        sources.append(item['file'])
     for item in GALLERIES:
         media = item['media']
         if media.get('src'):
@@ -695,6 +706,11 @@ def copy_published_media():
     for source in published_media_sources():
         original, relative = media_file(source)
         destination = OUTPUT / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(original, destination)
+    for item in DOCUMENTS:
+        original, _ = media_file(item.get('source', item['file']))
+        destination = OUTPUT / item['file'].lstrip('/')
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(original, destination)
 

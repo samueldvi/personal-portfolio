@@ -543,6 +543,21 @@ p { margin-top: 0; }
 .about-method .method-list h3 { font-size: clamp(1.8rem, 2.5vw, 2.4rem); }
 .about-method .method-list p { max-width: 34ch; font-size: 1rem; line-height: 1.6; }
 
+.about-beyond { background: var(--bg); }
+.about-beyond__head { max-width: 58rem; }
+.about-beyond__head h2 { margin-bottom: 1.2rem; }
+.about-beyond__head > p:last-child { max-width: 66ch; color: var(--muted); font-size: clamp(1.05rem, 1.45vw, 1.18rem); line-height: 1.65; }
+.about-beyond__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: clamp(1rem, 3vw, 2rem); margin-top: clamp(2rem, 4vw, 3rem); }
+.about-beyond__grid article { min-width: 0; padding: clamp(1.35rem, 2.5vw, 2rem); border-top: 2px solid var(--champagne); background: var(--surface); box-shadow: var(--shadow-card); }
+.about-beyond__grid article > span { color: var(--subtle); font-size: .8rem; font-weight: 800; }
+.about-beyond__grid h3 { margin: 1rem 0 .7rem; font-family: var(--font-display); font-size: clamp(1.7rem, 2.5vw, 2.3rem); font-weight: 400; }
+.about-beyond__grid p { max-width: 55ch; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
+.about-note { padding-block: clamp(2.5rem, 5vw, 4rem); background: var(--bg-soft); border-top: 1px solid var(--line); }
+.about-note .container { max-width: 56rem; }
+.about-note p:first-child { margin-bottom: 1.3rem; color: var(--ink); font-family: var(--font-display); font-size: clamp(1.45rem, 2.7vw, 2.1rem); line-height: 1.4; }
+.about-note a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+.about-note__signature { margin: 0; color: var(--muted); font-size: .9rem; font-weight: 700; }
+
 .projects .section-intro { max-width: none; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .projects .section-intro h1 { max-width: 13ch; font-size: clamp(2.8rem, 6.4vw, 6.1rem); }
 .projects .section-intro > p:last-child { max-width: 42ch; font-size: clamp(1.06rem, 1.5vw, 1.18rem); line-height: 1.62; }
