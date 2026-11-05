@@ -12,7 +12,7 @@ Python (sola libreria standard) genera HTML statico da template condivisi, regis
 - Tema Auto/Light/Dark, navigazione accessibile, pagina 404 localizzata e layout responsive.
 - Tre CV Data Engineer approvati, uno per lingua, disponibili sotto `/cv/`.
 - Canonical, hreflang, sitemap e Open Graph in produzione; preview e build locali `noindex`.
-- Scritti, galleria, Life & Moments e iniziative sono predisposti nei registri e appaiono nella navigazione solo quando esistono contenuti pubblicabili.
+- L'archivio Scritti è navigabile nelle tre lingue, con ricerca progressiva quando esistono articoli; galleria, Life & Moments e iniziative appaiono nella navigazione solo con contenuti pubblicabili.
 
 ## Architettura
 
@@ -24,7 +24,11 @@ Python (sola libreria standard) genera HTML statico da template condivisi, regis
 | `style.css`, `script.js`, `contact-form.js` | Design system, interazioni e invio del modulo |
 | `assets/` | Font, immagini e tre PDF approvati |
 | `public/` | Output generato e distribuito; non modificare manualmente |
+| `editorial/` | Migrazione Supabase, pannello amministrativo isolato ed export di revisione; non distribuito nel sito pubblico |
+| `fashion-book/` | Preview separata e non indicizzabile, senza fotografie reali; non copiata in `public/` |
 | `docs/RELEASE.md` | [Controlli di rilascio e produzione](docs/RELEASE.md) |
+
+La nuova integrazione V2 è ancora in verifica: lo stato, i controlli completati e le configurazioni esterne sono documentati in [docs/V2_INTEGRATION_STATUS.md](docs/V2_INTEGRATION_STATUS.md). Il pannello editoriale non è pubblicato e richiede una prova reale con Supabase prima di essere esposto.
 
 Gli stessi componenti producono `/it/`, `/en/` e `/fr/`, inclusi `/about/`, `/projects/`, `/experience/`, `/contact/` e tre case study per lingua. `content/projects.json` contiene anche bozze escluse dall'output. Il PoC di Data Governance usa dati sintetici ed è separato dal tirocinio Spindox. Le evidenze e le lacune dei progetti sono annotate in [content/CASE_STUDY_AUDIT.md](content/CASE_STUDY_AUDIT.md).
 

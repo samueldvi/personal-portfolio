@@ -78,7 +78,11 @@ def check():
         relative = file.relative_to(ROOT)
         label = str(relative)
         suffix = file.suffix.lower()
-        if PRIVATE_NAME.search(file.name) or suffix in PRIVATE_SUFFIXES or file.name.startswith('.env'):
+        safe_example = file.name == '.env.example' and all(
+            not line.strip() or line.lstrip().startswith('#') or re.fullmatch(r'[A-Z][A-Z0-9_]*=', line.strip())
+            for line in file.read_text(encoding='utf-8').splitlines()
+        )
+        if PRIVATE_NAME.search(file.name) or suffix in PRIVATE_SUFFIXES or (file.name.startswith('.env') and not safe_example):
             issues.append(f'Private artifact name or type: {label}')
         if label in tracked and (RAW_ORIGINAL.fullmatch(file.name) or suffix == '.heic' or file.name == '.DS_Store'):
             issues.append(f'Raw or local-only artifact tracked by Git: {label}')

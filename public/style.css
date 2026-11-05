@@ -753,3 +753,13 @@ p { margin-top: 0; }
 @media (max-width: 359px) {
   .process-diagram--compact ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Writing archive and article utilities */
+.writing-search { display: grid; gap: .55rem; max-width: 34rem; margin: 2rem 0; font-weight: 650; }
+.writing-search input { width: 100%; min-height: 3rem; padding: .7rem 1rem; border: 1px solid currentColor; border-radius: .55rem; background: var(--surface, transparent); color: inherit; font: inherit; }
+.writing-search input:focus-visible { outline: 3px solid var(--accent, #5c9d77); outline-offset: 3px; }
+.listing-card[hidden] { display: none; }
+.article-share, .article-related { margin-block-start: clamp(2rem, 5vw, 4rem); }
+.article-share { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1.4rem; }
+.article-share a, .article-related a { text-underline-offset: .2em; }
+.article-related ul { padding-inline-start: 1.25rem; }
