@@ -77,6 +77,13 @@ def check():
     for file in files:
         relative = file.relative_to(ROOT)
         label = str(relative)
+        # The local editor config is deliberately outside Git and the public build.
+        # Never read or report its contents; a tracked or unignored copy still fails.
+        if label == 'editorial/.env.local':
+            ignored = subprocess.run(['git', 'check-ignore', '-q', '--', label], cwd=ROOT,
+                                     check=False).returncode == 0
+            if ignored and label not in tracked:
+                continue
         suffix = file.suffix.lower()
         safe_example = file.name == '.env.example' and all(
             not line.strip() or line.lstrip().startswith('#') or re.fullmatch(r'[A-Z][A-Z0-9_]*=', line.strip())

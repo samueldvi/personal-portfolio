@@ -8,7 +8,7 @@ const vm = require('node:vm');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'editorial', 'admin', 'admin.js'), 'utf8');
 
-function fixture({adminAllowed = true, uploadStatus = 200} = {}) {
+function fixture({adminAllowed = true, uploadStatus = 200, malformedArticles = false} = {}) {
   let nextId = 1;
   const id = () => `fixture-${nextId++}`;
   const db = {articles: [], translations: [], categories: [], tags: [], links: [], revisions: [], social: [], media: [], uploads: []};
@@ -70,7 +70,7 @@ function fixture({adminAllowed = true, uploadStatus = 200} = {}) {
     const table = route.slice('/rest/v1/'.length);
     const payload = method === 'POST' || method === 'PATCH' ? body(options) : null;
     if (table === 'editorial_articles') {
-      if (method === 'GET') return response(db.articles.map(join));
+      if (method === 'GET') return response(malformedArticles ? {unexpected: true} : db.articles.map(join));
       if (method === 'POST') { const row = {id: id(), ...payload}; db.articles.push(row); return response([row], 201); }
       if (method === 'PATCH') { const row = db.articles.find(article => article.id === parsed.searchParams.get('id').slice(3)); Object.assign(row, payload); return response([row]); }
     }
@@ -125,7 +125,7 @@ function fixture({adminAllowed = true, uploadStatus = 200} = {}) {
     await until(() => !els.loginPanel.hidden);
     const submitted = event();
     els.loginForm.listeners.submit(submitted);
-    await until(() => els.status.textContent.includes('Signed in.') || els.status.textContent.includes('not authorized'));
+    await until(() => els.status.textContent.includes('Signed in.') || els.status.textContent.includes('not authorized') || els.status.textContent.includes('invalid response'));
     assert.equal(submitted.prevented, true);
   }
   async function save() {
@@ -145,6 +145,17 @@ test('mocked non-admin sign-in leaves editor hidden and makes no write request',
   assert.equal(f.els.loginPanel.hidden, false);
   assert.equal(f.db.articles.length, 0);
   assert.equal(f.calls.filter(call => ['POST', 'PATCH', 'DELETE'].includes(call.options.method) && !call.url.includes('/auth/v1/token') && !call.url.includes('/rpc/')).length, 0);
+});
+
+test('empty project is identified and malformed article responses do not open the editor', async () => {
+  const empty = fixture();
+  await empty.signIn();
+  assert.match(empty.els.status.textContent, /No articles in this project yet/);
+  assert.equal(empty.els.articleList.options.length, 1);
+  const malformed = fixture({malformedArticles: true});
+  await malformed.signIn();
+  assert.match(malformed.els.status.textContent, /invalid response/);
+  assert.equal(malformed.els.editorPanel.hidden, true);
 });
 
 test('mocked admin can save, preview and publish English without publishing Italian', async () => {

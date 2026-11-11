@@ -9,14 +9,36 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = Path(__file__).resolve().parent / 'admin'
+LOCAL_KEYS = {'SUPABASE_URL', 'SUPABASE_PUBLISHABLE_KEY'}
 
 
-def build(output):
+def load_local_config(path):
+    """Read two literal values without shell evaluation or printing their contents."""
+    values = {}
+    for line in path.read_text(encoding='utf-8').splitlines():
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+        name, separator, value = line.partition('=')
+        name = name.strip()
+        if not separator or name not in LOCAL_KEYS or name in values:
+            raise ValueError('Invalid or duplicate entry in the local editorial configuration')
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
+            value = value[1:-1]
+        values[name] = value
+    if set(values) != LOCAL_KEYS:
+        raise ValueError('Both Supabase settings are required in the local editorial configuration')
+    return values
+
+
+def build(output, *, config=None):
     output = output.resolve()
     if output == ROOT or ROOT in output.parents or output.exists():
         raise ValueError('Choose a new output directory outside the repository')
-    url = os.environ.get('SUPABASE_URL', '').rstrip('/')
-    key = os.environ.get('SUPABASE_PUBLISHABLE_KEY', '')
+    config = os.environ if config is None else config
+    url = config.get('SUPABASE_URL', '').rstrip('/')
+    key = config.get('SUPABASE_PUBLISHABLE_KEY', '')
     parsed = urlsplit(url)
     if parsed.scheme != 'https' or not parsed.netloc or parsed.username or parsed.password or parsed.path or parsed.query or parsed.fragment or not key.startswith('sb_publishable_'):
         raise ValueError('Set an HTTPS SUPABASE_URL origin and a sb_publishable_ key')

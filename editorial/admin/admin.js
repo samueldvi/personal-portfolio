@@ -27,7 +27,8 @@
 
   async function refresh() {
     const articles = await rest('editorial_articles?select=id,slug,category_id,editorial_categories(label),editorial_article_tags(editorial_tags(label)),editorial_translations(id,language,title,summary,body_markdown,seo_title,seo_description,status,published_at,cover_media_id,editorial_social_drafts(platform,copy))&order=created_at.desc');
-    state.articles = Array.isArray(articles) ? articles : [];
+    if (!Array.isArray(articles)) throw new Error('Article list returned an invalid response.');
+    state.articles = articles;
     const select = $('articleList');
     select.replaceChildren(new Option('New article', ''));
     for (const article of state.articles) select.add(new Option(article.slug, article.id));
@@ -184,7 +185,8 @@
       await refresh();
       $('loginPanel').hidden = true;
       $('editorPanel').hidden = false;
-      say('Signed in. Drafts remain private until you publish and run a reviewed site build.');
+      const count = state.articles.length;
+      say(`Signed in. ${count === 0 ? 'No articles in this project yet.' : `${count} article${count === 1 ? '' : 's'} available.`} Drafts remain private until you publish and run a reviewed site build.`);
     });
   });
   $('logout').addEventListener('click', () => { state.token = null; state.userId = null; state.articleId = null; state.translation = null; $('editorPanel').hidden = true; $('loginPanel').hidden = false; say('Signed out.'); });
