@@ -10,6 +10,7 @@ class FashionBookIsolationTests(unittest.TestCase):
         headers = (preview / '_headers').read_text()
         self.assertIn('noindex', markup)
         self.assertIn('X-Robots-Tag: noindex', headers)
+        self.assertIn('Allow: /', (preview / 'robots.txt').read_text())
         self.assertNotIn('184 cm', markup)
         self.assertFalse(list(preview.rglob('*.jpg')) + list(preview.rglob('*.webp')))
         self.assertFalse((ROOT / 'public' / 'fashion-book').exists())

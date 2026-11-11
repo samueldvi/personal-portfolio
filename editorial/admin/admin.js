@@ -44,6 +44,9 @@
   }
   function showTranslation() {
     const article = state.articles.find((row) => row.id === state.articleId);
+    const sharedLocked = Boolean(article?.editorial_translations?.some((row) => row.status === 'published'));
+    fields.category.disabled = sharedLocked;
+    fields.tags.disabled = sharedLocked;
     const translation = article?.editorial_translations?.find((row) => row.language === fields.language.value);
     state.translation = translation || null;
     for (const key of ['title', 'summary', 'body_markdown', 'seo_title', 'seo_description']) {
@@ -86,24 +89,35 @@
     if (state.translation?.status === 'published') throw new Error('Withdraw this language before editing its published version.');
     const slug = fields.slug.value.trim();
     if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) throw new Error('Use a lowercase URL slug.');
-    const category_id = await ensureCategory(fields.category.value);
+    const article = state.articles.find((row) => row.id === state.articleId);
+    const sharedLocked = Boolean(article?.editorial_translations?.some((row) => row.status === 'published'));
+    if (sharedLocked) {
+      const currentTags = article.editorial_article_tags.map((row) => row.editorial_tags?.label).filter(Boolean).sort().join(', ');
+      const editedTags = fields.tags.value.split(',').map((value) => value.trim()).filter(Boolean).sort().join(', ');
+      if (fields.category.value.trim() !== (article.editorial_categories?.label || '') || editedTags !== currentTags) {
+        throw new Error('Withdraw all published languages before changing the category or tags.');
+      }
+    }
+    const category_id = sharedLocked ? article.category_id : await ensureCategory(fields.category.value);
     if (!state.articleId) {
       const created = await rest('editorial_articles', {method: 'POST', headers: jsonHeaders, body: JSON.stringify({slug, category_id})});
       state.articleId = created[0].id;
-    } else {
+    } else if (!sharedLocked) {
       await rest(`editorial_articles?id=eq.${state.articleId}`, {method: 'PATCH', headers: jsonHeaders, body: JSON.stringify({category_id})});
     }
-    await saveTags(state.articleId, fields.tags.value);
+    if (!sharedLocked) await saveTags(state.articleId, fields.tags.value);
+    const hadLinkedIn = Boolean(state.translation?.editorial_social_drafts?.some((row) => row.platform === 'linkedin'));
     const data = {article_id: state.articleId, language: fields.language.value, title: fields.title.value.trim(), summary: fields.summary.value.trim(), body_markdown: fields.body.value, seo_title: fields.seo_title.value.trim() || null, seo_description: fields.seo_description.value.trim() || null, status: 'draft'};
     const rows = await rest('editorial_translations?on_conflict=article_id,language', {method: 'POST', headers: {...jsonHeaders, 'prefer': 'resolution=merge-duplicates,return=representation'}, body: JSON.stringify(data)});
     state.translation = rows[0];
     const revisions = await rest(`editorial_revisions?translation_id=eq.${state.translation.id}&select=revision_number&order=revision_number.desc&limit=1`);
     await rest('editorial_revisions', {method: 'POST', headers: jsonHeaders, body: JSON.stringify({translation_id: state.translation.id, revision_number: (revisions[0]?.revision_number || 0) + 1, snapshot: data, editor_id: state.userId})});
-    if (fields.linkedin.value.trim()) await rest('editorial_social_drafts?on_conflict=translation_id,platform', {method: 'POST', headers: {...jsonHeaders, 'prefer': 'resolution=merge-duplicates,return=representation'}, body: JSON.stringify({translation_id: state.translation.id, platform: 'linkedin', copy: fields.linkedin.value.trim()})});
+    if (fields.linkedin.value.trim() || hadLinkedIn) await rest('editorial_social_drafts?on_conflict=translation_id,platform', {method: 'POST', headers: {...jsonHeaders, 'prefer': 'resolution=merge-duplicates,return=representation'}, body: JSON.stringify({translation_id: state.translation.id, platform: 'linkedin', copy: fields.linkedin.value.trim()})});
     const cover = fields.cover.files[0];
     if (cover) await uploadPrivateCover(cover);
     await refresh();
     $('articleList').value = state.articleId;
+    loadSelected();
     say('Draft saved. It is not published on the website.');
     return state.translation;
   }
@@ -129,7 +143,7 @@
     await rest(`editorial_translations?id=eq.${state.translation.id}`, {method: 'PATCH', headers: jsonHeaders, body: JSON.stringify(update)});
     await refresh();
     $('articleList').value = state.articleId;
-    showTranslation();
+    loadSelected();
     say(`Database status updated: ${action}. The public static site changes only after a reviewed export and build.`);
   }
   async function run(task) {
@@ -177,7 +191,7 @@
     if (!response.ok) throw new Error('Editorial configuration is not installed.');
     const config = await response.json();
     const url = new URL(config.supabase_url);
-    if (url.protocol !== 'https:' || url.username || url.password || url.pathname !== '/' || url.search || url.hash || !config.supabase_publishable_key) throw new Error('Editorial configuration is incomplete.');
+    if (url.protocol !== 'https:' || url.username || url.password || url.pathname !== '/' || url.search || url.hash || !config.supabase_publishable_key?.startsWith('sb_publishable_')) throw new Error('Editorial configuration needs an HTTPS origin and a publishable key.');
     state.config = {url: url.origin, key: config.supabase_publishable_key};
     $('loginPanel').hidden = false;
     say('Sign in with the authorized editorial account.');

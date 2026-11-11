@@ -33,6 +33,14 @@ def h(value):
     return escape(str(value), quote=True)
 
 
+def json_for_html_script(value):
+    """Keep JSON-LD data from closing its HTML script element."""
+    return (json.dumps(value, ensure_ascii=False)
+            .replace('<', '\\u003c').replace('>', '\\u003e')
+            .replace('&', '\\u0026').replace('\u2028', '\\u2028')
+            .replace('\u2029', '\\u2029'))
+
+
 def media_sources_from_srcset(value):
     return [candidate.strip().split()[0] for candidate in value.split(',') if candidate.strip()]
 
@@ -73,6 +81,15 @@ def slug(value):
 
 def article_date(item, lang):
     return item['translations'][lang].get('date', item['date'])
+
+
+def valid_iso_date(value):
+    if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', value):
+        return False
+    try:
+        return datetime.fromisoformat(value).date().isoformat() == value
+    except ValueError:
+        return False
 
 
 def validate():
@@ -159,7 +176,7 @@ def validate():
         languages = item['languages']
         if not isinstance(languages, list) or not languages or len(languages) != len(set(languages)) or not set(languages) <= set(LANGS):
             raise ValueError(f'Article {item["slug"]} needs one or more supported languages')
-        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', item['date']):
+        if not valid_iso_date(item['date']):
             raise ValueError(f'Article {item["slug"]} needs ISO date YYYY-MM-DD')
         if not isinstance(item['categories'], list) or not item['categories']:
             raise ValueError(f'Article {item["slug"]} needs categories')
@@ -167,13 +184,20 @@ def validate():
             media = item['image']
             if not all(media.get(key) for key in ('src','width','height','alt')):
                 raise ValueError(f'Article {item["slug"]} has incomplete image metadata')
+            rights = media.get('rights') or {}
+            if rights.get('status') != 'approved' or not rights.get('basis') or not rights.get('credit'):
+                raise ValueError(f'Article {item["slug"]} needs documented image publication rights')
+            if not all(isinstance(media[key], int) and media[key] > 0 for key in ('width', 'height')):
+                raise ValueError(f'Article {item["slug"]} needs positive image dimensions')
             if not all(media['alt'].get(lang) for lang in languages):
                 raise ValueError(f'Article {item["slug"]} needs localized image alt text')
+            for source in (media['src'], *media_sources_from_srcset(media.get('srcset', ''))):
+                media_file(source)
         for lang in languages:
             for key in ('title','description'):
                 if not item['translations'][lang].get(key):
                     raise ValueError(f'Article {item["slug"]} lacks {lang} {key}')
-            if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', article_date(item, lang)):
+            if not valid_iso_date(article_date(item, lang)):
                 raise ValueError(f'Article {item["slug"]} has an invalid {lang} publication date')
             article_body(item, lang)
     for item in GALLERIES:
@@ -328,9 +352,10 @@ def seo_head(lang, route, title, description, slug_value=None, noindex=False, im
     if ORIGIN and not noindex:
         share_image = image if article and image else SOCIAL_IMAGE
         image_url = absolute(share_image)
+        image_alt = article['image']['alt'][lang] if article and image else 'Samuel Okotako — Data Engineering, Machine Learning, Data Governance'
         tags.extend((
             f'<meta property="og:image" content="{h(image_url)}">',
-            f'<meta property="og:image:alt" content="{h("Samuel Okotako — Data Engineering, Machine Learning, Data Governance")}">',
+            f'<meta property="og:image:alt" content="{h(image_alt)}">',
             '<meta name="twitter:card" content="summary_large_image">',
             f'<meta name="twitter:title" content="{h(title)}">',
             f'<meta name="twitter:description" content="{h(description)}">',
@@ -340,10 +365,10 @@ def seo_head(lang, route, title, description, slug_value=None, noindex=False, im
             tags.extend(('<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">'))
     if ORIGIN and route == 'home' and lang and not noindex:
         data = {'@context':'https://schema.org','@type':'Person','name':'Samuel Okotako','url':absolute(path(lang))}
-        tags.append(f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>')
+        tags.append(f'<script type="application/ld+json">{json_for_html_script(data)}</script>')
     if ORIGIN and article and not noindex:
         data = {'@context':'https://schema.org','@type':'Article','headline':article['translations'][lang]['title'],'datePublished':article_date(article,lang),'description':article['translations'][lang]['description'],'inLanguage':lang,'mainEntityOfPage':absolute(path(lang, 'writing', article['slug'])),'author':{'@type':'Person','name':article.get('author','Samuel Okotako')}}
-        tags.append(f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>')
+        tags.append(f'<script type="application/ld+json">{json_for_html_script(data)}</script>')
     return '\n  '.join(tags)
 
 
@@ -664,7 +689,7 @@ def article_page(lang, item):
         srcset=f' srcset="{h(media["srcset"])}" sizes="(max-width: 820px) 100vw, 820px"' if media.get('srcset') else ''
         visual=f'<figure class="article-image"><img src="{h(media["src"])}"{srcset} width="{int(media["width"])}" height="{int(media["height"])}" alt="{h(media["alt"][lang])}" decoding="async"></figure>'
         body=body.replace('<div class="article-body">',visual+'<div class="article-body">')
-    return shell(lang,'writing',body,f'{p["title"]} | Samuel Okotako',p['description'],slug_value=item['slug'],image=image,article=item)
+    return shell(lang,'writing',body,p.get('seo_title') or f'{p["title"]} | Samuel Okotako',p.get('seo_description') or p['description'],slug_value=item['slug'],image=image,article=item)
 
 
 def gallery(lang):
@@ -805,7 +830,7 @@ def sitemap_paths():
 
 def writing_feed(lang):
     items=[]
-    for item in sorted((item for item in ARTICLES if lang in item['languages']), key=lambda row: row['date'], reverse=True):
+    for item in sorted((item for item in ARTICLES if lang in item['languages']), key=lambda row: article_date(row, lang), reverse=True):
         content=item['translations'][lang]
         url=absolute(path(lang,'writing',item['slug']))
         published=format_datetime(datetime.fromisoformat(article_date(item,lang)).replace(tzinfo=timezone.utc))
@@ -889,7 +914,8 @@ def main():
         save(Path('sitemap.xml'),f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
         save(Path('robots.txt'),f'User-agent: *\nAllow: /\nSitemap: {absolute("/sitemap.xml")}\n')
     else:
-        save(Path('robots.txt'),'User-agent: *\nDisallow: /\n')
+        # Crawlers must be able to read the page-level noindex directive.
+        save(Path('robots.txt'),'User-agent: *\nAllow: /\n')
     print(f'Generated {len(routes())*3+5+len(ARTICLES)*3+len(PROJECT_DETAILS)*3} HTML files; {len(PROJECTS)} projects; {len(ARTICLES)} articles; {len(GALLERIES)} gallery items; {len(MOMENTS)} moments; {len(INITIATIVES)} initiatives.')
     if not INDEXING_ENABLED:
         print('Indexing disabled: noindex; canonical, hreflang and sitemap deferred.')

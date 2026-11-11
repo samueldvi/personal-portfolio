@@ -14,11 +14,16 @@ class EditorialAdminBuildTests(unittest.TestCase):
             with patch.dict(os.environ, {'SUPABASE_URL': '', 'SUPABASE_PUBLISHABLE_KEY': ''}):
                 with self.assertRaises(ValueError):
                     build(output)
+            with patch.dict(os.environ, {'SUPABASE_URL': 'https://example.supabase.co', 'SUPABASE_PUBLISHABLE_KEY': 'sb_secret_fixture'}):
+                with self.assertRaises(ValueError):
+                    build(output)
+            self.assertFalse(output.exists())
             with patch.dict(os.environ, {'SUPABASE_URL': 'https://example.supabase.co', 'SUPABASE_PUBLISHABLE_KEY': 'sb_publishable_fixture'}):
                 build(output)
             config = json.loads((output / 'config.json').read_text())
             self.assertEqual(config['supabase_url'], 'https://example.supabase.co')
             self.assertIn('noindex', (output / '_headers').read_text())
+            self.assertIn('Allow: /', (output / 'robots.txt').read_text())
             self.assertFalse((ROOT / 'public' / 'admin').exists())
 
 if __name__ == '__main__':

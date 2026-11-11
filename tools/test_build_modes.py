@@ -38,7 +38,7 @@ def run_mode(name, settings, indexable):
         else:
             assert '<meta name="robots" content="noindex' in home
             assert '<link rel="canonical"' not in home
-            assert not sitemap.exists() and robots == 'User-agent: *\nDisallow: /\n'
+            assert not sitemap.exists() and robots == 'User-agent: *\nAllow: /\n'
         print(f'OK: {name} ({"indexable" if indexable else "noindex"})')
 
 

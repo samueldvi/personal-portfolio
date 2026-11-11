@@ -636,6 +636,7 @@ p { margin-top: 0; }
 @media (max-width: 639px) {
   .header-inner { min-height: 0; gap: .2rem .5rem; padding-block: .35rem; }
   .wordmark { flex: 1 1 calc(100% - 3.25rem); }
+  .wordmark > span:last-child { display: none; }
   .menu-toggle { order: 1; flex: none; margin-left: auto; }
   .header-tools { order: 2; flex: 1 1 100%; flex-wrap: wrap; justify-content: space-between; gap: .35rem; width: 100%; max-width: none; margin-left: 0; }
   .nav { order: 3; padding-top: 0; }
@@ -643,6 +644,7 @@ p { margin-top: 0; }
   .home-hero { padding-block: 1.5rem 2rem; }
   .home-hero__layout { gap: 1.4rem; }
   .home-hero .eyebrow { margin-bottom: 1rem; }
+  .home-hero__name { display: block; }
   .home-hero h1 { margin-bottom: 1.1rem; }
   .home-hero__value { margin-bottom: .55rem; }
   .hero-actions { margin-top: 1rem; }
@@ -656,13 +658,11 @@ p { margin-top: 0; }
 @media (min-width: 360px) and (max-width: 639px) {
   .header-inner { gap: .25rem; }
   .wordmark { flex: 0 0 2.75rem; width: 2.75rem; }
-  .wordmark > span:last-child { display: none; }
   .header-tools { order: 0; flex: 1 1 auto; flex-wrap: wrap; justify-content: flex-end; gap: .25rem; width: auto; min-width: 0; }
   .language-switch { flex: none; width: min(8.55rem, 100%); padding: .05rem; }
   .theme-control select { width: 5.5rem; min-width: 0; padding: .25rem .3rem; font-size: .82rem; }
   .menu-toggle { order: 0; margin-left: 0; }
   .nav { flex: 1 1 100%; }
-  .home-hero__name { display: block; }
 }
 
 /* Projects and case studies: one editorial system across all locales. */

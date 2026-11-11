@@ -201,7 +201,7 @@ def check():
             assert all(urlsplit(link).scheme == '' and not urlsplit(link).netloc for link in page.assets), f'404 has a remote dependency: {file}'
     origin = SITE_URL if INDEXING_ENABLED else ''
     if not INDEXING_ENABLED:
-        assert (PUBLIC / 'robots.txt').read_text() == 'User-agent: *\nDisallow: /\n'
+        assert (PUBLIC / 'robots.txt').read_text() == 'User-agent: *\nAllow: /\n'
         assert not (PUBLIC / 'sitemap.xml').exists()
         for file, page in pages.items():
             assert any('noindex' in x for x in page.robots), f'Unpublished page is indexable: {file}'

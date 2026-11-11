@@ -91,6 +91,13 @@ def normalize(rows, now=None):
             raise ValueError(f'Duplicate published translation: {slug}/{language}')
         item['languages'].append(language)
         item['translations'][language] = {'title': title.strip(), 'description': summary.strip(), 'date': published.date().isoformat()}
+        for source_key in ('seo_title', 'seo_description'):
+            value = row.get(source_key)
+            if value is not None:
+                if not isinstance(value, str):
+                    raise ValueError(f'Published {slug}/{language} has an invalid {source_key}')
+                if value.strip():
+                    item['translations'][language][source_key] = value.strip()
         item['_bodies'][language] = render_markdown(body)
         item['date'] = min(item['date'], published.date().isoformat())
     return [grouped[key] for key in sorted(grouped)]
@@ -100,9 +107,9 @@ def fetch_public():
     base = os.environ.get('SUPABASE_URL', '').rstrip('/')
     key = os.environ.get('SUPABASE_PUBLISHABLE_KEY', '')
     parsed = urlsplit(base)
-    if parsed.scheme != 'https' or not parsed.netloc or parsed.username or parsed.password or parsed.path or parsed.query or parsed.fragment or not key:
-        raise ValueError('Set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY for public RLS reads')
-    select = 'id,language,title,summary,body_markdown,status,published_at,editorial_articles!inner(slug,editorial_categories(label),editorial_article_tags(editorial_tags(label)))'
+    if parsed.scheme != 'https' or not parsed.netloc or parsed.username or parsed.password or parsed.path or parsed.query or parsed.fragment or not key.startswith('sb_publishable_'):
+        raise ValueError('Set SUPABASE_URL and a sb_publishable_ key for public RLS reads')
+    select = 'id,language,title,summary,body_markdown,seo_title,seo_description,status,published_at,editorial_articles!inner(slug,editorial_categories(label),editorial_article_tags(editorial_tags(label)))'
     query = urlencode({'select': select, 'status': 'eq.published', 'order': 'published_at.desc', 'limit': '1000'})
     request = Request(base + '/rest/v1/editorial_translations?' + query, headers={'apikey': key, 'accept': 'application/json'})
     with urlopen(request, timeout=20) as response:

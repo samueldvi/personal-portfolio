@@ -109,12 +109,17 @@ CREATE TABLE public.editorial_publication_events (
 CREATE FUNCTION editorial_private.guard_translation() RETURNS trigger
 LANGUAGE plpgsql SECURITY DEFINER SET search_path = '' AS $$
 BEGIN
-  IF TG_OP = 'UPDATE' AND OLD.status = 'published' AND NEW.status = 'published'
-     AND (to_jsonb(NEW) - 'updated_at' - 'status' - 'published_at')
-       <> (to_jsonb(OLD) - 'updated_at' - 'status' - 'published_at') THEN
-    RAISE EXCEPTION 'Withdraw a published translation before editing its content';
+  IF TG_OP = 'UPDATE' AND OLD.status = 'published' THEN
+    IF NEW.status NOT IN ('published', 'withdrawn')
+       OR (to_jsonb(NEW) - 'updated_at' - 'status')
+         <> (to_jsonb(OLD) - 'updated_at' - 'status') THEN
+      RAISE EXCEPTION 'Withdraw a published translation before editing its content or publication date';
+    END IF;
   END IF;
   IF NEW.status = 'published' THEN
+    IF NEW.published_at > now() THEN
+      RAISE EXCEPTION 'Use scheduled status for a future publication date';
+    END IF;
     IF btrim(NEW.summary) = '' OR btrim(NEW.body_markdown) = '' THEN
       RAISE EXCEPTION 'Published translations need a summary and body';
     END IF;
@@ -150,6 +155,47 @@ BEGIN
 END $$;
 CREATE TRIGGER editorial_publication_history AFTER INSERT OR UPDATE OF status ON public.editorial_translations
   FOR EACH ROW EXECUTE FUNCTION editorial_private.record_publication();
+
+-- Category, slug and tags are shared by every language. Keep them stable while
+-- at least one translation is published, including during edits to another draft.
+CREATE FUNCTION editorial_private.guard_shared_article() RETURNS trigger
+LANGUAGE plpgsql SECURITY DEFINER SET search_path = '' AS $$
+BEGIN
+  IF (NEW.slug IS DISTINCT FROM OLD.slug OR NEW.category_id IS DISTINCT FROM OLD.category_id)
+     AND EXISTS (SELECT 1 FROM public.editorial_translations t
+                 WHERE t.article_id = OLD.id AND t.status = 'published') THEN
+    RAISE EXCEPTION 'Withdraw all published translations before changing shared article metadata';
+  END IF;
+  RETURN NEW;
+END $$;
+CREATE TRIGGER editorial_shared_article_guard BEFORE UPDATE ON public.editorial_articles
+  FOR EACH ROW EXECUTE FUNCTION editorial_private.guard_shared_article();
+CREATE FUNCTION editorial_private.guard_article_tags() RETURNS trigger
+LANGUAGE plpgsql SECURITY DEFINER SET search_path = '' AS $$
+DECLARE target_article uuid;
+BEGIN
+  IF TG_OP = 'DELETE' THEN
+    target_article := OLD.article_id;
+  ELSE
+    target_article := NEW.article_id;
+  END IF;
+  IF TG_OP = 'UPDATE' THEN
+    IF OLD.article_id IS DISTINCT FROM NEW.article_id THEN
+      IF EXISTS (SELECT 1 FROM public.editorial_translations t
+                 WHERE t.article_id = OLD.article_id AND t.status = 'published') THEN
+        RAISE EXCEPTION 'Withdraw all published translations before changing shared tags';
+      END IF;
+    END IF;
+  END IF;
+  IF EXISTS (SELECT 1 FROM public.editorial_translations t
+             WHERE t.article_id = target_article AND t.status = 'published') THEN
+    RAISE EXCEPTION 'Withdraw all published translations before changing shared tags';
+  END IF;
+  IF TG_OP = 'DELETE' THEN RETURN OLD; END IF;
+  RETURN NEW;
+END $$;
+CREATE TRIGGER editorial_article_tags_guard BEFORE INSERT OR UPDATE OR DELETE ON public.editorial_article_tags
+  FOR EACH ROW EXECUTE FUNCTION editorial_private.guard_article_tags();
 
 CREATE FUNCTION editorial_private.touch_updated_at() RETURNS trigger
 LANGUAGE plpgsql SET search_path = '' AS $$
@@ -206,10 +252,10 @@ REVOKE ALL ON public.editorial_categories, public.editorial_tags, public.editori
   public.editorial_publication_events FROM PUBLIC, anon, authenticated;
 GRANT SELECT ON public.editorial_categories, public.editorial_tags, public.editorial_articles,
   public.editorial_translations, public.editorial_article_tags, public.editorial_media TO anon;
-GRANT SELECT, INSERT, UPDATE ON public.editorial_categories, public.editorial_tags,
-  public.editorial_articles, public.editorial_translations,
+GRANT SELECT, INSERT ON public.editorial_categories, public.editorial_tags TO authenticated;
+GRANT SELECT, INSERT, UPDATE ON public.editorial_articles, public.editorial_translations,
   public.editorial_media, public.editorial_social_drafts TO authenticated;
-GRANT SELECT, INSERT, UPDATE, DELETE ON public.editorial_article_tags TO authenticated;
+GRANT SELECT, INSERT, DELETE ON public.editorial_article_tags TO authenticated;
 GRANT SELECT, INSERT ON public.editorial_revisions TO authenticated;
 GRANT SELECT ON public.editorial_publication_events TO authenticated;
 
