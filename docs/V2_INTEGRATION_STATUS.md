@@ -25,7 +25,7 @@ This branch is a working integration, not a release candidate. The existing Pyth
 3. Create a separate Cloudflare Pages project for `fashion-book/` and map `model.samuelokotako.com` only after asset rights and content review. Preserve `_headers` and `robots.txt` in that project. Leave the Data & AI project's build output at `public/`.
 4. Review current service pricing and limits before choosing a paid plan. No paid plan is required by the files in this branch; the actual recurring cost depends on Supabase, Cloudflare and media usage after account configuration.
 
-No DNS, Cloudflare, Supabase or production configuration has been changed by this branch. The branch was pushed and a draft pull request opened; Cloudflare automatically created a branch preview from its existing integration.
+No DNS, Cloudflare, Supabase or production configuration has been changed by this branch. PR #8 is open against `main`; Cloudflare automatically created a branch preview from its existing integration.
 
 ## Local verification completed
 
