@@ -33,6 +33,8 @@ jobs:
         run: python3 -B check_site.py
       - name: Check local, preview and public build gates
         run: python3 -B tools/test_build_modes.py
+      - name: Python unit and integration tests
+        run: python3 -B -m unittest discover -s tests -v
       - name: JavaScript tests
         run: node --test tests/*.test.cjs
       - name: Check obvious private artifacts and credentials

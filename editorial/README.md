@@ -18,6 +18,8 @@ RLS permits anonymous reads only for translations with `status=published` and `p
 
 The admin UI is in `editorial/admin/` and uses Supabase Auth plus the database's RLS policies. The access token stays in memory and is cleared on sign-out; reloading requires another sign-in. The preview renders article text with `textContent`, so raw HTML is not interpreted. Images upload only to the private bucket with pending rights. The UI and migration still need live integration tests against the configured Supabase project.
 
+For a disposable Supabase test project, run `editorial/tests/rls_smoke.sql` with `psql -X -v ON_ERROR_STOP=1 -v admin_uuid='<verified-enrolled-auth-user-uuid>' -f editorial/tests/rls_smoke.sql "$TEST_DATABASE_URL"`. The script rolls back its synthetic rows and checks SQL role behavior for anon, a non-admin and the enrolled admin. It has **not been run** here: no test project, `psql`, Supabase CLI or working Docker daemon is available. SQL role simulation also does not validate Auth JWT issuance, Storage HTTP access, the browser editor or PostgREST. Verify those against the disposable project separately before an admin deployment or merge.
+
 ## Approved static publication
 
 `export_public.py` fetches only RLS-visible public translations with the publishable key. It can also accept a local JSON fixture. It writes a **new staging directory outside the repository**, never `content/` or `public/` directly:

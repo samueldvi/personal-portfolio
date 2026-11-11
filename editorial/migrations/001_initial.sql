@@ -76,7 +76,8 @@ CREATE TABLE public.editorial_media (
   rights_status text NOT NULL DEFAULT 'pending' CHECK (rights_status IN ('pending','approved','rejected')),
   visibility text NOT NULL DEFAULT 'private' CHECK (visibility IN ('private','public')),
   created_at timestamptz NOT NULL DEFAULT now(),
-  CHECK (visibility <> 'public' OR (rights_status = 'approved' AND credit <> '' AND rights_basis <> ''))
+  CHECK (rights_status <> 'approved' OR (btrim(credit) <> '' AND btrim(rights_basis) <> '')),
+  CHECK (visibility <> 'public' OR rights_status = 'approved')
 );
 ALTER TABLE public.editorial_translations
   ADD COLUMN cover_media_id uuid REFERENCES public.editorial_media(id) ON DELETE RESTRICT;
@@ -126,8 +127,9 @@ BEGIN
     IF NEW.cover_media_id IS NOT NULL AND NOT EXISTS (
       SELECT 1 FROM public.editorial_media m
       WHERE m.id = NEW.cover_media_id AND m.rights_status = 'approved'
+        AND btrim(coalesce(m.alt_text ->> NEW.language, '')) <> ''
     ) THEN
-      RAISE EXCEPTION 'Cover media rights must be approved before publication';
+      RAISE EXCEPTION 'Cover media must have approved rights and localized alt text before publication';
     END IF;
   END IF;
   RETURN NEW;

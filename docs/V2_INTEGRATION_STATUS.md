@@ -12,11 +12,11 @@ This branch is a working integration, not a release candidate. The existing Pyth
 
 ## Incomplete, and required before merge or production deployment
 
-- Supabase project setup, migration execution and database-backed tests are unavailable without a project. The SQL has not been executed against Supabase yet. See `editorial/README.md` for exact setup and access checks.
+- Supabase project setup, migration execution and database-backed tests are unavailable without a project. The SQL has not been executed against Supabase yet. A rollback-only three-role SQL smoke test is prepared in `editorial/tests/rls_smoke.sql`; it is unrun. See `editorial/README.md` for exact setup and access checks.
 - An isolated admin client, private media upload path and staging exporter are implemented in `editorial/`. They are not deployed and have not been exercised against a real Supabase project. Live authentication, RLS, storage, revision and publication checks remain mandatory before exposing an admin route.
 - The migration configures a private Supabase Storage bucket and RLS for uploads. A rights-approval UI and safe promotion to public media are not implemented; the exporter omits cover images until they exist.
 - The Fashion Book needs verified profile details and approved photographs before a public subdomain is configured. Restricted galleries require actual authentication and authorization, not `noindex`.
-- Full keyboard and screen-reader review, measured contrast and performance, browser visual inspection of the remote preview, Supabase connectivity and end-to-end editorial checks remain to be completed.
+- Full keyboard and screen-reader review, measured contrast and performance, Supabase connectivity and a real database-backed end-to-end editorial check remain to be completed. The previously recorded local visual and preview HTTP checks are narrower than these gates.
 
 ## External configuration when the implementation is ready
 
@@ -32,11 +32,12 @@ No DNS, Cloudflare, Supabase or production configuration has been changed by thi
 - Production-simulated static build generated 32 pages; `check_site.py` passed for routes, internal links, 404 metadata, canonical/hreflang, sitemap and current content.
 - Existing build-mode checks passed for local, preview and main variants, including noindex outside production.
 - Public-source safety checks passed after allowing only blank-valued `.env.example` templates.
-- Nine Python tests passed for English-only article generation, no draft/private article output, RSS ordering, safe JSON-LD and article-cover rights, inert raw HTML and SEO fields in the exporter, unsafe article links, secret-key rejection, isolated admin preview build and Fashion Book separation.
+- Eleven Python tests passed, including a synthetic export → static build → withdrawal cycle that checks RSS, sitemap, SEO metadata, search markup, related links and exclusion of private social drafts. CI now runs the Python suite.
 - Chrome headless local QA checked 60 page/viewport combinations at 320, 375, 390, 768, 1024 and 1440 px, plus 30 combinations at 200% root text size (320, 390 and 768 px): no document-level horizontal overflow. Home screenshots at 390 px and 1440 px in light/dark were visually inspected. A 320 px / 200% screenshot exposed an unreadable mobile wordmark; the shared CSS was corrected and inspected again.
-- Existing 19 Node contact-form tests passed. `node --check` passed on the admin script and `git diff --check` passed.
+- Twenty-six Node tests passed: 19 contact-form tests, five mocked admin-controller scenarios and two writing-search checks. The mocked admin tests exposed a duplicate-tag conflict and late cover validation; both were corrected. These fixtures do not establish live Supabase behavior.
 - The branch preview at `https://feature-portfolio-v2.samuel-okotako.pages.dev` passed HTTP checks: Writing returned 200 with `X-Robots-Tag: noindex` and a noindex meta tag; canonical/hreflang were absent; `robots.txt` allowed crawling; sitemap, an unknown route and `/fashion-book/` returned 404. This verifies the served response for those URLs, not all browser interactions.
 - Supabase migration, RLS, Auth, Storage and live article operations were **not** run: no project credentials are configured, and the local Docker daemon is unavailable. Full keyboard/screen-reader checks and measured performance were also not completed. These are release gates, not inferred successes.
+- Gitleaks history and working-tree scans found no leaks. `check_public_safety.py`, its fixture tests, the build-mode gates and `git diff --check` passed. The current local default build has 32 HTML files, three languages and zero real articles.
 
 ## Cost boundary
 

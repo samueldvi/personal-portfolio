@@ -67,11 +67,14 @@
     return created[0].id;
   }
   async function saveTags(articleId, input) {
-    const labels = [...new Set(input.split(',').map((value) => value.trim()).filter(Boolean))];
+    const labels = input.split(',').map((value) => value.trim()).filter(Boolean);
     const desired = [];
+    const seenSlugs = new Set();
     for (const label of labels) {
       const slug = slugify(label);
       if (!slug) throw new Error('Every tag needs letters or digits.');
+      if (seenSlugs.has(slug)) continue;
+      seenSlugs.add(slug);
       let rows = await rest(`editorial_tags?slug=eq.${encodeURIComponent(slug)}&select=id`);
       if (!rows.length) rows = await rest('editorial_tags', {method: 'POST', headers: jsonHeaders, body: JSON.stringify({slug, label})});
       desired.push(rows[0].id);
@@ -87,6 +90,8 @@
   async function saveDraft() {
     if (!form.reportValidity()) return null;
     if (state.translation?.status === 'published') throw new Error('Withdraw this language before editing its published version.');
+    const cover = fields.cover.files[0];
+    const coverDimensions = cover ? await inspectCover(cover) : null;
     const slug = fields.slug.value.trim();
     if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) throw new Error('Use a lowercase URL slug.');
     const article = state.articles.find((row) => row.id === state.articleId);
@@ -113,21 +118,29 @@
     const revisions = await rest(`editorial_revisions?translation_id=eq.${state.translation.id}&select=revision_number&order=revision_number.desc&limit=1`);
     await rest('editorial_revisions', {method: 'POST', headers: jsonHeaders, body: JSON.stringify({translation_id: state.translation.id, revision_number: (revisions[0]?.revision_number || 0) + 1, snapshot: data, editor_id: state.userId})});
     if (fields.linkedin.value.trim() || hadLinkedIn) await rest('editorial_social_drafts?on_conflict=translation_id,platform', {method: 'POST', headers: {...jsonHeaders, 'prefer': 'resolution=merge-duplicates,return=representation'}, body: JSON.stringify({translation_id: state.translation.id, platform: 'linkedin', copy: fields.linkedin.value.trim()})});
-    const cover = fields.cover.files[0];
-    if (cover) await uploadPrivateCover(cover);
+    let coverError = null;
+    if (cover) {
+      try { await uploadPrivateCover(cover, coverDimensions); }
+      catch (error) { coverError = error; }
+    }
     await refresh();
     $('articleList').value = state.articleId;
     loadSelected();
+    if (coverError) throw new Error(`Draft saved, but cover upload failed: ${coverError.message || 'try again.'}`);
     say('Draft saved. It is not published on the website.');
     return state.translation;
   }
-  async function uploadPrivateCover(file) {
-    if (!state.translation) throw new Error('Save a draft before uploading a cover.');
+  async function inspectCover(file) {
     if (!['image/jpeg', 'image/png', 'image/webp', 'image/avif'].includes(file.type) || file.size > 5 * 1024 * 1024) throw new Error('Choose a JPEG, PNG, WebP or AVIF image under 5 MB.');
     if (!('createImageBitmap' in window)) throw new Error('This browser cannot inspect image dimensions.');
     const bitmap = await createImageBitmap(file);
     const width = bitmap.width, height = bitmap.height;
     bitmap.close();
+    if (width < 1 || height < 1) throw new Error('Choose an image with valid dimensions.');
+    return {width, height};
+  }
+  async function uploadPrivateCover(file, {width, height}) {
+    if (!state.translation) throw new Error('Save a draft before uploading a cover.');
     const key = `${crypto.randomUUID()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
     await request(`storage/v1/object/editorial-private/${encodeURIComponent(key)}`, {method: 'POST', headers: {'content-type': file.type, 'x-upsert': 'false'}, body: file});
     const rows = await rest('editorial_media', {method: 'POST', headers: jsonHeaders, body: JSON.stringify({storage_key: key, mime_type: file.type, width, height, rights_status: 'pending', visibility: 'private'})});
