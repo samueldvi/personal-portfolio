@@ -16,7 +16,7 @@ This branch is a working integration, not a release candidate. The existing Pyth
 - An isolated admin client, private media upload path and staging exporter are implemented in `editorial/`. They are not deployed and have not been exercised against a real Supabase project. Live authentication, RLS, storage, revision and publication checks remain mandatory before exposing an admin route.
 - The migration configures a private Supabase Storage bucket and RLS for uploads. A rights-approval UI and safe promotion to public media are not implemented; the exporter omits cover images until they exist.
 - The Fashion Book needs verified profile details and approved photographs before a public subdomain is configured. Restricted galleries require actual authentication and authorization, not `noindex`.
-- Full keyboard and screen-reader review, measured contrast and performance, live preview HTTP inspection, Supabase connectivity and end-to-end editorial checks remain to be completed. Cloudflare reported a successful branch preview build; its served content has not been inspected in a browser.
+- Full keyboard and screen-reader review, measured contrast and performance, browser visual inspection of the remote preview, Supabase connectivity and end-to-end editorial checks remain to be completed.
 
 ## External configuration when the implementation is ready
 
@@ -35,7 +35,8 @@ No DNS, Cloudflare, Supabase or production configuration has been changed by thi
 - Nine Python tests passed for English-only article generation, no draft/private article output, RSS ordering, safe JSON-LD and article-cover rights, inert raw HTML and SEO fields in the exporter, unsafe article links, secret-key rejection, isolated admin preview build and Fashion Book separation.
 - Chrome headless local QA checked 60 page/viewport combinations at 320, 375, 390, 768, 1024 and 1440 px, plus 30 combinations at 200% root text size (320, 390 and 768 px): no document-level horizontal overflow. Home screenshots at 390 px and 1440 px in light/dark were visually inspected. A 320 px / 200% screenshot exposed an unreadable mobile wordmark; the shared CSS was corrected and inspected again.
 - Existing 19 Node contact-form tests passed. `node --check` passed on the admin script and `git diff --check` passed.
-- Supabase migration, RLS, Auth, Storage and live article operations were **not** run: no project credentials are configured, and the local Docker daemon is unavailable. Served Cloudflare preview inspection, full keyboard/screen-reader checks and measured performance were also not completed. These are release gates, not inferred successes.
+- The branch preview at `https://feature-portfolio-v2.samuel-okotako.pages.dev` passed HTTP checks: Writing returned 200 with `X-Robots-Tag: noindex` and a noindex meta tag; canonical/hreflang were absent; `robots.txt` allowed crawling; sitemap, an unknown route and `/fashion-book/` returned 404. This verifies the served response for those URLs, not all browser interactions.
+- Supabase migration, RLS, Auth, Storage and live article operations were **not** run: no project credentials are configured, and the local Docker daemon is unavailable. Full keyboard/screen-reader checks and measured performance were also not completed. These are release gates, not inferred successes.
 
 ## Cost boundary
 
