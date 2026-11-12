@@ -29,21 +29,18 @@ Uno `screenshot` richiede `src` PNG di fallback, `webp_srcset`, dimensioni effet
   "status": "published",
   "slug": "titolo-stabile",
   "date": "2026-11-02",
-  "languages": ["it", "en", "fr"],
+  "languages": ["en"],
   "categories": ["Data Engineering"],
+  "tags": ["Python"],
   "author": "Samuel Okotako",
   "image": null,
-  "translations": {
-    "it": {"title": "Titolo", "description": "Descrizione"},
-    "en": {"title": "Title", "description": "Description"},
-    "fr": {"title": "Titre", "description": "Description"}
-  }
+  "translations": {"en": {"title": "Title", "description": "Description"}}
 }
 ```
 
-Crea i corpi in `content/articles/titolo-stabile/it.html`, `en.html`, `fr.html`. Usa frammenti HTML semantici, senza `<script>` o `<iframe>`. Il generatore crea gli indici `/it/writing/`, `/en/writing/`, `/fr/writing/` e le pagine `/[lingua]/writing/[slug]/` solo quando almeno un articolo completo è `published`. Le bozze (`"status": "draft"`) non sono generate né copiate in `public/`.
+Crea il corpo per ogni lingua elencata, per esempio `content/articles/titolo-stabile/en.html`. Usa solo `p`, `h2`–`h4`, liste, `strong`, `em`, `code`, `pre`, `blockquote`, `br` e link HTTPS/locali/mailto; gli attributi sono ammessi soltanto per `href` dei link. Il generatore rifiuta altri tag e attributi. Gli archivi `/it/writing/`, `/en/writing/`, `/fr/writing/` sono sempre disponibili; le pagine di dettaglio sono generate solo per le lingue pubblicate. Il selettore lingua apre l'archivio quando la traduzione dell'articolo manca. Le bozze (`"status": "draft"`) e i contenuti non pubblici non sono generati né copiati in `public/`. In produzione ogni archivio dispone di un feed RSS; gli articoli possono avere `tags` per ricerca e collegamenti correlati.
 
-Per un'immagine dell'articolo, sostituisci `null` con `{"src":"/assets/articolo.webp","width":1200,"height":800,"alt":{"it":"...","en":"...","fr":"..."}}`. Puoi aggiungere `srcset`. Metti l'asset originale in `assets/`; il generatore copia solo quelli referenziati da contenuti pubblicati. Specifica dimensioni reali per evitare spostamenti del layout. Le immagini dentro il corpo HTML richiedono `width`, `height`, `alt`, `loading="lazy"` se non prioritarie e, quando opportuno, `srcset` e `sizes`.
+Per un'immagine dell'articolo, sostituisci `null` con `{"src":"/assets/articolo.webp","width":1200,"height":800,"alt":{"it":"...","en":"...","fr":"..."}}`. Puoi aggiungere `srcset`. Metti l'asset originale in `assets/`; il generatore copia solo quelli referenziati da contenuti pubblicati. Specifica dimensioni reali per evitare spostamenti del layout. Per ora le immagini nel corpo HTML sono escluse: usa il campo `image` con dimensioni, alt localizzato e approvazione dei diritti. Un componente per media incorporati richiederà una policy di sicurezza separata.
 
 ## Galleria e media
 

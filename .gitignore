@@ -20,3 +20,7 @@ __pycache__/
 # Local QA reports remain outside the published source tree.
 /PORTFOLIO_RELEASE_REPORT.md
 /content/PROJECTS_REDESIGN_AUDIT.md
+
+# Local editorial configuration (the publishable key is injected at build time).
+editorial/admin/config.json
+editorial/.env.local

@@ -5,8 +5,12 @@ Canonical metadata and indexing require an explicit approved Pages build.
 Local and preview builds remain noindex even when SITE_URL is populated.
 """
 from html import escape
+from html.parser import HTMLParser
+from datetime import datetime, timezone
+from email.utils import format_datetime
 from pathlib import Path
 from urllib.parse import urlsplit
+from urllib.parse import quote
 import hashlib
 import json
 import re
@@ -29,6 +33,14 @@ def h(value):
     return escape(str(value), quote=True)
 
 
+def json_for_html_script(value):
+    """Keep JSON-LD data from closing its HTML script element."""
+    return (json.dumps(value, ensure_ascii=False)
+            .replace('<', '\\u003c').replace('>', '\\u003e')
+            .replace('&', '\\u0026').replace('\u2028', '\\u2028')
+            .replace('\u2029', '\\u2029'))
+
+
 def media_sources_from_srcset(value):
     return [candidate.strip().split()[0] for candidate in value.split(',') if candidate.strip()]
 
@@ -46,7 +58,7 @@ PROJECT_VISUALS = json.loads((ROOT / 'content' / 'project_visuals.json').read_te
 HOME_MEDIA = json.loads((ROOT / 'content' / 'home_media.json').read_text(encoding='utf-8'))
 ITS_MODULES = load_registry('its_modules')
 PROJECT_DETAILS = [item for item in PROJECTS if item.get('detail') == 'published']
-ARTICLES = [item for item in load_registry('articles') if item.get('status') == 'published']
+ARTICLES = [item for item in load_registry('articles') if item.get('status') == 'published' and item.get('visibility', 'public') == 'public']
 GALLERIES = [item for item in load_registry('galleries') if item.get('status') == 'published']
 MOMENTS = [item for item in load_registry('moments') if item.get('status') == 'published']
 DOCUMENTS = [item for item in load_registry('documents') if item.get('status') == 'published']
@@ -65,6 +77,19 @@ def slug(value):
     if not isinstance(value, str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', value):
         raise ValueError(f'Invalid URL slug: {value!r}')
     return value
+
+
+def article_date(item, lang):
+    return item['translations'][lang].get('date', item['date'])
+
+
+def valid_iso_date(value):
+    if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', value):
+        return False
+    try:
+        return datetime.fromisoformat(value).date().isoformat() == value
+    except ValueError:
+        return False
 
 
 def validate():
@@ -148,9 +173,10 @@ def validate():
         for key in ('date','languages','categories','image','translations'):
             if key not in item:
                 raise ValueError(f'Article {item["slug"]} lacks {key}')
-        if set(item['languages']) != set(LANGS):
-            raise ValueError(f'Article {item["slug"]} must list it, en and fr languages')
-        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', item['date']):
+        languages = item['languages']
+        if not isinstance(languages, list) or not languages or len(languages) != len(set(languages)) or not set(languages) <= set(LANGS):
+            raise ValueError(f'Article {item["slug"]} needs one or more supported languages')
+        if not valid_iso_date(item['date']):
             raise ValueError(f'Article {item["slug"]} needs ISO date YYYY-MM-DD')
         if not isinstance(item['categories'], list) or not item['categories']:
             raise ValueError(f'Article {item["slug"]} needs categories')
@@ -158,12 +184,21 @@ def validate():
             media = item['image']
             if not all(media.get(key) for key in ('src','width','height','alt')):
                 raise ValueError(f'Article {item["slug"]} has incomplete image metadata')
-            if not all(media['alt'].get(lang) for lang in LANGS):
+            rights = media.get('rights') or {}
+            if rights.get('status') != 'approved' or not rights.get('basis') or not rights.get('credit'):
+                raise ValueError(f'Article {item["slug"]} needs documented image publication rights')
+            if not all(isinstance(media[key], int) and media[key] > 0 for key in ('width', 'height')):
+                raise ValueError(f'Article {item["slug"]} needs positive image dimensions')
+            if not all(media['alt'].get(lang) for lang in languages):
                 raise ValueError(f'Article {item["slug"]} needs localized image alt text')
-        for lang in LANGS:
+            for source in (media['src'], *media_sources_from_srcset(media.get('srcset', ''))):
+                media_file(source)
+        for lang in languages:
             for key in ('title','description'):
                 if not item['translations'][lang].get(key):
                     raise ValueError(f'Article {item["slug"]} lacks {lang} {key}')
+            if not valid_iso_date(article_date(item, lang)):
+                raise ValueError(f'Article {item["slug"]} has an invalid {lang} publication date')
             article_body(item, lang)
     for item in GALLERIES:
         slug(item['slug'])
@@ -263,10 +298,9 @@ def validate():
 
 def routes():
     result = list(BASE_ROUTES)
-    if ARTICLES:
-        result.insert(3, 'writing')
+    result.insert(3, 'writing')
     if GALLERIES:
-        result.insert(4 if ARTICLES else 3, 'gallery')
+        result.insert(4, 'gallery')
     if MOMENTS:
         result.insert(-1, 'moments')
     if INITIATIVES:
@@ -292,13 +326,15 @@ def early_theme():
 
 def seo_head(lang, route, title, description, slug_value=None, noindex=False, image=None, article=None):
     tags = [f'<meta name="description" content="{h(description)}">', '<meta name="color-scheme" content="light dark">']
+    if ORIGIN and lang and route == 'writing':
+        tags.append(f'<link rel="alternate" type="application/rss+xml" title="Samuel Okotako — Writing" href="{h(absolute(path(lang,"writing")+"feed.xml"))}">')
     if noindex or not ORIGIN:
         tags.append('<meta name="robots" content="noindex, nofollow">')
     else:
         target = absolute(path(lang, route, slug_value)) if lang else absolute('/')
         tags.append(f'<link rel="canonical" href="{h(target)}">')
         if lang:
-            for code in LANGS:
+            for code in (article['languages'] if article else LANGS):
                 tags.append(f'<link rel="alternate" hreflang="{code}" href="{h(absolute(path(code, route, slug_value)))}">')
             if route == 'home':
                 tags.append(f'<link rel="alternate" hreflang="x-default" href="{h(absolute("/"))}">')
@@ -316,9 +352,10 @@ def seo_head(lang, route, title, description, slug_value=None, noindex=False, im
     if ORIGIN and not noindex:
         share_image = image if article and image else SOCIAL_IMAGE
         image_url = absolute(share_image)
+        image_alt = article['image']['alt'][lang] if article and image else 'Samuel Okotako — Data Engineering, Machine Learning, Data Governance'
         tags.extend((
             f'<meta property="og:image" content="{h(image_url)}">',
-            f'<meta property="og:image:alt" content="{h("Samuel Okotako — Data Engineering, Machine Learning, Data Governance")}">',
+            f'<meta property="og:image:alt" content="{h(image_alt)}">',
             '<meta name="twitter:card" content="summary_large_image">',
             f'<meta name="twitter:title" content="{h(title)}">',
             f'<meta name="twitter:description" content="{h(description)}">',
@@ -328,10 +365,10 @@ def seo_head(lang, route, title, description, slug_value=None, noindex=False, im
             tags.extend(('<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">'))
     if ORIGIN and route == 'home' and lang and not noindex:
         data = {'@context':'https://schema.org','@type':'Person','name':'Samuel Okotako','url':absolute(path(lang))}
-        tags.append(f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>')
+        tags.append(f'<script type="application/ld+json">{json_for_html_script(data)}</script>')
     if ORIGIN and article and not noindex:
-        data = {'@context':'https://schema.org','@type':'Article','headline':article['translations'][lang]['title'],'datePublished':article['date'],'description':article['translations'][lang]['description'],'inLanguage':lang,'mainEntityOfPage':absolute(path(lang, 'writing', article['slug'])),'author':{'@type':'Person','name':article.get('author','Samuel Okotako')}}
-        tags.append(f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>')
+        data = {'@context':'https://schema.org','@type':'Article','headline':article['translations'][lang]['title'],'datePublished':article_date(article,lang),'description':article['translations'][lang]['description'],'inLanguage':lang,'mainEntityOfPage':absolute(path(lang, 'writing', article['slug'])),'author':{'@type':'Person','name':article.get('author','Samuel Okotako')}}
+        tags.append(f'<script type="application/ld+json">{json_for_html_script(data)}</script>')
     return '\n  '.join(tags)
 
 
@@ -348,7 +385,8 @@ def navigation(lang, current_route=None):
 
 def language_switch(lang, route, current=True, slug_value=None):
     c = CONTENT[lang]
-    links = ''.join(f'<a href="{path(code, route, slug_value)}" hreflang="{code}" lang="{code}" data-language="{code}"{ " aria-current=\"page\"" if code == lang and current else ""}>{code.upper()}</a>' for code in LANGS)
+    article = next((item for item in ARTICLES if route == 'writing' and item['slug'] == slug_value), None)
+    links = ''.join(f'<a href="{path(code, route, slug_value if not article or code in article["languages"] else None)}" hreflang="{code}" lang="{code}" data-language="{code}"{ " aria-current=\"page\"" if code == lang and current else ""}>{code.upper()}</a>' for code in LANGS)
     return f'<div class="language-switch" role="group" aria-label="{h(c["language_label"])}">{links}</div>'
 
 
@@ -574,28 +612,84 @@ def article_body(item, lang):
     if not location.is_file():
         raise ValueError(f'Missing article body: {location.relative_to(ROOT)}')
     markup = location.read_text(encoding='utf-8')
-    if re.search(r'<\s*(script|iframe|style|object|embed|form)\b|\bon[a-z]+\s*=|javascript\s*:', markup, re.I):
-        raise ValueError(f'Unsafe embedded content in {location.relative_to(ROOT)}')
-    return markup
+    class ArticleParser(HTMLParser):
+        allowed = {'p','h2','h3','h4','ul','ol','li','strong','em','code','pre','blockquote','a','br'}
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.parts = []
+            self.stack = []
+        def handle_starttag(self, tag, attrs):
+            if tag not in self.allowed:
+                raise ValueError(f'Unsupported article HTML tag: {tag}')
+            if tag == 'a':
+                if len(attrs) != 1 or attrs[0][0] != 'href':
+                    raise ValueError('Article links need only an href attribute')
+                href = attrs[0][1] or ''
+                parsed = urlsplit(href)
+                if not ((parsed.scheme == 'https' and parsed.netloc) or (href.startswith('/') and not href.startswith('//')) or (parsed.scheme == 'mailto' and parsed.path)):
+                    raise ValueError('Article link must be HTTPS, local or mailto')
+                self.parts.append(f'<a href="{h(href)}" rel="noopener noreferrer">')
+            elif attrs:
+                raise ValueError(f'Article {tag} cannot carry attributes')
+            else:
+                self.parts.append(f'<{tag}>')
+            if tag != 'br': self.stack.append(tag)
+        def handle_startendtag(self, tag, attrs):
+            if tag != 'br' or attrs:
+                raise ValueError('Only a plain br may be self-closing')
+            self.parts.append('<br>')
+        def handle_endtag(self, tag):
+            if not self.stack or self.stack.pop() != tag:
+                raise ValueError('Unbalanced article HTML')
+            self.parts.append(f'</{tag}>')
+        def handle_data(self, data): self.parts.append(h(data))
+        def handle_entityref(self, name): self.parts.append(h(f'&{name};'))
+        def handle_charref(self, name): self.parts.append(h(f'&#{name};'))
+        def handle_comment(self, data): raise ValueError('Article comments are not supported')
+        def handle_decl(self, decl): raise ValueError('Article declarations are not supported')
+    parser = ArticleParser()
+    try:
+        parser.feed(markup)
+        parser.close()
+        if parser.stack: raise ValueError('Unbalanced article HTML')
+    except ValueError as error:
+        raise ValueError(f'Unsafe article content in {location.relative_to(ROOT)}: {error}') from error
+    return ''.join(parser.parts)
 
 
 def writing(lang):
     c=EXTRA[lang]
-    links=''.join(f'<article class="listing-card"><time datetime="{h(item["date"])}">{h(item["date"])}</time><h2><a href="{path(lang,"writing",item["slug"])}">{h(item["translations"][lang]["title"])}</a></h2><p>{h(item["translations"][lang]["description"])}</p><span>{h(", ".join(item["categories"]))}</span></article>' for item in ARTICLES)
-    body=f'<section class="section inner-page listing-page"><div class="container"><p class="eyebrow">{h(c["writing_nav"])}</p><h1>{h(c["writing_title"])}</h1><p class="page-lead">{h(c["writing_intro"])}</p><div class="listing-grid">{links}</div></div></section>'
+    localized=[item for item in ARTICLES if lang in item['languages']]
+    links=''.join(f'<article class="listing-card" data-article-card data-search="{h(" ".join((item["translations"][lang]["title"], item["translations"][lang]["description"], *item["categories"], *item.get("tags", []))))}"><time datetime="{h(article_date(item, lang))}">{h(article_date(item, lang))}</time><h2><a href="{path(lang,"writing",item["slug"])}">{h(item["translations"][lang]["title"])}</a></h2><p>{h(item["translations"][lang]["description"])}</p><span>{h(", ".join(item["categories"]))}</span></article>' for item in localized)
+    search=f'<label class="writing-search">{h(c["writing_search"])}<input type="search" id="writingSearch" autocomplete="off" aria-controls="writingResults"></label><p class="visually-hidden" id="writingSearchStatus" role="status" aria-live="polite"></p>' if localized else ''
+    listing=f'<div class="listing-grid" id="writingResults">{links}</div>' if localized else f'<p class="page-lead">{h(c["writing_empty"])}</p>'
+    body=f'<section class="section inner-page listing-page"><div class="container"><p class="eyebrow">{h(c["writing_nav"])}</p><h1>{h(c["writing_title"])}</h1><p class="page-lead">{h(c["writing_intro"])}</p>{search}{listing}</div></section>'
+    if localized:
+        body+=f'<script src="/writing-search.js" defer data-no-results="{h(c["writing_no_results"])}" data-results="{h(c["writing_results"])}"></script>'
     return shell(lang,'writing',body,f'{c["writing_title"]} | Samuel Okotako',c['writing_intro'])
 
 
 def article_page(lang, item):
     c=EXTRA[lang]; p=item['translations'][lang]
-    body=f'<article class="section inner-page article-page"><div class="container"><p class="eyebrow">{h(", ".join(item["categories"]))}</p><h1>{h(p["title"])}</h1><p class="page-lead">{h(p["description"])}</p><p class="article-date"><time datetime="{h(item["date"])}">{h(c["published"])} {h(item["date"])}</time></p><div class="article-body">{article_body(item,lang)}</div></div></article>'
+    markup=article_body(item,lang)
+    words=len(re.findall(r'\b\w+\b',re.sub(r'<[^>]+>',' ',markup)))
+    reading=max(1,(words+199)//200)
+    labels=' · '.join([*item['categories'],*item.get('tags',[])])
+    share=''
+    if ORIGIN:
+        url=absolute(path(lang,'writing',item['slug']))
+        share=f'<div class="article-share"><span>{h(c["writing_share"])}</span><a href="https://www.linkedin.com/sharing/share-offsite/?url={quote(url,safe="")}" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:?subject={quote(p["title"])}&amp;body={quote(url,safe="")}">{h(c["writing_share_email"])}</a></div>'
+    related=[other for other in ARTICLES if other['slug']!=item['slug'] and lang in other['languages'] and set(other['categories']) & set(item['categories'])][:3]
+    related_links=''.join(f'<li><a href="{path(lang,"writing",other["slug"])}">{h(other["translations"][lang]["title"])}</a></li>' for other in related)
+    related_html=f'<aside class="article-related"><h2>{h(c["writing_related"])}</h2><ul>{related_links}</ul></aside>' if related else ''
+    body=f'<article class="section inner-page article-page"><div class="container"><p class="eyebrow">{h(labels)}</p><h1>{h(p["title"])}</h1><p class="page-lead">{h(p["description"])}</p><p class="article-date"><time datetime="{h(article_date(item, lang))}">{h(c["published"])} {h(article_date(item, lang))}</time> · {reading} {h(c["writing_read_minutes"])}</p><div class="article-body">{markup}</div>{share}{related_html}</div></article>'
     image=item['image']['src'] if item['image'] else None
     if item['image']:
         media=item['image']
         srcset=f' srcset="{h(media["srcset"])}" sizes="(max-width: 820px) 100vw, 820px"' if media.get('srcset') else ''
         visual=f'<figure class="article-image"><img src="{h(media["src"])}"{srcset} width="{int(media["width"])}" height="{int(media["height"])}" alt="{h(media["alt"][lang])}" decoding="async"></figure>'
         body=body.replace('<div class="article-body">',visual+'<div class="article-body">')
-    return shell(lang,'writing',body,f'{p["title"]} | Samuel Okotako',p['description'],slug_value=item['slug'],image=image,article=item)
+    return shell(lang,'writing',body,p.get('seo_title') or f'{p["title"]} | Samuel Okotako',p.get('seo_description') or p['description'],slug_value=item['slug'],image=image,article=item)
 
 
 def gallery(lang):
@@ -728,10 +822,21 @@ def sitemap_paths():
     paths=['/']
     for lang in LANGS:
         paths += [path(lang,route) for route in routes()]
-        paths += [path(lang,'writing',item['slug']) for item in ARTICLES]
+        paths += [path(lang,'writing',item['slug']) for item in ARTICLES if lang in item['languages']]
         paths += [path(lang,'projects',item['id']) for item in PROJECT_DETAILS]
     paths += [item['file'] for item in DOCUMENTS]
     return paths
+
+
+def writing_feed(lang):
+    items=[]
+    for item in sorted((item for item in ARTICLES if lang in item['languages']), key=lambda row: article_date(row, lang), reverse=True):
+        content=item['translations'][lang]
+        url=absolute(path(lang,'writing',item['slug']))
+        published=format_datetime(datetime.fromisoformat(article_date(item,lang)).replace(tzinfo=timezone.utc))
+        items.append(f'<item><title>{h(content["title"])}</title><link>{h(url)}</link><guid isPermaLink="true">{h(url)}</guid><description>{h(content["description"])}</description><pubDate>{published}</pubDate></item>')
+    archive=absolute(path(lang,'writing'))
+    return f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Samuel Okotako — Writing ({lang.upper()})</title><link>{h(archive)}</link><description>{h(EXTRA[lang]["writing_intro"])}</description><language>{lang}</language>{"".join(items)}</channel></rss>'
 
 
 
@@ -785,6 +890,7 @@ def main():
     shutil.copy2(ROOT / 'style.css', OUTPUT / 'style.css')
     shutil.copy2(ROOT / 'script.js', OUTPUT / 'script.js')
     shutil.copy2(ROOT / 'contact-form.js', OUTPUT / 'contact-form.js')
+    shutil.copy2(ROOT / 'writing-search.js', OUTPUT / 'writing-search.js')
     if redirects:
         shutil.copy2(redirects, OUTPUT / '_redirects')
     builders={'home':home,'about':about,'projects':projects,'experience':experience,'contact':contact,'writing':writing,'gallery':gallery,'moments':moments,'initiatives':initiatives}
@@ -794,18 +900,22 @@ def main():
             save(local,builders[route](lang))
         save(Path(lang)/'404.html',not_found(lang))
         for item in ARTICLES:
-            save(Path(lang)/'writing'/item['slug']/'index.html',article_page(lang,item))
+            if lang in item['languages']:
+                save(Path(lang)/'writing'/item['slug']/'index.html',article_page(lang,item))
         for item in PROJECT_DETAILS:
             save(Path(lang)/'projects'/item['id']/'index.html',project_detail(lang,item))
     copy_published_media()
     save(Path('index.html'),root_landing())
     save(Path('404.html'),root_404())
     if ORIGIN:
+        for lang in LANGS:
+            save(Path(lang)/'writing'/'feed.xml', writing_feed(lang))
         urls=''.join(f'<url><loc>{h(absolute(item))}</loc></url>' for item in sitemap_paths())
         save(Path('sitemap.xml'),f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
         save(Path('robots.txt'),f'User-agent: *\nAllow: /\nSitemap: {absolute("/sitemap.xml")}\n')
     else:
-        save(Path('robots.txt'),'User-agent: *\nDisallow: /\n')
+        # Crawlers must be able to read the page-level noindex directive.
+        save(Path('robots.txt'),'User-agent: *\nAllow: /\n')
     print(f'Generated {len(routes())*3+5+len(ARTICLES)*3+len(PROJECT_DETAILS)*3} HTML files; {len(PROJECTS)} projects; {len(ARTICLES)} articles; {len(GALLERIES)} gallery items; {len(MOMENTS)} moments; {len(INITIATIVES)} initiatives.')
     if not INDEXING_ENABLED:
         print('Indexing disabled: noindex; canonical, hreflang and sitemap deferred.')

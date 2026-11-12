@@ -96,7 +96,7 @@ def check():
     expected += [PUBLIC / lang / '404.html' for lang in LANGS]
     expected += [PUBLIC / lang / route / 'index.html' for lang in LANGS for route in ROUTES]
     expected += [PUBLIC / lang / route / 'index.html' for lang in LANGS for route in routes() if route not in ('home',) + tuple(x.strip('/') for x in ROUTES if x)]
-    expected += [PUBLIC / lang / 'writing' / item['slug'] / 'index.html' for lang in LANGS for item in ARTICLES]
+    expected += [PUBLIC / lang / 'writing' / item['slug'] / 'index.html' for lang in LANGS for item in ARTICLES if lang in item['languages']]
     expected += [PUBLIC / lang / 'projects' / item['id'] / 'index.html' for lang in LANGS for item in PROJECT_DETAILS]
     for file in expected:
         assert file.is_file(), f'Missing route: {file.relative_to(PUBLIC)}'
@@ -201,7 +201,7 @@ def check():
             assert all(urlsplit(link).scheme == '' and not urlsplit(link).netloc for link in page.assets), f'404 has a remote dependency: {file}'
     origin = SITE_URL if INDEXING_ENABLED else ''
     if not INDEXING_ENABLED:
-        assert (PUBLIC / 'robots.txt').read_text() == 'User-agent: *\nDisallow: /\n'
+        assert (PUBLIC / 'robots.txt').read_text() == 'User-agent: *\nAllow: /\n'
         assert not (PUBLIC / 'sitemap.xml').exists()
         for file, page in pages.items():
             assert any('noindex' in x for x in page.robots), f'Unpublished page is indexable: {file}'
@@ -215,8 +215,10 @@ def check():
                 local = '/'
             assert page.canonicals == [origin + local], f'Canonical: {file}'
             alternates = dict(page.alternates)
-            assert {code for code in LANGS}.issubset(alternates), f'Hreflang: {file}'
-            for code in LANGS:
+            article = next((item for item in ARTICLES if f'/writing/{item["slug"]}/' in local), None)
+            expected_langs = set(article['languages']) if article else set(LANGS)
+            assert expected_langs.issubset(alternates) and not (set(alternates) - expected_langs - {'x-default'}), f'Hreflang: {file}'
+            for code in expected_langs:
                 expected = origin + ('/' + code + local[3:] if file.parent != PUBLIC else f'/{code}/')
                 assert alternates[code] == expected, f'Non-reciprocal hreflang: {file} {code}'
             assert page.metadata.get('og:url') == page.canonicals[0], f'Open Graph URL: {file}'
@@ -229,7 +231,9 @@ def check():
         assert (PUBLIC / 'robots.txt').read_text().startswith('User-agent: *\nAllow: /\nSitemap: ' + origin), 'Public robots.txt mismatch'
         assert (PUBLIC / SOCIAL_IMAGE.lstrip('/')).is_file(), 'Social image missing'
     if not ARTICLES:
-        assert not any((PUBLIC / lang / 'writing').exists() for lang in LANGS), 'Empty writing page was published'
+        for lang in LANGS:
+            archive = PUBLIC / lang / 'writing' / 'index.html'
+            assert archive.is_file() and 'writing-search.js' not in archive.read_text(encoding='utf-8'), 'Empty writing archive must remain usable without empty search controls'
     if not GALLERIES:
         assert not any((PUBLIC / lang / 'gallery').exists() for lang in LANGS), 'Empty gallery page was published'
     if not MOMENTS:

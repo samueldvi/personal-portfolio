@@ -24,11 +24,13 @@ Il workflow `.github/workflows/portfolio-quality.yml` si attiva su pull request 
 
 | Modalità | Condizione | Output |
 | --- | --- | --- |
-| Locale | `CF_PAGES` assente | `noindex`, `Disallow: /`, senza canonical/hreflang/sitemap |
+| Locale | `CF_PAGES` assente | `noindex`, crawler autorizzati a leggere il meta tag, senza canonical/hreflang/sitemap |
 | Preview Pages | `CF_PAGES_BRANCH` diverso da `main` | Come locale; verificare anche `X-Robots-Tag: noindex` della preview |
 | Produzione autorizzata | `SITE_URL=https://samuelokotako.com`, `CF_PAGES=1`, `CF_PAGES_BRANCH=main` | Canonical, hreflang, sitemap e `Allow: /` |
 
 Cloudflare inietta `CF_PAGES` e `CF_PAGES_BRANCH` durante il build Pages. Il generatore approva esplicitamente `main` come unico branch indicizzabile; variabili legacy `PORTFOLIO_PRODUCTION_BRANCH` e `PORTFOLIO_INDEXING` non controllano più questa scelta. Un `SITE_URL` vuoto usa il dominio canonico noto; un URL temporaneo mantiene `noindex`. `SITE_URL` da solo non abilita l'indicizzazione. Le modalità sono testate in directory temporanee da `tools/test_build_modes.py`.
+
+Le build locali e preview consentono la scansione in `robots.txt` affinché i crawler possano leggere il meta tag `noindex`. L'accesso ai file resta pubblico: non usare questa direttiva per proteggere contenuti riservati.
 
 La configurazione Pages attuale usa `python3 build_pages.py && python3 check_site.py` come build command e `public` come output directory. Le variabili automatiche `CF_PAGES` e `CF_PAGES_BRANCH` distinguono produzione e preview. Dopo ogni modifica alla configurazione, verificare nella dashboard che questi valori siano ancora corretti; controllare l'HTML **servito** sul dominio e su una preview.
 

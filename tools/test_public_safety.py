@@ -2,6 +2,7 @@
 """Regression checks for the metadata gate, using local synthetic fixtures only."""
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import subprocess
 from check_public_safety import RAW_ORIGINAL, embedded_image_metadata
 
 
@@ -21,6 +22,11 @@ def check():
             assert actual == expected, f'{name}: expected metadata category {expected}, got {actual}'
     assert RAW_ORIGINAL.fullmatch('IMG_5750.JPG')
     assert not RAW_ORIGINAL.fullmatch('approved-portrait.jpg')
+    repository = Path(__file__).resolve().parents[1]
+    assert subprocess.run(['git', 'check-ignore', '-q', '--', 'editorial/.env.local'],
+                          cwd=repository, check=False).returncode == 0
+    assert subprocess.run(['git', 'ls-files', '--error-unmatch', 'editorial/.env.local'],
+                          cwd=repository, check=False, capture_output=True).returncode != 0
     print('OK: metadata gate recognizes clean and tagged JPEG, PNG and WebP fixtures.')
 
 
