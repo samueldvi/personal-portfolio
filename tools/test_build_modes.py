@@ -28,17 +28,21 @@ def run_mode(name, settings, indexable):
             if result.returncode:
                 raise AssertionError(f'{name} {command[-1]} failed:\n{result.stdout}\n{result.stderr}')
         home = (site / 'public/en/index.html').read_text(encoding='utf-8')
+        writing = (site / 'public/en/writing/index.html').read_text(encoding='utf-8')
         robots = (site / 'public/robots.txt').read_text(encoding='utf-8')
         sitemap = site / 'public/sitemap.xml'
+        feed = site / 'public/en/writing/feed.xml'
         if indexable:
             assert f'<link rel="canonical" href="{ORIGIN}/en/">' in home
             assert f'<link rel="alternate" hreflang="x-default" href="{ORIGIN}/">' in home
             assert '<meta name="robots" content="noindex' not in home
             assert sitemap.is_file() and 'Allow: /' in robots
+            assert feed.is_file() and 'type="application/rss+xml"' in writing
         else:
             assert '<meta name="robots" content="noindex' in home
             assert '<link rel="canonical"' not in home
             assert not sitemap.exists() and robots == 'User-agent: *\nAllow: /\n'
+            assert not feed.exists() and 'type="application/rss+xml"' not in writing
         print(f'OK: {name} ({"indexable" if indexable else "noindex"})')
 
 

@@ -30,7 +30,7 @@ No DNS, Cloudflare, Supabase or production configuration has been changed by thi
 ## Local verification completed
 
 - Production-simulated static build generated 32 pages; `check_site.py` passed for routes, internal links, 404 metadata, canonical/hreflang, sitemap and current content.
-- Existing build-mode checks passed for local, preview and main variants, including noindex outside production.
+- Existing build-mode checks passed for local, preview and main variants, including noindex outside production. A regression assertion now requires RSS files and links only in the indexable build, matching the verified Cloudflare preview behavior.
 - Public-source safety checks passed after allowing only blank-valued `.env.example` templates.
 - Twelve Python tests passed, including local configuration loading and a synthetic export → static build → withdrawal cycle that checks RSS, sitemap, SEO metadata, search markup, related links and exclusion of private social drafts. CI runs the Python suite.
 - Chrome headless local QA checked 60 page/viewport combinations at 320, 375, 390, 768, 1024 and 1440 px, plus 30 combinations at 200% root text size (320, 390 and 768 px): no document-level horizontal overflow. Home screenshots at 390 px and 1440 px in light/dark were visually inspected. A 320 px / 200% screenshot exposed an unreadable mobile wordmark; the shared CSS was corrected and inspected again.
